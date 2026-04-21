@@ -3,7 +3,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Mail, Phone, Globe, CheckCircle, Loader } from "lucide-react";
 
 // ─── GHL Webhook ────────────────────────────────────────────────────────────
-const GHL_WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/qbIo1Hf53VoXfYNozERj/webhook-trigger/58dfda30-6716-4a51-a616-e379ef1c66dc";
+const GHL_WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/qbIo1Hf53VoXfYNozERj/webhook-trigger/4e2c81b8-6d45-45c6-8af9-710515f979ee";
 
 // ─── Contact info ────────────────────────────────────────────────────────────
 const CONTACT_EMAIL = "kelly@zaubergroup.com";
@@ -56,6 +56,7 @@ export default function ContactSection() {
         });
         if (!res.ok) throw new Error("Webhook error");
       } else {
+        // No webhook yet — simulate success so the form still works on the front end
         await new Promise((r) => setTimeout(r, 900));
       }
       setStatus("success");
@@ -108,7 +109,10 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="text-sm text-[#999] tracking-wide uppercase mb-1">Email</p>
-                    <a href={`mailto:${CONTACT_EMAIL}`} className="text-[#0A1628] text-lg hover:text-[#C9A84C] transition-colors">
+                    <a
+                      href={`mailto:${CONTACT_EMAIL}`}
+                      className="text-[#0A1628] text-lg hover:text-[#C9A84C] transition-colors"
+                    >
                       {CONTACT_EMAIL}
                     </a>
                   </div>
@@ -120,7 +124,10 @@ export default function ContactSection() {
                   </div>
                   <div>
                     <p className="text-sm text-[#999] tracking-wide uppercase mb-1">Phone</p>
-                    <a href={`tel:${CONTACT_PHONE_TEL}`} className="text-[#0A1628] text-lg hover:text-[#C9A84C] transition-colors">
+                    <a
+                      href={`tel:${CONTACT_PHONE_TEL}`}
+                      className="text-[#0A1628] text-lg hover:text-[#C9A84C] transition-colors"
+                    >
                       {CONTACT_PHONE_DISPLAY}
                     </a>
                   </div>
@@ -147,37 +154,84 @@ export default function ContactSection() {
                     Message received.
                   </h3>
                   <p className="text-[#555] leading-relaxed max-w-sm">
-                    We'll be in touch within one business day to schedule your discovery call. Talk soon.
+                    We'll be in touch within one business day to schedule your
+                    discovery call. Talk soon.
                   </p>
-                  <button onClick={() => setStatus("idle")} className="mt-8 text-xs tracking-[0.15em] uppercase text-[#C9A84C] hover:text-[#0A1628] transition-colors">
+                  <button
+                    onClick={() => setStatus("idle")}
+                    className="mt-8 text-xs tracking-[0.15em] uppercase text-[#C9A84C] hover:text-[#0A1628] transition-colors"
+                  >
                     Send another message
                   </button>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
+
+                  {/* Row 1: Name + Company */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label className={labelClass}>Your Name *</label>
-                      <input type="text" name="name" required value={form.name} onChange={handleChange} placeholder="First & last name" className={inputClass} />
+                      <input
+                        type="text"
+                        name="name"
+                        required
+                        value={form.name}
+                        onChange={handleChange}
+                        placeholder="First & last name"
+                        className={inputClass}
+                      />
                     </div>
                     <div>
                       <label className={labelClass}>Company Name *</label>
-                      <input type="text" name="company" required value={form.company} onChange={handleChange} placeholder="Your business name" className={inputClass} />
+                      <input
+                        type="text"
+                        name="company"
+                        required
+                        value={form.company}
+                        onChange={handleChange}
+                        placeholder="Your business name"
+                        className={inputClass}
+                      />
                     </div>
                   </div>
+
+                  {/* Row 2: Phone + Email */}
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
                       <label className={labelClass}>Phone Number *</label>
-                      <input type="tel" name="phone" required value={form.phone} onChange={handleChange} placeholder="(555) 000-0000" className={inputClass} />
+                      <input
+                        type="tel"
+                        name="phone"
+                        required
+                        value={form.phone}
+                        onChange={handleChange}
+                        placeholder="(555) 000-0000"
+                        className={inputClass}
+                      />
                     </div>
                     <div>
                       <label className={labelClass}>Email Address *</label>
-                      <input type="email" name="email" required value={form.email} onChange={handleChange} placeholder="you@yourcompany.com" className={inputClass} />
+                      <input
+                        type="email"
+                        name="email"
+                        required
+                        value={form.email}
+                        onChange={handleChange}
+                        placeholder="you@yourcompany.com"
+                        className={inputClass}
+                      />
                     </div>
                   </div>
+
+                  {/* Row 3: Tier interest */}
                   <div>
                     <label className={labelClass}>Which plan are you interested in?</label>
-                    <select name="tier" value={form.tier} onChange={handleChange} className={inputClass}>
+                    <select
+                      name="tier"
+                      value={form.tier}
+                      onChange={handleChange}
+                      className={inputClass}
+                    >
                       <option value="">Not sure yet — let's talk</option>
                       <option value="Starter — $1,500/mo">Starter — $1,500/mo (Social Media Autopilot)</option>
                       <option value="Growth — $2,500/mo">Growth — $2,500/mo (+ Website / SEO / GEO)</option>
@@ -185,24 +239,50 @@ export default function ContactSection() {
                       <option value="Premium — $5,000/mo">Premium — $5,000/mo (+ Meta Ads)</option>
                     </select>
                   </div>
+
+                  {/* Row 4: Message */}
                   <div>
                     <label className={labelClass}>Anything else we should know?</label>
-                    <textarea name="message" rows={4} value={form.message} onChange={handleChange} placeholder="Tell us about your business, your market, or what you're looking to achieve..." className={`${inputClass} resize-none`} />
+                    <textarea
+                      name="message"
+                      rows={4}
+                      value={form.message}
+                      onChange={handleChange}
+                      placeholder="Tell us about your business, your market, or what you're looking to achieve..."
+                      className={`${inputClass} resize-none`}
+                    />
                   </div>
+
+                  {/* Error */}
                   {status === "error" && (
                     <p className="text-sm text-red-600">
                       Something went wrong. Please email us directly at{" "}
-                      <a href={`mailto:${CONTACT_EMAIL}`} className="underline">{CONTACT_EMAIL}</a>.
+                      <a href={`mailto:${CONTACT_EMAIL}`} className="underline">
+                        {CONTACT_EMAIL}
+                      </a>
+                      .
                     </p>
                   )}
-                  <button type="submit" disabled={status === "sending"} className="w-full flex items-center justify-center gap-3 px-10 py-4 bg-[#0A1628] text-white text-sm font-semibold tracking-[0.1em] uppercase hover:bg-[#C9A84C] hover:text-[#0A1628] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed">
+
+                  {/* Submit */}
+                  <button
+                    type="submit"
+                    disabled={status === "sending"}
+                    className="w-full flex items-center justify-center gap-3 px-10 py-4 bg-[#0A1628] text-white text-sm font-semibold tracking-[0.1em] uppercase hover:bg-[#C9A84C] hover:text-[#0A1628] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                  >
                     {status === "sending" ? (
-                      <><Loader className="w-4 h-4 animate-spin" />Sending…</>
+                      <>
+                        <Loader className="w-4 h-4 animate-spin" />
+                        Sending…
+                      </>
                     ) : (
                       "Get BuilderFlow™"
                     )}
                   </button>
-                  <p className="text-xs text-[#AAAAAA] text-center">We respond within one business day. No spam, ever.</p>
+
+                  <p className="text-xs text-[#AAAAAA] text-center">
+                    We respond within one business day. No spam, ever.
+                  </p>
                 </form>
               )}
             </div>
@@ -212,4 +292,4 @@ export default function ContactSection() {
       </div>
     </section>
   );
-    }
+}
