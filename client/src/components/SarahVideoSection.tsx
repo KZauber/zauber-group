@@ -3,7 +3,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 // TODO: Replace HEYGEN_VIDEO_URL with the actual HeyGen embed URL once generated
 // Example: "https://app.heygen.com/embeds/YOUR_VIDEO_ID"
-const HEYGEN_VIDEO_URL = "";
+const HEYGEN_VIDEO_URL = "https://app.heygen.com/embeds/94791e1bb5a54bab99fd901fc83b86d6";
 
 export default function SarahVideoSection() {
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.1);
