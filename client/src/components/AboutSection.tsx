@@ -1,6 +1,6 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const KELLY_HEADSHOT = "/kelly-headshot.jpg";
+const KELLY_HEADSHOT = "/kelly-headshot.jpeg.jpg";
 
 export default function AboutSection() {
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.1);
@@ -107,4 +107,4 @@ export default function AboutSection() {
       </div>
     </section>
   );
-          }
+}
