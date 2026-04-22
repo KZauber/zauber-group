@@ -1,5 +1,4 @@
-const HERO_IMAGE =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663392461276/eAdsFDAMhTrW5pTcaBjTvJ/builderflow-hero-8cJmESpvvbAq4FHXUpHL3q.webp";
+const HERO_IMAGE = "/zauber-hero.jpg";
 
 export default function HeroCarousel() {
   const scrollToContact = () => {
@@ -28,9 +27,9 @@ export default function HeroCarousel() {
       {/* Content */}
       <div className="relative z-10 min-h-screen flex items-center">
         <div className="container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center py-32">
+          <div className="flex items-center py-32">
 
-            {/* Left: Copy */}
+            {/* Copy */}
             <div className="max-w-2xl">
               {/* Eyebrow */}
               <div className="flex items-center gap-4 mb-8">
@@ -75,28 +74,6 @@ export default function HeroCarousel() {
               </div>
             </div>
 
-            {/* Right: Sarah Young */}
-            <div className="hidden lg:flex justify-end items-end">
-              <div className="relative">
-                {/* Gold accent frame */}
-                <div className="absolute -bottom-4 -right-4 w-full h-full border border-[#C9A84C]/40" />
-                <div className="relative overflow-hidden">
-                  <img
-                    src="/sarah-young.png"
-                    alt="Sarah Young — BuilderFlow Specialist"
-                    className="w-full max-w-[380px] h-auto object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/30 to-transparent" />
-                </div>
-                {/* Name badge */}
-                <div className="absolute bottom-8 left-0 right-0 px-6">
-                  <div className="bg-[#0A1628]/80 backdrop-blur-sm border border-[#C9A84C]/30 px-5 py-3">
-                    <p className="text-white font-semibold text-sm tracking-wide">Sarah Young</p>
-                    <p className="text-[#C9A84C] text-xs tracking-[0.15em] uppercase mt-0.5">BuilderFlow Specialist</p>
-                  </div>
-                </div>
-              </div>
-            </div>
 
           </div>
         </div>
