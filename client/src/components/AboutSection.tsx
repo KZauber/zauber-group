@@ -1,7 +1,6 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const KELLY_HEADSHOT =
-  "https://d2xsxph8kpxj0f.cloudfront.net/310519663392461276/eAdsFDAMhTrW5pTcaBjTvJ/kelly_headshot_processed_56beb26c.png";
+const KELLY_HEADSHOT = "/kelly-headshot.jpg";
 
 export default function AboutSection() {
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.1);
@@ -108,4 +107,4 @@ export default function AboutSection() {
       </div>
     </section>
   );
-}
+          }
