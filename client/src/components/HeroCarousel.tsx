@@ -1,4 +1,4 @@
-const HERO_IMAGE = "/zauber-hero.jpg";
+const HERO_IMAGE = "/zauber-hero.jpeg.jpg";
 
 export default function HeroCarousel() {
   const scrollToContact = () => {
