@@ -128,6 +128,13 @@ function buildReportHtml(
     <p style="color: #999; font-size: 12px; margin-top: 20px;">Prepared by Zauber Group · ${cityState}</p>
   </div>
 
+  <!-- Book a Call -->
+  <div style="padding: 32px; text-align: center; background: #0d1526;">
+    <div style="font-size: 16px; color: #ccc; margin-bottom: 16px;">Want help fixing what's in this report?</div>
+    <a href="https://calendly.com/kelly-zaubergroup/free-strategy-call" style="background: #c9a84c; color: #0d1526; padding: 14px 32px; text-decoration: none; font-weight: bold; border-radius: 6px; font-size: 15px;">Book a Free Strategy Call →</a>
+    <p style="color: #666; font-size: 12px; margin-top: 16px;">30 minutes · No pressure · Kelly will walk you through exactly what to fix first</p>
+  </div>
+
 </div>`;
 }
 
