@@ -2,8 +2,8 @@ import Anthropic from "@anthropic-ai/sdk";
 import { Resend } from "resend";
 import type { Handler } from "@netlify/functions";
 
-const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
-const resend = new Resend(process.env.RESEND_API_KEY);
+const anthropic = new Anthropic({ apiKey: process.env.Claude_Key });
+const resend = new Resend(process.env.Resend_API_Key);
 
 const CORS = {
   "Access-Control-Allow-Origin": "*",
