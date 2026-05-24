@@ -9,8 +9,10 @@
 [functions]
   node_bundler = "esbuild"
 
-[functions."generate-report"]
-  timeout = 26
+[[redirects]]
+  from = "/api/generate-report"
+  to = "/.netlify/functions/generate-report-background"
+  status = 200
 
 [[redirects]]
   from = "/api/*"
