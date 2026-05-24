@@ -166,32 +166,15 @@ export const handler: Handler = async (event) => {
 
 Score this business across 7 categories. Most local service businesses score C or D in AI Search and Lead Capture. Be realistic and direct.
 
-Return ONLY valid JSON in this exact format (no markdown, no explanation):
-{
-  "overallGrade": "C",
-  "overallSummary": "one honest sentence about where they stand",
-  "categories": [
-    {"name": "Google Business Profile", "grade": "B", "description": "2-3 specific sentences about this category for a ${businessType} in ${cityState}. What they likely have, what they're missing, why it matters."},
-    {"name": "AI Search Visibility", "grade": "D", "description": "..."},
-    {"name": "Website & Mobile", "grade": "C", "description": "..."},
-    {"name": "Reviews & Reputation", "grade": "B", "description": "..."},
-    {"name": "Social Media", "grade": "C", "description": "..."},
-    {"name": "Paid Advertising", "grade": "D", "description": "..."},
-    {"name": "Lead Capture & Follow-Up", "grade": "D", "description": "..."}
-  ],
-  "opportunities": [
-    {"title": "Fix Title", "description": "Specific fix and why it generates more leads for a ${businessType}"},
-    {"title": "Fix Title", "description": "Specific fix and impact"},
-    {"title": "Fix Title", "description": "Specific fix and impact"}
-  ]
-}`;
+Return ONLY valid JSON. Keep ALL descriptions to ONE sentence maximum. No markdown, no explanation:
+{"overallGrade":"C","overallSummary":"one honest sentence","categories":[{"name":"Google Business Profile","grade":"B","description":"One sentence specific to a ${businessType} in ${cityState}."},{"name":"AI Search Visibility","grade":"D","description":"One sentence."},{"name":"Website & Mobile","grade":"C","description":"One sentence."},{"name":"Reviews & Reputation","grade":"B","description":"One sentence."},{"name":"Social Media","grade":"C","description":"One sentence."},{"name":"Paid Advertising","grade":"D","description":"One sentence."},{"name":"Lead Capture & Follow-Up","grade":"D","description":"One sentence."}],"opportunities":[{"title":"Short title","description":"One sentence fix."},{"title":"Short title","description":"One sentence fix."},{"title":"Short title","description":"One sentence fix."}]}`;
 
   let reportData: ReportData;
 
   try {
     const message = await anthropic.messages.create({
       model: "claude-sonnet-4-5",
-      max_tokens: 800,
+      max_tokens: 600,
       messages: [{ role: "user", content: dataPrompt }],
     });
 
