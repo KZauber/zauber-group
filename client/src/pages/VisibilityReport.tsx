@@ -55,7 +55,7 @@ function IntakeForm() {
 
       <div>
         <label className="block text-xs text-gray-400 uppercase tracking-wider mb-1.5">Website URL</label>
-        <input className={inputCls} placeholder="https://yoursite.com" value={form.website} onChange={set("website")} type="url" />
+        <input className={inputCls} placeholder="yoursite.com" value={form.website} onChange={set("website")} type="text" />
       </div>
 
       <div className="grid sm:grid-cols-2 gap-4">
