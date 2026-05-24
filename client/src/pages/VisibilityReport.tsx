@@ -75,17 +75,11 @@ export default function VisibilityReport() {
 
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: '#0d1526' }}>
-      {/* Minimal landing page header — no nav links */}
-      <header className="absolute top-0 left-0 right-0 z-20 px-8 py-5 flex items-center justify-between">
-        <a href="https://zaubergroup.com" className="font-serif text-xl font-bold text-white tracking-wide">
+      {/* Minimal logo-only mark — no nav, no exit ramp */}
+      <header className="absolute top-0 left-0 right-0 z-20 px-8 py-5 flex items-center justify-center">
+        <span className="font-serif text-lg font-bold tracking-wide" style={{ color: '#c9a84c' }}>
           Zauber Group
-        </a>
-        <a
-          href="#get-report"
-          className="text-sm font-medium text-[#c9a84c] border border-[#c9a84c]/40 px-4 py-2 rounded-full hover:bg-[#c9a84c]/10 transition-all"
-        >
-          Get My Report →
-        </a>
+        </span>
       </header>
 
       {/* ── HERO — full-bleed cinematic video ──────────────── */}
@@ -124,18 +118,12 @@ export default function VisibilityReport() {
             then shows you exactly what to fix first.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+          <div className="flex justify-center mb-8">
             <a
               href="#get-report"
-              className="bg-[--color-gold] text-[--color-navy] font-bold text-xl px-10 py-5 rounded-xl hover:brightness-110 transition-all text-center shadow-2xl shadow-[--color-gold]/30"
+              className="bg-[--color-gold] text-[--color-navy] font-bold text-xl px-12 py-5 rounded-xl hover:brightness-110 transition-all text-center shadow-2xl shadow-[--color-gold]/30"
             >
               Get My Visibility Report →
-            </a>
-            <a
-              href="#what-you-get"
-              className="border border-white/30 text-white px-10 py-5 rounded-xl hover:bg-white/10 transition-all text-center backdrop-blur-sm"
-            >
-              See What's Inside
             </a>
           </div>
 
