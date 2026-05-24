@@ -102,10 +102,10 @@ export default function VisibilityReport() {
 
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-32 text-center">
-          <div className="inline-flex items-center gap-2 bg-[--color-gold]/10 border border-[--color-gold]/30 rounded-full px-4 py-1.5 mb-8">
+          <a href="#get-report" className="inline-flex items-center gap-2 bg-[--color-gold]/10 border border-[--color-gold]/30 rounded-full px-4 py-1.5 mb-8 hover:bg-[--color-gold]/20 transition-all">
             <span className="w-2 h-2 rounded-full bg-[--color-gold] animate-pulse" />
-            <span className="text-[--color-gold] text-sm font-medium tracking-wide">Founding Member Price — $97</span>
-          </div>
+            <span className="text-[--color-gold] text-sm font-medium tracking-wide">Founding Member Price — $97 · Grab It Here →</span>
+          </a>
 
           <h1 className="font-serif text-4xl lg:text-5xl font-bold leading-tight mb-6" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.8)' }}>
             Find Out Exactly Where Your Business Is{" "}
