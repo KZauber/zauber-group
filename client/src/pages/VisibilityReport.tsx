@@ -15,7 +15,7 @@ function IntakeForm() {
     e.preventDefault();
     setStatus("loading");
     try {
-      const res = await fetch("/api/generate-report", {
+      const res = await fetch("/api/generate-report-background", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
