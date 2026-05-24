@@ -128,7 +128,7 @@ export default function VisibilityReport() {
           </div>
 
           <p className="text-gray-300 text-sm" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.9)' }}>
-            Price goes to $297 on July 1st · No fluff · Delivered within 48 hours
+            Price goes to $297 on July 1st · No fluff · Report delivered instantly
           </p>
         </div>
       </section>
@@ -162,7 +162,7 @@ export default function VisibilityReport() {
         <div className="max-w-4xl mx-auto grid grid-cols-3 gap-8">
           <AnimatedScore target={9} label="Reports Delivered" delay={0} />
           <AnimatedScore target={7} label="Categories Scored" delay={200} />
-          <AnimatedScore target={48} label="Hour Turnaround" delay={400} />
+          <AnimatedScore target={97} label="Dollar Investment" delay={400} />
         </div>
       </section>
 
@@ -260,7 +260,7 @@ export default function VisibilityReport() {
               {
                 step: "3",
                 title: "Get Your Report",
-                desc: "Within 48 hours, your scored Visibility Report lands in your inbox. Grades, gaps, and a priority fix list.",
+                desc: "Your scored Visibility Report lands in your inbox instantly. Grades, gaps, and a priority fix list — ready to act on right now.",
               },
             ].map((item) => (
               <div key={item.step} className="relative">
@@ -322,7 +322,7 @@ export default function VisibilityReport() {
                 "Overall Visibility Score (0–100)",
                 "Priority fix list — top 3 actions",
                 "Plain-English explanations",
-                "Delivered within 48 hours",
+                "Delivered instantly to your inbox",
                 "Actionable, not generic",
               ].map((item) => (
                 <li key={item} className="flex items-center gap-3 text-gray-300 text-sm">
@@ -366,7 +366,7 @@ export default function VisibilityReport() {
               },
               {
                 q: "How long does it take?",
-                a: "You'll receive your report within 48 hours of submitting your business information.",
+                a: "Your report is generated automatically and delivered to your inbox instantly after you submit your business information.",
               },
               {
                 q: "Is this automated or done by a real person?",
