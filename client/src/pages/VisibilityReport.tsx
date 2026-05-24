@@ -15,7 +15,7 @@ function IntakeForm() {
     e.preventDefault();
     setStatus("loading");
     try {
-      const res = await fetch("/api/generate-report-background", {
+      const res = await fetch("/api/generate-report", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
@@ -32,11 +32,10 @@ function IntakeForm() {
   if (status === "success") {
     return (
       <div className="text-center py-12">
-        <div className="text-5xl mb-4">✅</div>
-        <h3 className="font-serif text-2xl font-bold mb-3">Your report is being generated!</h3>
-        <p className="text-gray-400 mb-2">We're building your custom Visibility Report for <strong className="text-white">{form.businessName}</strong> right now.</p>
-        <p className="text-gray-400">Check your inbox in the next <strong className="text-[#c9a84c]">2–3 minutes</strong>.</p>
-        <p className="text-gray-500 text-sm mt-4">Don't see it? Check your spam folder.</p>
+        <div className="text-5xl mb-4">🎉</div>
+        <h3 className="font-serif text-2xl font-bold mb-3">Your report is on its way!</h3>
+        <p className="text-gray-400">Check your inbox — your Visibility Report for <strong className="text-white">{form.businessName}</strong> was just delivered.</p>
+        <p className="text-gray-500 text-sm mt-4">Don't see it? Check your spam folder or email kelly@zaubergroup.com</p>
       </div>
     );
   }
