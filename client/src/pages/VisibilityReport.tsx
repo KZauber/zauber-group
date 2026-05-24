@@ -200,7 +200,7 @@ export default function VisibilityReport() {
 
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-32 text-center">
-          <a href="#get-report" className="inline-flex items-center gap-2 bg-[--color-gold]/10 border border-[--color-gold]/30 rounded-full px-4 py-1.5 mb-8 hover:bg-[--color-gold]/20 transition-all">
+          <a href="https://buy.stripe.com/cNi9AT1w24Ur7NWgWg1kA00" className="inline-flex items-center gap-2 bg-[--color-gold]/10 border border-[--color-gold]/30 rounded-full px-4 py-1.5 mb-8 hover:bg-[--color-gold]/20 transition-all">
             <span className="w-2 h-2 rounded-full bg-[--color-gold] animate-pulse" />
             <span className="text-[--color-gold] text-sm font-medium tracking-wide">Founding Member Price — $97 · Grab It Here →</span>
           </a>
@@ -218,10 +218,10 @@ export default function VisibilityReport() {
 
           <div className="flex justify-center mb-8">
             <a
-              href="#get-report"
+              href="https://buy.stripe.com/cNi9AT1w24Ur7NWgWg1kA00"
               className="bg-[--color-gold] text-[--color-navy] font-bold text-xl px-12 py-5 rounded-xl hover:brightness-110 transition-all text-center shadow-2xl shadow-[--color-gold]/30"
             >
-              Get My Visibility Report →
+              Get My Visibility Report — $97 →
             </a>
           </div>
 
