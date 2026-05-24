@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 // Animated score counter
@@ -76,7 +75,18 @@ export default function VisibilityReport() {
 
   return (
     <div className="min-h-screen text-white" style={{ backgroundColor: '#0d1526' }}>
-      <Navbar />
+      {/* Minimal landing page header — no nav links */}
+      <header className="absolute top-0 left-0 right-0 z-20 px-8 py-5 flex items-center justify-between">
+        <a href="https://zaubergroup.com" className="font-serif text-xl font-bold text-white tracking-wide">
+          Zauber Group
+        </a>
+        <a
+          href="#get-report"
+          className="text-sm font-medium text-[#c9a84c] border border-[#c9a84c]/40 px-4 py-2 rounded-full hover:bg-[#c9a84c]/10 transition-all"
+        >
+          Get My Report →
+        </a>
+      </header>
 
       {/* ── HERO — full-bleed cinematic video ──────────────── */}
       <section className="relative overflow-hidden min-h-[90vh] flex items-center" style={{ backgroundColor: '#0d1526' }}>
