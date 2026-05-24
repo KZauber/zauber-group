@@ -1,6 +1,104 @@
 import { useEffect, useRef, useState } from "react";
 import Footer from "@/components/Footer";
 
+// ── Intake form component ────────────────────────────────────────────
+function IntakeForm() {
+  const [form, setForm] = useState({
+    firstName: "", businessName: "", website: "", cityState: "", email: "", businessType: "",
+  });
+  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+
+  const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
+    setForm((f) => ({ ...f, [k]: e.target.value }));
+
+  const submit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("loading");
+    try {
+      const res = await fetch("/api/generate-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error("Failed");
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  const inputCls = "w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#c9a84c] transition-colors text-sm";
+
+  if (status === "success") {
+    return (
+      <div className="text-center py-12">
+        <div className="text-5xl mb-4">🎉</div>
+        <h3 className="font-serif text-2xl font-bold mb-3">Your report is on its way!</h3>
+        <p className="text-gray-400">Check your inbox — your Visibility Report for <strong className="text-white">{form.businessName}</strong> was just delivered.</p>
+        <p className="text-gray-500 text-sm mt-4">Don't see it? Check your spam folder.</p>
+      </div>
+    );
+  }
+
+  return (
+    <form onSubmit={submit} className="space-y-4">
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-xs text-gray-400 uppercase tracking-wider mb-1.5">First Name</label>
+          <input className={inputCls} placeholder="Kelly" value={form.firstName} onChange={set("firstName")} required />
+        </div>
+        <div>
+          <label className="block text-xs text-gray-400 uppercase tracking-wider mb-1.5">Business Name</label>
+          <input className={inputCls} placeholder="ABC Roofing Co." value={form.businessName} onChange={set("businessName")} required />
+        </div>
+      </div>
+
+      <div>
+        <label className="block text-xs text-gray-400 uppercase tracking-wider mb-1.5">Website URL</label>
+        <input className={inputCls} placeholder="https://yoursite.com" value={form.website} onChange={set("website")} type="url" />
+      </div>
+
+      <div className="grid sm:grid-cols-2 gap-4">
+        <div>
+          <label className="block text-xs text-gray-400 uppercase tracking-wider mb-1.5">City & State</label>
+          <input className={inputCls} placeholder="Austin, TX" value={form.cityState} onChange={set("cityState")} required />
+        </div>
+        <div>
+          <label className="block text-xs text-gray-400 uppercase tracking-wider mb-1.5">Business Type</label>
+          <select className={inputCls} value={form.businessType} onChange={set("businessType")} required>
+            <option value="">Select type...</option>
+            {["Roofer","HVAC","Plumber","Electrician","Custom Builder","Remodeler","Landscaper",
+              "Med Spa","Law Firm","Dentist","Auto Shop","Cleaning Service","Home Inspector",
+              "Painter","Other Service Business"].map(t => (
+              <option key={t} value={t}>{t}</option>
+            ))}
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <label className="block text-xs text-gray-400 uppercase tracking-wider mb-1.5">Email — Report Delivered Here</label>
+        <input className={inputCls} placeholder="you@yourbusiness.com" value={form.email} onChange={set("email")} type="email" required />
+      </div>
+
+      {status === "error" && (
+        <p className="text-red-400 text-sm text-center">Something went wrong. Please try again or email kelly@zaubergroup.com</p>
+      )}
+
+      <button
+        type="submit"
+        disabled={status === "loading"}
+        className="w-full font-bold text-lg py-4 rounded-xl transition-all shadow-lg disabled:opacity-60"
+        style={{ background: "#c9a84c", color: "#0d1526" }}
+      >
+        {status === "loading" ? "Generating your report..." : "Get My Visibility Report →"}
+      </button>
+
+      <p className="text-gray-500 text-xs text-center">Report delivered instantly to your inbox. No fluff. No subscription.</p>
+    </form>
+  );
+}
+
 // Animated score counter
 function AnimatedScore({ target, label, delay = 0 }: { target: number; label: string; delay?: number }) {
   const [count, setCount] = useState(0);
@@ -332,17 +430,7 @@ export default function VisibilityReport() {
               ))}
             </ul>
 
-            {/* Payment button placeholder — swap in MX Merchant URL */}
-            <a
-              href="#"
-              className="block w-full bg-[--color-gold] text-[--color-navy] font-bold text-xl py-5 rounded-xl hover:brightness-110 transition-all shadow-lg shadow-[--color-gold]/20 text-center"
-            >
-              Get My Visibility Report — $97
-            </a>
-
-            <p className="text-gray-500 text-xs mt-4">
-              Secure checkout. No subscription. One-time payment.
-            </p>
+            <IntakeForm />
           </div>
 
           <p className="text-gray-500 text-sm">
