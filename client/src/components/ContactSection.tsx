@@ -3,7 +3,7 @@ import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Mail, Phone, Globe, CheckCircle, Loader } from "lucide-react";
 
 // ─── GHL Webhook ────────────────────────────────────────────────────────────
-const GHL_WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/qbIo1Hf53VoXfYNozERj/webhook-trigger/58dfda30-6716-4a51-a616-e379ef1c66dc";
+const GHL_WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/qbIo1Hf53VoXfYNozERj/webhook-trigger/4e2c81b8-6d45-45c6-8af9-710515f979ee";
 
 // ─── Contact info ────────────────────────────────────────────────────────────
 const CONTACT_EMAIL = "kelly@zaubergroup.com";

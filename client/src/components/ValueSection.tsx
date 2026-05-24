@@ -6,9 +6,9 @@ const steps = [
     num: "01",
     icon: Radio,
     title: "Social Media Autopilot",
-    desc: "Two posts every day across five platforms — Facebook, Instagram, LinkedIn, YouTube Shorts, and TikTok. AI-generated, scheduled, and published automatically. Your brand stays visible while you're on the job site.",
-    stat: "70+",
-    statLabel: "Posts scheduled per week across all platforms",
+    desc: "A custom posting schedule across your most important platforms — Facebook, Instagram, LinkedIn, YouTube Shorts, and TikTok. AI-generated, scheduled, and published automatically. We build the cadence around your brand, whether we're running it fully or supplementing what you're already doing.",
+    stat: "Custom",
+    statLabel: "Posting plan built around your brand and goals",
   },
   {
     num: "02",
@@ -107,4 +107,4 @@ export default function ValueSection() {
       </div>
     </section>
   );
-}
+    }
