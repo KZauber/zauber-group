@@ -78,98 +78,60 @@ export default function VisibilityReport() {
     <div className="min-h-screen bg-[--color-navy] text-white">
       <Navbar />
 
-      {/* ── HERO ───────────────────────────────────────────── */}
-      <section className="relative overflow-hidden pt-28 pb-20 px-4">
-        {/* Background glow */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[--color-gold] opacity-5 rounded-full blur-[120px]" />
-        </div>
+      {/* ── HERO — full-bleed cinematic video ──────────────── */}
+      <section className="relative overflow-hidden min-h-[90vh] flex items-center">
+        {/* Video background */}
+        <video
+          className="absolute inset-0 w-full h-full object-cover"
+          src="/analysis-hero-video.mp4"
+          autoPlay
+          muted
+          loop
+          playsInline
+        />
 
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
-          {/* Left — copy */}
-          <div>
-            <div className="inline-flex items-center gap-2 bg-[--color-gold]/10 border border-[--color-gold]/30 rounded-full px-4 py-1.5 mb-6">
-              <span className="w-2 h-2 rounded-full bg-[--color-gold] animate-pulse" />
-              <span className="text-[--color-gold] text-sm font-medium tracking-wide">Founding Member Price — $97</span>
-            </div>
+        {/* Dark overlay — navy tint so text is readable */}
+        <div className="absolute inset-0 bg-[--color-navy]/75" />
 
-            <h1 className="font-serif text-5xl lg:text-6xl font-bold leading-tight mb-6">
-              Find Out Exactly Where Your Business Is{" "}
-              <span className="text-[--color-gold]">Invisible Online</span>
-            </h1>
+        {/* Gold vignette at bottom to blend into page */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[--color-navy] to-transparent" />
 
-            <p className="text-gray-300 text-xl leading-relaxed mb-8">
-              The Visibility Report by Zauber Group scores your business across 7 categories —
-              Google presence, AI search, reviews, website, social, ads, and lead capture —
-              then shows you exactly what to fix first.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <a
-                href="#get-report"
-                className="bg-[--color-gold] text-[--color-navy] font-bold text-lg px-8 py-4 rounded-xl hover:brightness-110 transition-all text-center shadow-lg shadow-[--color-gold]/20"
-              >
-                Get My Visibility Report →
-              </a>
-              <a
-                href="#what-you-get"
-                className="border border-white/20 text-white px-8 py-4 rounded-xl hover:bg-white/5 transition-all text-center"
-              >
-                See What's Inside
-              </a>
-            </div>
-
-            <p className="text-gray-500 text-sm">
-              Price goes to $297 on July 1st. No fluff. Delivered within 48 hours.
-            </p>
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto px-6 py-32 text-center">
+          <div className="inline-flex items-center gap-2 bg-[--color-gold]/10 border border-[--color-gold]/30 rounded-full px-4 py-1.5 mb-8">
+            <span className="w-2 h-2 rounded-full bg-[--color-gold] animate-pulse" />
+            <span className="text-[--color-gold] text-sm font-medium tracking-wide">Founding Member Price — $97</span>
           </div>
 
-          {/* Right — animated report preview */}
-          <div className="relative">
-            {/* Glow ring */}
-            <div className="absolute inset-0 bg-[--color-gold]/10 rounded-3xl blur-2xl scale-105" />
+          <h1 className="font-serif text-5xl lg:text-7xl font-bold leading-tight mb-6">
+            Find Out Exactly Where Your Business Is{" "}
+            <span className="text-[--color-gold]">Invisible Online</span>
+          </h1>
 
-            <div className="relative bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-sm">
-              {/* Report header */}
-              <div className="flex items-center justify-between mb-6">
-                <div>
-                  <div className="text-xs text-gray-500 uppercase tracking-widest mb-1">Visibility Report</div>
-                  <div className="font-serif text-xl font-bold">ABC Roofing Co.</div>
-                </div>
-                <div className="text-right">
-                  <div className="text-xs text-gray-500 mb-1">Overall Score</div>
-                  <div className="text-4xl font-bold text-[--color-gold] font-serif animate-pulse">42</div>
-                  <div className="text-xs text-gray-500">out of 100</div>
-                </div>
-              </div>
+          <p className="text-gray-300 text-xl lg:text-2xl leading-relaxed mb-10 max-w-2xl mx-auto">
+            The Visibility Report by Zauber Group scores your business across 7 categories —
+            Google, AI search, reviews, website, social, ads, and lead capture —
+            then shows you exactly what to fix first.
+          </p>
 
-              {/* Score bar */}
-              <div className="w-full h-2 bg-white/10 rounded-full mb-6 overflow-hidden">
-                <div
-                  className="h-full bg-gradient-to-r from-red-500 via-[--color-gold] to-green-500 rounded-full transition-all duration-1000"
-                  style={{ width: "42%" }}
-                />
-              </div>
-
-              {/* Category grades */}
-              <div className="space-y-2">
-                <GradePill category="Google Business Profile" grade="D" color="text-orange-400" />
-                <GradePill category="AI Search Visibility" grade="F" color="text-red-400" />
-                <GradePill category="Website & Mobile" grade="C" color="text-yellow-400" />
-                <GradePill category="Reviews & Reputation" grade="B" color="text-green-400" />
-                <GradePill category="Social Media" grade="D" color="text-orange-400" />
-                <GradePill category="Paid Advertising" grade="F" color="text-red-400" />
-                <GradePill category="Lead Capture" grade="C" color="text-yellow-400" />
-              </div>
-
-              {/* CTA inside card */}
-              <div className="mt-6 p-4 bg-[--color-gold]/10 border border-[--color-gold]/20 rounded-xl text-center">
-                <p className="text-[--color-gold] text-sm font-medium">
-                  3 critical fixes identified · Est. revenue impact: $4,200/mo
-                </p>
-              </div>
-            </div>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <a
+              href="#get-report"
+              className="bg-[--color-gold] text-[--color-navy] font-bold text-xl px-10 py-5 rounded-xl hover:brightness-110 transition-all text-center shadow-2xl shadow-[--color-gold]/30"
+            >
+              Get My Visibility Report →
+            </a>
+            <a
+              href="#what-you-get"
+              className="border border-white/30 text-white px-10 py-5 rounded-xl hover:bg-white/10 transition-all text-center backdrop-blur-sm"
+            >
+              See What's Inside
+            </a>
           </div>
+
+          <p className="text-gray-500 text-sm">
+            Price goes to $297 on July 1st · No fluff · Delivered within 48 hours
+          </p>
         </div>
       </section>
 
