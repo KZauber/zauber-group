@@ -75,11 +75,11 @@ export default function VisibilityReport() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[--color-navy] text-white">
+    <div className="min-h-screen text-white" style={{ backgroundColor: '#0d1526' }}>
       <Navbar />
 
       {/* ── HERO — full-bleed cinematic video ──────────────── */}
-      <section className="relative overflow-hidden min-h-[90vh] flex items-center">
+      <section className="relative overflow-hidden min-h-[90vh] flex items-center" style={{ backgroundColor: '#0d1526' }}>
         {/* Video background */}
         <video
           className="absolute inset-0 w-full h-full object-cover"
@@ -91,10 +91,10 @@ export default function VisibilityReport() {
         />
 
         {/* Dark overlay — navy tint so text is readable */}
-        <div className="absolute inset-0 bg-[--color-navy]/75" />
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(10, 15, 35, 0.78)' }} />
 
         {/* Gold vignette at bottom to blend into page */}
-        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-[--color-navy] to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 h-32" style={{ background: 'linear-gradient(to top, #0d1526, transparent)' }} />
 
         {/* Content */}
         <div className="relative z-10 max-w-4xl mx-auto px-6 py-32 text-center">
