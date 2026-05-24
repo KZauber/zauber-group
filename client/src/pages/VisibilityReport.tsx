@@ -91,7 +91,7 @@ export default function VisibilityReport() {
         />
 
         {/* Dark overlay — navy tint so text is readable */}
-        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(10, 15, 35, 0.78)' }} />
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(10, 15, 35, 0.52)' }} />
 
         {/* Gold vignette at bottom to blend into page */}
         <div className="absolute bottom-0 left-0 right-0 h-32" style={{ background: 'linear-gradient(to top, #0d1526, transparent)' }} />
@@ -103,7 +103,7 @@ export default function VisibilityReport() {
             <span className="text-[--color-gold] text-sm font-medium tracking-wide">Founding Member Price — $97</span>
           </div>
 
-          <h1 className="font-serif text-5xl lg:text-7xl font-bold leading-tight mb-6">
+          <h1 className="font-serif text-4xl lg:text-5xl font-bold leading-tight mb-6">
             Find Out Exactly Where Your Business Is{" "}
             <span className="text-[--color-gold]">Invisible Online</span>
           </h1>
