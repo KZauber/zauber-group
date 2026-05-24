@@ -399,46 +399,56 @@ export default function VisibilityReport() {
       </section>
 
       {/* ── PRICING / CTA ──────────────────────────────────── */}
-      <section id="get-report" className="py-20 px-4 bg-white/2 border-y border-white/5">
-        <div className="max-w-xl mx-auto text-center">
-          <p className="text-[--color-gold] text-sm uppercase tracking-widest mb-3">Get Started</p>
-          <h2 className="font-serif text-4xl font-bold mb-4">Your Visibility Report</h2>
-          <p className="text-gray-400 mb-10">
-            Know exactly where your business is losing leads online — and what to fix first.
-          </p>
-
-          <div className="bg-white/5 border border-white/10 rounded-3xl p-8 mb-6">
-            <div className="flex items-center justify-center gap-3 mb-2">
-              <span className="text-gray-500 line-through text-xl">$297</span>
-              <span className="text-5xl font-bold text-white font-serif">$97</span>
-            </div>
-            <p className="text-[--color-gold] text-sm mb-8">Founding Member Price — Ends June 30th</p>
-
-            <ul className="text-left space-y-3 mb-8">
-              {[
-                "7-category scored report (A–F grades)",
-                "Overall Visibility Score (0–100)",
-                "Priority fix list — top 3 actions",
-                "Plain-English explanations",
-                "Delivered instantly to your inbox",
-                "Actionable, not generic",
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-3 text-gray-300 text-sm">
-                  <span className="text-[--color-gold] text-lg">✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-
-            <IntakeForm />
+      <section id="get-report" className="py-16 px-4 border-y border-white/5" style={{ backgroundColor: 'rgba(255,255,255,0.02)' }}>
+        <div className="max-w-5xl mx-auto">
+          <div className="text-center mb-10">
+            <p className="text-[--color-gold] text-sm uppercase tracking-widest mb-3">Get Started</p>
+            <h2 className="font-serif text-4xl font-bold mb-3">Your Visibility Report</h2>
+            <p className="text-gray-400">Know exactly where your business is losing leads — and what to fix first.</p>
           </div>
 
-          <p className="text-gray-500 text-sm">
-            Questions? Email us at{" "}
-            <a href="mailto:kelly@zaubergroup.com" className="text-[--color-gold] hover:underline">
-              kelly@zaubergroup.com
-            </a>
-          </p>
+          {/* Two-column: left = price + checklist, right = form */}
+          <div className="grid lg:grid-cols-2 gap-8 items-start">
+
+            {/* Left — price + what you get */}
+            <div className="bg-white/5 border border-white/10 rounded-3xl p-8">
+              <div className="flex items-center gap-3 mb-1">
+                <span className="text-gray-500 line-through text-xl">$297</span>
+                <span className="text-6xl font-bold text-white font-serif">$97</span>
+              </div>
+              <p className="text-[--color-gold] text-sm mb-8">Founding Member Price — Ends June 30th</p>
+
+              <ul className="space-y-3">
+                {[
+                  "7-category scored report (A–F grades)",
+                  "Overall Visibility Score (0–100)",
+                  "Priority fix list — top 3 actions",
+                  "Plain-English explanations",
+                  "Delivered instantly to your inbox",
+                  "Actionable, not generic",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-gray-300 text-sm">
+                    <span className="text-[--color-gold] text-lg">✓</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+
+              <p className="text-gray-500 text-xs mt-8">
+                Questions?{" "}
+                <a href="mailto:kelly@zaubergroup.com" className="text-[--color-gold] hover:underline">
+                  kelly@zaubergroup.com
+                </a>
+              </p>
+            </div>
+
+            {/* Right — form */}
+            <div className="bg-white/5 border border-white/10 rounded-3xl p-8">
+              <h3 className="font-serif text-xl font-bold mb-6">Tell us about your business</h3>
+              <IntakeForm />
+            </div>
+
+          </div>
         </div>
       </section>
 
