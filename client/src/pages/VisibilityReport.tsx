@@ -77,7 +77,7 @@ export default function VisibilityReport() {
     <div className="min-h-screen text-white" style={{ backgroundColor: '#0d1526' }}>
       {/* Minimal logo-only mark — no nav, no exit ramp */}
       <header className="absolute top-0 left-0 right-0 z-20 px-8 py-5 flex items-center justify-center">
-        <span className="font-serif text-lg font-bold tracking-wide" style={{ color: '#c9a84c' }}>
+        <span className="font-serif text-3xl font-bold tracking-wide" style={{ color: '#c9a84c' }}>
           Zauber Group
         </span>
       </header>
