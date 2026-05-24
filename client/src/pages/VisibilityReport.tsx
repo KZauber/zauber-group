@@ -91,7 +91,7 @@ export default function VisibilityReport() {
         />
 
         {/* Dark overlay — navy tint so text is readable */}
-        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(10, 15, 35, 0.12)' }} />
+        <div className="absolute inset-0" style={{ backgroundColor: 'rgba(10, 15, 35, 0.42)' }} />
 
         {/* Gold vignette at bottom to blend into page */}
         <div className="absolute bottom-0 left-0 right-0 h-32" style={{ background: 'linear-gradient(to top, #0d1526, transparent)' }} />
