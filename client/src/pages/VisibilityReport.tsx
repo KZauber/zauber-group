@@ -127,7 +127,7 @@ export default function VisibilityReport() {
             </a>
           </div>
 
-          <p className="text-gray-500 text-sm">
+          <p className="text-gray-300 text-sm" style={{ textShadow: '0 1px 8px rgba(0,0,0,0.9)' }}>
             Price goes to $297 on July 1st · No fluff · Delivered within 48 hours
           </p>
         </div>
