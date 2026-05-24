@@ -166,7 +166,7 @@ IMPORTANT INSTRUCTIONS:
 
   try {
     const message = await anthropic.messages.create({
-      model: "claude-haiku-3-5",
+      model: "claude-3-5-haiku-20241022",
       max_tokens: 3000,
       messages: [{ role: "user", content: assessmentPrompt }],
     });
