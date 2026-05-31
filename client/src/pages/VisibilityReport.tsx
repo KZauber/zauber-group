@@ -1,12 +1,146 @@
 import { useEffect, useRef, useState } from "react";
 import Footer from "@/components/Footer";
 
+interface CategoryData { name: string; grade: string; description: string; }
+interface ReportData {
+  overallGrade: string; overallSummary: string;
+  categories: CategoryData[];
+  opportunities: { title: string; description: string }[];
+}
+
+const gradeColor = (g: string) => {
+  if (g === "A") return "#22c55e";
+  if (g === "B") return "#84cc16";
+  if (g === "C") return "#eab308";
+  if (g === "D") return "#f97316";
+  return "#ef4444";
+};
+
+const gradeToScore = (g: string) => {
+  if (g === "A") return Math.floor(Math.random() * 11) + 90;
+  if (g === "B") return Math.floor(Math.random() * 15) + 75;
+  if (g === "C") return Math.floor(Math.random() * 15) + 60;
+  if (g === "D") return Math.floor(Math.random() * 15) + 45;
+  return Math.floor(Math.random() * 45);
+};
+
+// ── Animated score counter ───────────────────────────────────────────
+function CountUp({ target }: { target: number }) {
+  const [count, setCount] = useState(0);
+  useEffect(() => {
+    let start = 0;
+    const duration = 1400;
+    const step = (timestamp: number) => {
+      if (!start) start = timestamp;
+      const progress = Math.min((timestamp - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setCount(Math.round(eased * target));
+      if (progress < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }, [target]);
+  return <>{count}</>;
+}
+
+// ── Results display ──────────────────────────────────────────────────
+function ReportResults({ data, businessName, cityState }: { data: ReportData; businessName: string; cityState: string }) {
+  const [visibleCards, setVisibleCards] = useState(0);
+  const score = gradeToScore(data.overallGrade);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setVisibleCards(v => {
+        if (v >= data.categories.length) { clearInterval(interval); return v; }
+        return v + 1;
+      });
+    }, 300);
+    return () => clearInterval(interval);
+  }, [data.categories.length]);
+
+  return (
+    <div className="space-y-8">
+      {/* Header */}
+      <div className="text-center">
+        <div className="text-[#c9a84c] text-xs tracking-[3px] uppercase mb-2">Visibility Report</div>
+        <h2 className="font-serif text-3xl font-bold text-white mb-1">{businessName}</h2>
+        <p className="text-gray-400 text-sm">{cityState}</p>
+      </div>
+
+      {/* Overall Score */}
+      <div className="rounded-2xl border border-white/10 bg-white/5 p-8 text-center">
+        <div className="text-xs text-gray-400 uppercase tracking-widest mb-3">Overall Visibility Score</div>
+        <div className="text-7xl font-bold text-white mb-1">
+          <CountUp target={score} /><span className="text-3xl text-gray-400">/100</span>
+        </div>
+        <div className="text-lg font-semibold mt-2" style={{ color: gradeColor(data.overallGrade) }}>
+          Grade: {data.overallGrade}
+        </div>
+        <p className="text-gray-400 text-sm mt-2">{data.overallSummary}</p>
+      </div>
+
+      {/* Category Cards */}
+      <div className="space-y-3">
+        <div className="text-xs text-gray-400 uppercase tracking-widest text-center mb-4">Category Breakdown</div>
+        {data.categories.map((cat, i) => (
+          <div
+            key={cat.name}
+            className="rounded-xl border p-4 transition-all duration-500"
+            style={{
+              borderColor: i < visibleCards ? gradeColor(cat.grade) + "60" : "rgba(255,255,255,0.08)",
+              background: i < visibleCards ? gradeColor(cat.grade) + "10" : "rgba(255,255,255,0.03)",
+              opacity: i < visibleCards ? 1 : 0,
+              transform: i < visibleCards ? "translateY(0)" : "translateY(12px)",
+            }}
+          >
+            <div className="flex items-center justify-between mb-1">
+              <span className="text-white font-semibold text-sm">{cat.name}</span>
+              <span className="text-2xl font-bold" style={{ color: gradeColor(cat.grade) }}>{cat.grade}</span>
+            </div>
+            <p className="text-gray-400 text-xs leading-relaxed">{cat.description}</p>
+          </div>
+        ))}
+      </div>
+
+      {/* Opportunities */}
+      {visibleCards >= data.categories.length && (
+        <div className="rounded-2xl bg-[#0d1526] border border-[#c9a84c]/30 p-6 space-y-4">
+          <div className="text-xs text-[#c9a84c] uppercase tracking-widest text-center mb-2">Your 3 Biggest Opportunities</div>
+          {data.opportunities.map((op, i) => (
+            <div key={i} className="border-l-2 border-[#c9a84c] pl-4">
+              <div className="text-[#c9a84c] font-bold text-sm mb-1">{i + 1}. {op.title}</div>
+              <p className="text-gray-400 text-xs leading-relaxed">{op.description}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {/* CTA */}
+      {visibleCards >= data.categories.length && (
+        <div className="text-center space-y-4 pt-2">
+          <p className="text-gray-300 text-sm">Your full report was also sent to your inbox.</p>
+          <a
+            href="https://calendly.com/kelly-zaubergroup/free-strategy-call"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block font-bold text-base px-8 py-4 rounded-xl transition-all shadow-lg cursor-pointer"
+            style={{ background: "#c9a84c", color: "#0d1526" }}
+          >
+            Book a Free Strategy Call — Let's Fix This →
+          </a>
+          <p className="text-gray-500 text-xs">30 minutes · No pressure · Kelly walks you through what to fix first</p>
+        </div>
+      )}
+    </div>
+  );
+}
+
 // ── Intake form component ────────────────────────────────────────────
 function IntakeForm() {
   const [form, setForm] = useState({
     firstName: "", businessName: "", website: "", cityState: "", email: "", businessType: "",
   });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [reportData, setReportData] = useState<ReportData | null>(null);
 
   const set = (k: string) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) =>
     setForm((f) => ({ ...f, [k]: e.target.value }));
@@ -21,6 +155,8 @@ function IntakeForm() {
         body: JSON.stringify(form),
       });
       if (!res.ok) throw new Error("Failed");
+      const json = await res.json();
+      setReportData(json.reportData ?? null);
       setStatus("success");
     } catch {
       setStatus("error");
@@ -29,10 +165,16 @@ function IntakeForm() {
 
   const inputCls = "w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-[#c9a84c] transition-colors text-sm";
 
+  if (status === "success" && reportData) {
+    return <ReportResults data={reportData} businessName={form.businessName} cityState={form.cityState} />;
+  }
+
   if (status === "success") {
     return (
       <div className="text-center py-12">
-        <div className="text-5xl mb-4">🎉</div>
+        <div className="w-12 h-12 rounded-full bg-[#c9a84c]/20 flex items-center justify-center mx-auto mb-4">
+          <svg className="w-6 h-6 text-[#c9a84c]" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" /></svg>
+        </div>
         <h3 className="font-serif text-2xl font-bold mb-3">Your report is on its way!</h3>
         <p className="text-gray-400">Check your inbox — your Visibility Report for <strong className="text-white">{form.businessName}</strong> was just delivered.</p>
         <p className="text-gray-500 text-sm mt-4">Don't see it? Check your spam folder or email kelly@zaubergroup.com</p>

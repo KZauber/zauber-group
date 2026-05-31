@@ -235,6 +235,6 @@ Return ONLY valid JSON. Keep ALL descriptions to ONE sentence maximum. No markdo
   return {
     statusCode: 200,
     headers: CORS,
-    body: JSON.stringify({ success: true }),
+    body: JSON.stringify({ success: true, reportData }),
   };
 };
