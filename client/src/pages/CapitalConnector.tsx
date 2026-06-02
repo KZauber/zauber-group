@@ -208,7 +208,7 @@ export default function CapitalConnector() {
               </p>
 
               <a
-                href="mailto:hello@zaubergroup.com?subject=Capital%20Connector%20—%20Waitlist%20Interest"
+                href="mailto:eli@woolseyconstruction.com,glenn@woolseyconstruction.com,mason@woolseyconstruction.com,info@woolseyconstruction.com?subject=Capital%20Connector%20—%20Waitlist%20Interest"
                 className="inline-flex items-center gap-3 px-10 py-4 bg-[#C9A84C] text-[#0A1628] text-sm font-semibold tracking-[0.1em] uppercase hover:bg-[#d4b65e] transition-all duration-300 hover:shadow-xl group"
               >
                 Join the Waitlist
