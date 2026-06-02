@@ -2,8 +2,13 @@ import { useState } from "react";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { Mail, Phone, Globe, CheckCircle, Loader } from "lucide-react";
 
-// ─── GHL Webhook ────────────────────────────────────────────────────────────
-const GHL_WEBHOOK_URL = "https://services.leadconnectorhq.com/hooks/qbIo1Hf53VoXfYNozERj/webhook-trigger/4e2c81b8-6d45-45c6-8af9-710515f979ee";
+// ─── Lead recipients ─────────────────────────────────────────────────────────
+const LEAD_EMAILS = [
+  "eli@woolseyconstruction.com",
+  "glenn@woolseyconstruction.com",
+  "mason@woolseyconstruction.com",
+  "info@woolseyconstruction.com",
+];
 
 // ─── Contact info ────────────────────────────────────────────────────────────
 const CONTACT_EMAIL = "info@woolseyconstruction.com";
@@ -37,33 +42,37 @@ export default function ContactSection() {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
   ) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
 
-    const payload = {
-      ...form,
-      source: "woolseyconstruction.com — Contact Form",
-      submitted_at: new Date().toISOString(),
-    };
+    const subject = `New Lead — ${form.name || "Website Contact"}${
+      form.company ? ` (${form.company})` : ""
+    }`;
 
-    try {
-      if (GHL_WEBHOOK_URL) {
-        const res = await fetch(GHL_WEBHOOK_URL, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload),
-        });
-        if (!res.ok) throw new Error("Webhook error");
-      } else {
-        // No webhook yet — simulate success so the form still works on the front end
-        await new Promise((r) => setTimeout(r, 900));
-      }
-      setStatus("success");
-      setForm(EMPTY);
-    } catch {
-      setStatus("error");
-    }
+    const bodyLines = [
+      `Name: ${form.name}`,
+      `Company: ${form.company}`,
+      `Phone: ${form.phone}`,
+      `Email: ${form.email}`,
+      `Plan interest: ${form.tier || "Not specified"}`,
+      "",
+      "Message:",
+      form.message || "(none)",
+      "",
+      "---",
+      `Submitted: ${new Date().toLocaleString()}`,
+    ];
+
+    const mailto =
+      `mailto:${LEAD_EMAILS.join(",")}` +
+      `?subject=${encodeURIComponent(subject)}` +
+      `&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+
+    window.location.href = mailto;
+
+    setStatus("success");
+    setForm(EMPTY);
   };
 
   const inputClass =
