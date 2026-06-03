@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Presence Assessment — Pencsak Builders</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f4f4f0;
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+
+  /* COVER */
+  .cover {
+    background: #111;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,163,88,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c9a358;
+    margin-bottom: 32px;
+  }
+  .cover-title {
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+  }
+  .cover-title span { color: #c9a358; }
+  .cover-subtitle {
+    font-size: 20px;
+    font-weight: 300;
+    color: #aaa;
+    margin-bottom: 60px;
+    letter-spacing: 1px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .cover-meta-item label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 4px;
+  }
+  .cover-meta-item span {
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+  }
+  .cover-bottom {
+    position: absolute;
+    bottom: 40px; left: 60px; right: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-prepared { font-size: 12px; color: #555; letter-spacing: 1px; }
+  .cover-prepared strong { color: #c9a358; }
+  .cover-score-badge {
+    background: #c9a358;
+    color: #111;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border-radius: 4px;
+  }
+
+  /* SECTION */
+  .section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c9a358;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 40px;
+  }
+
+  /* SCORECARD */
+  .scorecard-bg { background: #111; padding: 80px 0; }
+  .scorecard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+    background: #222;
+    border: 2px solid #222;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .scorecard-item {
+    background: #1a1a1a;
+    padding: 28px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .scorecard-item.overall {
+    background: #111;
+    grid-column: 1 / -1;
+    border-top: 2px solid #333;
+    padding: 36px 28px;
+  }
+  .scorecard-label { font-size: 13px; font-weight: 600; color: #aaa; }
+  .scorecard-item.overall .scorecard-label {
+    font-size: 16px; font-weight: 800; color: #fff;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .grade-badge {
+    font-size: 22px; font-weight: 900;
+    width: 52px; height: 52px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .grade-a { background: #1a4731; color: #4ade80; }
+  .grade-b { background: #1e3a5f; color: #60a5fa; }
+  .grade-c { background: #3d2a00; color: #fbbf24; }
+  .grade-d { background: #3d1a00; color: #fb923c; }
+  .grade-f { background: #3d0000; color: #f87171; }
+  .grade-badge.large { width: 72px; height: 72px; font-size: 32px; border-radius: 12px; }
+  .overall-right { display: flex; align-items: center; gap: 16px; }
+  .overall-gpa { font-size: 15px; font-weight: 700; color: #fb923c; }
+
+  /* LIVE DATA STATS */
+  .stats-bg { background: #1a1a1a; padding: 0 0 80px; }
+  .stats-intro {
+    background: #c9a358;
+    color: #111;
+    padding: 28px 40px;
+    max-width: 960px;
+    margin: 0 auto 48px;
+    border-radius: 0 0 12px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .stats-intro span { font-weight: 800; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+    background: #2a2a2a;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .stat-box {
+    background: #111;
+    padding: 36px 28px;
+    text-align: center;
+  }
+  .stat-number {
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: #c9a358;
+    margin-bottom: 10px;
+  }
+  .stat-number.bad { color: #f87171; }
+  .stat-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 6px;
+  }
+  .stat-note { font-size: 13px; color: #555; line-height: 1.5; }
+
+  /* KEYWORD TABLE */
+  .kw-section { background: #f4f4f0; }
+  .kw-table-wrap {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 28px;
+  }
+  .kw-table { width: 100%; border-collapse: collapse; }
+  .kw-table thead { background: #111; color: #fff; }
+  .kw-table thead th {
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .kw-table tbody tr { border-bottom: 1px solid #f4f4f0; }
+  .kw-table tbody tr:last-child { border-bottom: none; }
+  .kw-table tbody td { padding: 14px 20px; font-size: 14px; color: #333; }
+  .kw-table tbody tr:hover { background: #fafaf8; }
+  .pos-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .pos-1 { background: #1a4731; color: #4ade80; }
+  .pos-top10 { background: #1e3a5f; color: #60a5fa; }
+  .pos-p2 { background: #3d2a00; color: #fbbf24; }
+  .pos-buried { background: #2a2a2a; color: #888; }
+  .kw-note {
+    background: #fff8ed;
+    border: 1px solid #f0d98a;
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-size: 14px;
+    color: #5a4200;
+    line-height: 1.7;
+  }
+  .kw-note strong { color: #3d2800; }
+
+  /* CATEGORIES */
+  .categories { display: flex; flex-direction: column; gap: 24px; }
+  .category-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .category-header {
+    display: flex; align-items: center; gap: 20px;
+    padding: 24px 28px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .cat-number { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #bbb; }
+  .cat-name { font-size: 17px; font-weight: 800; flex: 1; }
+  .category-body { padding: 24px 28px; font-size: 15px; color: #444; line-height: 1.75; }
+  .category-body strong { color: #111; }
+
+  /* GAPS */
+  .gaps-bg { background: #111; padding: 80px 0; }
+  .gap-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .gap-card {
+    background: #1a1a1a; border: 1px solid #2a2a2a;
+    border-radius: 12px; padding: 32px 28px;
+  }
+  .gap-number { font-size: 48px; font-weight: 900; color: #c9a358; line-height: 1; margin-bottom: 12px; }
+  .gap-title { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+  .gap-body { font-size: 14px; color: #888; line-height: 1.7; }
+
+  /* 90 DAYS */
+  .ninety-bg { background: #f4f4f0; }
+  .timeline {
+    display: flex; flex-direction: column; gap: 0;
+    margin-bottom: 40px;
+  }
+  .timeline-phase {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0;
+    background: #fff;
+    border-radius: 0;
+    overflow: hidden;
+    border-bottom: 2px solid #f4f4f0;
+  }
+  .timeline-phase:first-child { border-radius: 12px 12px 0 0; }
+  .timeline-phase:last-child { border-radius: 0 0 12px 12px; border-bottom: none; }
+  .phase-label {
+    background: #111;
+    color: #c9a358;
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .phase-days {
+    font-size: 28px; font-weight: 900; letter-spacing: -1px;
+    color: #fff; line-height: 1; margin-bottom: 4px;
+  }
+  .phase-sub { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #555; }
+  .phase-content { padding: 28px 32px; }
+  .phase-title { font-size: 16px; font-weight: 800; color: #111; margin-bottom: 12px; }
+  .phase-items { list-style: none; padding: 0; }
+  .phase-items li {
+    font-size: 14px; color: #555; padding: 5px 0;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .phase-items li::before {
+    content: '→';
+    color: #c9a358;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* OUTCOME */
+  .outcome-box {
+    background: #1a1a1a; color: #fff;
+    border-radius: 12px; padding: 48px 40px;
+    margin-bottom: 40px;
+  }
+  .outcome-box .label {
+    font-size: 10px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: #c9a358; margin-bottom: 20px;
+  }
+  .outcome-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .outcome-metric { text-align: center; }
+  .outcome-metric .before {
+    font-size: 13px; color: #555; text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+  .outcome-metric .after {
+    font-size: 32px; font-weight: 900; color: #c9a358;
+    letter-spacing: -1px; line-height: 1; margin-bottom: 6px;
+  }
+  .outcome-metric .metric-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: #666;
+  }
+  .outcome-divider { border: none; border-top: 1px solid #2a2a2a; margin: 0 0 28px; }
+  .outcome-box p { font-size: 17px; font-weight: 400; line-height: 1.75; color: #ccc; }
+  .outcome-box p strong { color: #fff; }
+
+  /* CTA */
+  .cta-box {
+    background: #c9a358;
+    border-radius: 12px;
+    padding: 48px 40px;
+    text-align: center;
+  }
+  .cta-box h3 { font-size: 28px; font-weight: 900; color: #111; margin-bottom: 12px; letter-spacing: -0.5px; }
+  .cta-box p { font-size: 16px; color: rgba(0,0,0,0.65); margin-bottom: 28px; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .cta-button {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 16px 40px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin: 0 8px 12px;
+  }
+  .cta-button.light {
+    background: transparent;
+    border: 2px solid rgba(0,0,0,0.25);
+    color: #111;
+  }
+  .cta-subtext { font-size: 12px; color: rgba(0,0,0,0.45); margin-top: 16px; }
+
+  /* FOOTER */
+  footer {
+    background: #111;
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  footer p { font-size: 13px; color: #555; }
+
+  @media (max-width: 600px) {
+    .cover { padding: 60px 28px; }
+    .cover-bottom { left: 28px; right: 28px; flex-direction: column; align-items: flex-start; gap: 16px; }
+    .section { padding: 60px 24px; }
+    .timeline-phase { grid-template-columns: 80px 1fr; }
+    .phase-days { font-size: 20px; }
+    footer { padding: 40px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-tag">Digital Presence Assessment</div>
+  <div class="cover-title">PENCSAK<br><span>BUILDERS</span></div>
+  <div class="cover-subtitle">How You Show Up Online — And What It's Costing You</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <label>Business Type</label>
+      <span>Luxury Custom Home Builder</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Location</label>
+      <span>Garden Ridge, TX</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Date</label>
+      <span>June 3, 2026</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Areas Reviewed</label>
+      <span>7 Categories</span>
+    </div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-prepared">Prepared by <strong>Zauber Group</strong></div>
+    <div class="cover-score-badge">Overall Score: D &nbsp;·&nbsp; 1.29 / 4.0</div>
+  </div>
+</div>
+
+
+<!-- SCORECARD -->
+<div class="scorecard-bg">
+  <div class="section" style="padding-top:0;padding-bottom:0;">
+    <div class="section-label" style="color:#c9a358;">The Scorecard</div>
+    <div class="section-title" style="color:#fff;">Here's how Pencsak Builders scores<br>across 7 areas.</div>
+    <div class="scorecard-grid">
+      <div class="scorecard-item">
+        <span class="scorecard-label">Directory &amp; Listings</span>
+        <div class="grade-badge grade-c">C</div>
+      </div>
+      <div class="scorecard-item">
+        <span class="scorecard-label">AI &amp; Google Search</span>
+        <div class="grade-badge grade-d">D</div>
+      </div>
+      <div class="scorecard-item">
+        <span class="scorecard-label">Website</span>
+        <div class="grade-badge grade-c">C</div>
+      </div>
+      <div class="scorecard-item">
+        <span class="scorecard-label">Social Media</span>
+        <div class="grade-badge grade-c">C</div>
+      </div>
+      <div class="scorecard-item">
+        <span class="scorecard-label">Paid Advertising</span>
+        <div class="grade-badge grade-f">F</div>
+      </div>
+      <div class="scorecard-item">
+        <span class="scorecard-label">Lead Follow-Up</span>
+        <div class="grade-badge grade-d">D</div>
+      </div>
+      <div class="scorecard-item">
+        <span class="scorecard-label">Reviews &amp; Reputation</span>
+        <div class="grade-badge grade-d">D</div>
+      </div>
+      <div class="scorecard-item overall">
+        <span class="scorecard-label">Overall Score</span>
+        <div class="overall-right">
+          <span class="overall-gpa">1.29 / 4.0</span>
+          <div class="grade-badge grade-d large">D</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- LIVE TRAFFIC DATA -->
+<div class="stats-bg">
+  <div class="stats-intro" style="padding-top:32px;">
+    <span>These are live numbers</span> pulled directly from Google's search index on June 3, 2026 — not estimates, not averages. This is exactly what your website is doing right now.
+  </div>
+  <div class="section" style="padding-top:0;padding-bottom:0;">
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-number bad">43</div>
+        <div class="stat-label">Organic Visits / Month</div>
+        <div class="stat-note">Total strangers finding you through Google search. The rest of your visitors already knew your name.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">28</div>
+        <div class="stat-label">Keywords Ranking</div>
+        <div class="stat-note">Google knows you exist for 28 search terms. Only 1 puts you on page 1.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number bad">1</div>
+        <div class="stat-label">Keywords on Page 1</div>
+        <div class="stat-note">Your brand name. That means only people who already know "Pencsak Builders" can find you.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">$311</div>
+        <div class="stat-label">Monthly Traffic Value</div>
+        <div class="stat-note">What you'd pay Google Ads to buy the same traffic you're getting organically. For a $1.2M+ builder, that number should be 100× higher.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- KEYWORD RANKINGS -->
+<div class="kw-section">
+  <div class="section">
+    <div class="section-label">The Search Gap</div>
+    <div class="section-title">Every keyword you rank for —<br>and how far you are from page 1.</div>
+
+    <div class="kw-table-wrap">
+      <table class="kw-table">
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th>Monthly Searches</th>
+            <th>Your Position</th>
+            <th>What That Means</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>pencsak builders</strong></td>
+            <td>110</td>
+            <td><span class="pos-badge pos-1">#1</span></td>
+            <td>Brand only — people who already know you</td>
+          </tr>
+          <tr>
+            <td>builders in san antonio texas</td>
+            <td>390</td>
+            <td><span class="pos-badge pos-p2">#12</span></td>
+            <td>2 spots from page 1 — closest opportunity</td>
+          </tr>
+          <tr>
+            <td>designing a home gym</td>
+            <td>1,000</td>
+            <td><span class="pos-badge pos-p2">#17</span></td>
+            <td>Blog post driving non-buyer traffic</td>
+          </tr>
+          <tr>
+            <td><strong>custom builders san antonio tx</strong></td>
+            <td>1,600</td>
+            <td><span class="pos-badge pos-buried">#23 — Page 3</span></td>
+            <td>High-value term, buried where no one looks</td>
+          </tr>
+          <tr>
+            <td><strong>custom builder san antonio</strong></td>
+            <td>1,600</td>
+            <td><span class="pos-badge pos-buried">#24 — Page 3</span></td>
+            <td>High-value term, buried where no one looks</td>
+          </tr>
+          <tr>
+            <td><strong>san antonio custom home builders</strong></td>
+            <td>1,600</td>
+            <td><span class="pos-badge pos-buried">#33 — Page 4</span></td>
+            <td>High-value term, buried where no one looks</td>
+          </tr>
+          <tr>
+            <td><strong>custom home builders san antonio tx</strong></td>
+            <td>1,600</td>
+            <td><span class="pos-badge pos-buried">#34 — Page 4</span></td>
+            <td>High-value term, buried where no one looks</td>
+          </tr>
+          <tr>
+            <td>home builders in san antonio texas</td>
+            <td>1,900</td>
+            <td><span class="pos-badge pos-buried">#56 — Page 6</span></td>
+            <td>Highest search volume term — completely invisible</td>
+          </tr>
+          <tr>
+            <td><strong>custom home builders in san antonio</strong></td>
+            <td>1,600</td>
+            <td><span class="pos-badge pos-buried">#60 — Page 6</span></td>
+            <td>High-value term, buried where no one looks</td>
+          </tr>
+          <tr>
+            <td>best custom home builder san antonio</td>
+            <td>70</td>
+            <td><span class="pos-badge pos-buried">#74 — Page 8</span></td>
+            <td>Highest-intent buyer search — page 8</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="kw-note">
+      <strong>What this table is telling you:</strong> Google already recognizes Pencsak Builders for the right keywords — "custom home builder San Antonio" and variations each get 1,600 searches a month. You're ranking for them. You're just on page 3, 4, and 6. Nobody scrolls past page 1. The competition difficulty scores on these terms are low (9–25 out of 100). These aren't hard keywords to rank for. The site just hasn't been set up to win them yet.
+    </div>
+  </div>
+</div>
+
+
+<!-- WHAT WE FOUND -->
+<div style="background:#f4f4f0; padding-bottom: 0;">
+  <div class="section" style="padding-bottom:0;">
+    <div class="section-label">What We Found</div>
+    <div class="section-title">Here's what's happening<br>in each area.</div>
+
+    <div class="categories">
+
+      <div class="category-card">
+        <div class="category-header">
+          <span class="cat-number">01</span>
+          <span class="cat-name">Directory &amp; Listings</span>
+          <div class="grade-badge grade-c">C</div>
+        </div>
+        <div class="category-body">
+          Pencsak is out there. You're on Houzz, the BBB, and a handful of other directories. Your BBB rating is <strong>A+</strong>, and you've earned recognition from the Greater San Antonio Builders Association. That's all real and it matters.
+          <br><br>
+          The problem: when someone searches for a custom home builder on Google Maps, <strong>your star rating doesn't appear.</strong> Your Google Business Profile either isn't fully optimized or doesn't have enough reviews to trigger a star display. That's the first thing a prospective client sees. Right now it's blank. Yelp, Angi, and Apple Maps presence could not be confirmed at all.
+          <br><br>
+          You have a presence but it's fragmented. The directories that matter most aren't working hard enough for you yet.
+        </div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-header">
+          <span class="cat-number">02</span>
+          <span class="cat-name">AI &amp; Google Search</span>
+          <div class="grade-badge grade-d">D</div>
+        </div>
+        <div class="category-body">
+          High-income buyers increasingly start their search by asking ChatGPT or Perplexity: <em>"Who are the best luxury home builders in San Antonio?"</em> We searched those exact phrases. <strong>Pencsak Builders did not appear anywhere.</strong>
+          <br><br>
+          This connects directly to the traffic data above. Your website gets <strong>43 organic visitors a month.</strong> All of your 1,600-search-per-month keywords are stuck on pages 3 through 6. AI tools pull their recommendations from sites with strong Google rankings and review volume — and right now, you don't have either.
+          <br><br>
+          Your blog has also been inactive since July 2023 — nearly three years with no new content. Google treats that as a freshness signal. Competitors who publish regularly rank higher.
+        </div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-header">
+          <span class="cat-number">03</span>
+          <span class="cat-name">Website</span>
+          <div class="grade-badge grade-c">C</div>
+        </div>
+        <div class="category-body">
+          The site looks professional and the photography is excellent — which makes sense given Angela's background. The phone number is in the header. The contact form qualifies prospects by budget and lot status. These are genuinely strong.
+          <br><br>
+          But three structural issues are keeping the site invisible. First: <strong>not a single page has a meta description</strong> — the line of text Google shows under your link in search results. Google is writing its own, and it's not doing a great job. Second: the homepage headline is "Welcome Home!" — that's a tagline, not a keyword. Third: <strong>you name nine cities you serve but have no dedicated page for any of them.</strong> A buyer in New Braunfels searching "custom home builder New Braunfels" will never find you — there's simply nothing for Google to show them.
+          <br><br>
+          These aren't redesign problems. They're fixable without touching how the site looks.
+        </div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-header">
+          <span class="cat-number">04</span>
+          <span class="cat-name">Social Media</span>
+          <div class="grade-badge grade-c">C</div>
+        </div>
+        <div class="category-body">
+          Instagram is your strongest channel. <strong>3,867 followers and 324 posts</strong> shows consistency, and the content quality is above what most builders in this market produce. Angela's photography background shows.
+          <br><br>
+          Facebook is the gap. <strong>852 page likes and zero reviews.</strong> The 40-to-60-year-old homeowner at Pencsak's price point spends more time on Facebook than anywhere else online. It's also the platform where local trust is built through reviews and shared recommendations. Your Facebook page doesn't reflect the quality of the business.
+          <br><br>
+          YouTube is linked from the site but activity is unknown. Video walkthroughs of finished projects are among the highest-converting content a luxury builder can have.
+        </div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-header">
+          <span class="cat-number">05</span>
+          <span class="cat-name">Paid Advertising</span>
+          <div class="grade-badge grade-f">F</div>
+        </div>
+        <div class="category-body">
+          We checked Facebook's public ad library. <strong>Pencsak Builders has no active ads — not now, not recently.</strong> No Google Ads either.
+          <br><br>
+          Your competitors are running paid campaigns right now — targeting homeowners in Boerne, New Braunfels, Stone Oak, and Vintage Oaks who are actively researching builders. Pencsak isn't appearing in those feeds.
+          <br><br>
+          At your price point — $1.2 million and up — <strong>a single new client from a well-run Meta campaign pays for an entire year of advertising many times over.</strong> No other marketing channel offers that kind of return on a per-lead basis.
+        </div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-header">
+          <span class="cat-number">06</span>
+          <span class="cat-name">Lead Follow-Up</span>
+          <div class="grade-badge grade-d">D</div>
+        </div>
+        <div class="category-body">
+          Your contact form is better than most — you're already asking about budget, land ownership, and whether they have plans. That's smart pre-qualification. But once someone submits, <strong>there's no confirmed automated response.</strong> No instant text, no email confirmation, no acknowledgment that their form was received.
+          <br><br>
+          You use BuilderTrend for active project management, which is excellent. But BuilderTrend doesn't handle pre-sale leads. The gap is the window between "form submitted" and "you see it and respond" — which could be hours or days. In that window, your prospect is also calling the next builder on their list.
+          <br><br>
+          The builder who responds first with substance wins the most attention. At the $1.2M+ level, buyers are making a shortlist — not an impulse decision.
+        </div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-header">
+          <span class="cat-number">07</span>
+          <span class="cat-name">Reviews &amp; Reputation</span>
+          <div class="grade-badge grade-d">D</div>
+        </div>
+        <div class="category-body">
+          This is the single most significant gap — especially given how long Pencsak has been building and how strong the work is.
+          <br><br>
+          Across every public platform: <strong>2 confirmed reviews — both on Houzz, both 5-star.</strong> No confirmed Google reviews. Zero on Facebook, BuildZoom, BBB, or Angi. The website has four client testimonials but those are controlled by you — they carry less weight with a buyer who's trying to verify your reputation independently.
+          <br><br>
+          The builders appearing in AI search results and Google Maps recommendations have 20, 50, even 100+ Google reviews. That volume is a ranking signal. <strong>You have 12 industry awards from the Greater San Antonio Builders Association — Best Kitchen, Best Master Suite, Judges' Choice, Peoples' Choice. You've been winning since 2021. None of that appears when someone Googles your name and looks for social proof from real clients.</strong>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- 3 BIGGEST GAPS -->
+<div class="gaps-bg" style="margin-top:80px;">
+  <div class="section" style="padding-top:0;padding-bottom:0;">
+    <div class="section-label" style="color:#c9a358;">The Bottom Line</div>
+    <div class="section-title" style="color:#fff;">3 things costing you<br>clients right now.</div>
+    <div class="gap-cards">
+      <div class="gap-card">
+        <div class="gap-number">43</div>
+        <div class="gap-title">Organic visitors per month</div>
+        <div class="gap-body">That's the live number from Google's index. For a builder with 12 industry awards, 14 years in the market, and homes starting at $1.2M, the website is nearly invisible to anyone who doesn't already know your name. The keywords are there — you're ranking for 28 of them. They're just all buried on pages 3 through 8. <strong style="color:#c9a358;">The fix isn't starting over. It's optimizing what exists.</strong></div>
+      </div>
+      <div class="gap-card">
+        <div class="gap-number">2</div>
+        <div class="gap-title">Public reviews across all platforms</div>
+        <div class="gap-body">Two reviews on Houzz. That's it. Fourteen years of building award-winning $1.2M+ homes, and the internet shows 2 stars of proof. The builders ranking above you in AI search results and Google Maps have 20 to 100+ Google reviews. Review volume is a direct ranking signal. It's also the first thing a high-income buyer checks before they call. <strong style="color:#c9a358;">Your past clients are your best asset. They just haven't been asked the right way.</strong></div>
+      </div>
+      <div class="gap-card">
+        <div class="gap-number">$0</div>
+        <div class="gap-title">Spent on paid advertising</div>
+        <div class="gap-body">No Meta ads. No Google Ads. No boosted posts. While your competitors are spending a few thousand dollars a month to put their projects in front of high-income homeowners in your service area, Pencsak isn't showing up anywhere. One new client at your price point returns 50–100× the cost of a year's ad spend. <strong style="color:#c9a358;">This is the highest-leverage channel in your market — and it's completely untouched.</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 90-DAY PLAN -->
+<div class="ninety-bg">
+  <div class="section">
+    <div class="section-label">The Fix</div>
+    <div class="section-title">What BuilderFlow™ does<br>in 90 days.</div>
+
+    <div class="timeline">
+
+      <div class="timeline-phase">
+        <div class="phase-label">
+          <div class="phase-days">1–30</div>
+          <div class="phase-sub">Days</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-title">Foundation — Get Found &amp; Get Reviews</div>
+          <ul class="phase-items">
+            <li>Optimize your Google Business Profile so your star rating appears in Maps searches</li>
+            <li>Launch a review campaign to past clients — goal is 20+ Google reviews at 5 stars within 30 days</li>
+            <li>Fix every meta description, the homepage headline, and the homepage schema so Google understands who you are</li>
+            <li>Set up instant text + email auto-response on every contact form submission</li>
+            <li>Confirm and clean up your Yelp, Angi, Apple Maps, and Bing listings</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-phase">
+        <div class="phase-label">
+          <div class="phase-days">31–60</div>
+          <div class="phase-sub">Days</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-title">Visibility — Move Keywords &amp; Launch Ads</div>
+          <ul class="phase-items">
+            <li>Build 5 location pages (New Braunfels, Bulverde, Boerne, Garden Ridge, Canyon Lake) — each targeting a specific city search</li>
+            <li>Add FAQ sections to key pages so ChatGPT and Perplexity start citing you in AI searches</li>
+            <li>Launch Meta ads targeting high-income homeowners in your 9 service cities — award-winning project photos as creative</li>
+            <li>Activate Facebook with a consistent posting schedule and a review funnel</li>
+            <li>Publish 2 fresh blog posts to restart Google's freshness signal on the site</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-phase">
+        <div class="phase-label">
+          <div class="phase-days">61–90</div>
+          <div class="phase-sub">Days</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-title">Scale — Optimize What's Working</div>
+          <ul class="phase-items">
+            <li>Review ad performance and shift budget to the ZIP codes and creative driving the most qualified inquiries</li>
+            <li>Track keyword movement — "custom builder san antonio" keywords should be moving from page 3 toward page 1</li>
+            <li>Build 2 additional location pages based on which cities are driving the most form submissions</li>
+            <li>Continue the review cadence — target 40+ Google reviews by day 90</li>
+            <li>Monthly performance report: traffic, rankings, leads, and ad spend breakdown</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- OUTCOME METRICS -->
+    <div class="outcome-box">
+      <div class="label">Where You'll Be at Day 90</div>
+      <div class="outcome-metrics">
+        <div class="outcome-metric">
+          <div class="before">43/month</div>
+          <div class="after">400+</div>
+          <div class="metric-label">Organic Visits / Month</div>
+        </div>
+        <div class="outcome-metric">
+          <div class="before">2 reviews</div>
+          <div class="after">40+</div>
+          <div class="metric-label">Google Reviews</div>
+        </div>
+        <div class="outcome-metric">
+          <div class="before">1 keyword</div>
+          <div class="after">8–12</div>
+          <div class="metric-label">Page 1 Keywords</div>
+        </div>
+        <div class="outcome-metric">
+          <div class="before">$0 paid</div>
+          <div class="after">Live</div>
+          <div class="metric-label">Meta Ad Campaigns</div>
+        </div>
+      </div>
+      <hr class="outcome-divider">
+      <p>Pencsak Builders already has one of the strongest track records of any luxury builder in the San Antonio market — 14 years, 12 Summit Award wins, and a design and photography team that produces content competitors simply can't replicate. <strong>The product is exceptional. The problem is that almost no one outside your referral network can find it.</strong> BuilderFlow™ closes the gap between the reputation you've earned in the industry and the visibility you have online. The goal at day 90: a star rating showing on Google, AI searches citing you, and 3 to 5 qualified homeowners reaching out every month from channels that have nothing to do with word-of-mouth.</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <h3>Ready to talk about what this looks like for Pencsak?</h3>
+      <p>Reply to this email or call us directly. We'll walk through the 90-day plan, answer any questions, and tell you exactly what BuilderFlow™ costs for your market.</p>
+      <a class="cta-button" href="mailto:kelly@zaubergroup.com">Reply to This Email</a>
+      <a class="cta-button light" href="tel:+15127871186">Call or Text Kelly — 512-787-1186</a>
+      <div class="cta-subtext">Call or text anytime. No pressure, no pitch deck — just a straight conversation about what these numbers mean for your business.</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+  <p>Prepared by <strong style="color:#c9a358;">Zauber Group</strong> &nbsp;·&nbsp; June 3, 2026 &nbsp;·&nbsp; zaubergroup.com</p>
+  <p style="color:#333;">Data sourced from Google Search Index via DataForSEO &nbsp;·&nbsp; Live pull June 3, 2026</p>
+</footer>
+
+</body>
+</html>
