@@ -6,8 +6,8 @@ export default function HeroCarousel() {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
-  const scrollToBuilderFlow = () => {
-    const el = document.querySelector("#builderflow");
+  const scrollToLocalEdge = () => {
+    const el = document.querySelector("#localedge");
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
@@ -48,19 +48,19 @@ export default function HeroCarousel() {
 
               {/* Sub-headline */}
               <p className="text-white/80 text-lg sm:text-xl leading-relaxed mb-4 max-w-xl">
-                BuilderFlow™ puts your social media, website, SEO, and lead
-                pipeline on complete autopilot — so you can focus on building,
-                not marketing.
+                LocalEdge™ gets your business found on Google, seen on social,
+                and booked automatically — so you can focus on the work, not
+                the marketing.
               </p>
 
               <p className="text-[#C9A84C] text-sm font-medium tracking-[0.1em] uppercase mb-10">
-                Built exclusively for residential &amp; commercial builders
+                Done-for-you local visibility for service businesses — from $500/mo
               </p>
 
               {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <button
-                  onClick={scrollToBuilderFlow}
+                  onClick={scrollToLocalEdge}
                   className="px-10 py-4 bg-[#C9A84C] text-[#0A1628] text-sm font-semibold tracking-[0.1em] uppercase hover:bg-[#d4b65e] transition-all duration-300 hover:shadow-xl"
                 >
                   See How It Works
@@ -69,7 +69,7 @@ export default function HeroCarousel() {
                   onClick={scrollToContact}
                   className="px-10 py-4 border border-white/30 text-white text-sm font-semibold tracking-[0.1em] uppercase hover:border-white hover:bg-white/10 transition-all duration-300"
                 >
-                  Get Started
+                  Get My Free Report
                 </button>
               </div>
             </div>
@@ -79,20 +79,6 @@ export default function HeroCarousel() {
         </div>
       </div>
 
-      {/* Scroll indicator */}
-      <div className="absolute bottom-8 right-8 z-10 flex flex-col items-center gap-3">
-        <span className="text-white/40 text-[10px] tracking-[0.3em] uppercase writing-vertical">
-          Scroll
-        </span>
-        <div className="w-[1px] h-12 bg-gradient-to-b from-[#C9A84C] to-transparent" />
-      </div>
-
-      <style>{`
-        .writing-vertical {
-          writing-mode: vertical-rl;
-          text-orientation: mixed;
-        }
-      `}</style>
     </section>
   );
 }

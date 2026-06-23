@@ -38,7 +38,7 @@ export default function AboutSection() {
             {/* Right: Bio */}
             <div className="lg:col-span-3">
               <h2 className="font-serif text-4xl sm:text-5xl font-semibold text-[#0A1628] leading-[1.15] mb-3">
-                The Builder's Advocate
+                The Local Business Advocate
               </h2>
               <p className="text-[#C9A84C] text-sm font-medium tracking-[0.15em] uppercase mb-8">
                 Founder &amp; Principal — Zauber Group
@@ -47,31 +47,31 @@ export default function AboutSection() {
               <div className="space-y-5 text-[#2C2C2C] text-base sm:text-lg leading-relaxed">
                 <p>
                   For over 20 years, the founder of Zauber Group has worked
-                  side-by-side with builders across the country — custom home
-                  builders, commercial contractors, and everyone in between.
-                  That work revealed one consistent truth:{" "}
+                  side-by-side with local business owners across the country —
+                  builders, contractors, and service pros of every kind. That
+                  work revealed one consistent truth:{" "}
                   <strong className="text-[#0A1628]">
-                    the best builders rarely have the best marketing.
+                    the best operators rarely have the best marketing.
                   </strong>
                 </p>
                 <p>
-                  They're busy building exceptional things. They don't have time
-                  to post on social media, optimize their website for AI search,
-                  or follow up with every lead that comes in. The work that
-                  should be building their reputation and filling their pipeline
-                  simply doesn't get done.
+                  They're busy doing exceptional work. They don't have time to
+                  post on social media, optimize their Google profile, or follow
+                  up with every lead that comes in. The work that should be
+                  building their reputation and filling their pipeline simply
+                  doesn't get done.
                 </p>
                 <p>
-                  BuilderFlow™ was built to solve that problem completely. A
-                  done-for-you digital system that handles social media,
-                  websites, SEO, GEO, AI chat, and lead pipeline — so builders
-                  can focus on what they do best and trust that their marketing
-                  is working in the background, every single day.
+                  LocalEdge™ was built to solve that problem completely. A
+                  done-for-you system that handles Google visibility, reviews,
+                  social, websites, and lead follow-up — so owners can focus on
+                  what they do best and trust that their marketing is working in
+                  the background, every single day.
                 </p>
                 <p>
-                  Zauber Group works with residential and commercial builders
-                  nationwide. If you build it, we'll make sure the right people
-                  find you.
+                  Zauber Group works with local service businesses nationwide.
+                  If you do great work, we'll make sure the right people find
+                  you.
                 </p>
               </div>
 
@@ -94,10 +94,10 @@ export default function AboutSection() {
                 </div>
                 <div>
                   <span className="font-serif text-4xl sm:text-5xl font-semibold text-[#0A1628]">
-                    BF<span className="text-[#C9A84C]">™</span>
+                    LE<span className="text-[#C9A84C]">™</span>
                   </span>
                   <p className="text-sm text-[#666] mt-1 tracking-wide uppercase">
-                    BuilderFlow
+                    LocalEdge
                   </p>
                 </div>
               </div>

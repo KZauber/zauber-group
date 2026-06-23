@@ -19,7 +19,7 @@ export default function SarahVideoSection() {
               <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
                 <iframe
                   src={HEYGEN_VIDEO_URL}
-                  title="Sarah Young introduces BuilderFlow"
+                  title="Sarah Young introduces LocalEdge"
                   className="absolute inset-0 w-full h-full"
                   allow="autoplay; fullscreen"
                   frameBorder="0"
@@ -46,15 +46,16 @@ export default function SarahVideoSection() {
 
               <p className="text-white/60 text-lg leading-relaxed mb-8 max-w-lg">
                 In just two minutes, Sarah walks you through exactly what
-                BuilderFlow™ does and why builders across the country are using
-                it to fill their pipelines — without cold calls, without chasing
-                referrals, and without touching their marketing themselves.
+                LocalEdge™ does and why local service businesses across the
+                country are using it to fill their pipelines — without cold
+                calls, without chasing referrals, and without touching their
+                marketing themselves.
               </p>
 
               <div className="space-y-4 mb-10">
                 {[
                   "How your social media runs itself, every single day",
-                  "Why builders are invisible online — and how to fix it fast",
+                  "Why local businesses get missed online — and how to fix it fast",
                   "The pipeline system that follows up with every lead automatically",
                 ].map((point) => (
                   <div key={point} className="flex items-start gap-3">
@@ -71,7 +72,7 @@ export default function SarahVideoSection() {
                 }}
                 className="px-10 py-4 bg-[#C9A84C] text-[#0A1628] text-sm font-semibold tracking-[0.1em] uppercase hover:bg-[#d4b65e] transition-all duration-300 hover:shadow-xl"
               >
-                Get BuilderFlow™
+                Get LocalEdge™
               </button>
             </div>
 

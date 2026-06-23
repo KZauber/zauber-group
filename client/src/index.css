@@ -197,3 +197,22 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #d4b65e;
 }
+
+/* Reduced motion — respect the OS setting. The Reveal component handles its
+   own framer-motion case; this covers CSS animations, tw-animate-css, and
+   smooth scroll so nothing moves for users who ask for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-delay: 0ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    transition-delay: 0ms !important;
+  }
+}

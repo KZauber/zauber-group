@@ -27,11 +27,11 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="container flex items-center justify-between h-20">
+      <div className="container flex items-center justify-between gap-8 h-20">
         {/* Logo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex items-center gap-3"
+          className="flex items-center gap-2 flex-shrink-0"
         >
           <span className="font-serif text-2xl font-semibold text-white tracking-wide">
             Zauber
@@ -42,12 +42,12 @@ export default function Navbar() {
         </button>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden lg:flex items-center gap-9 flex-shrink-0">
           <button
-            onClick={() => scrollToSection("#builderflow")}
-            className="relative text-white/80 hover:text-white text-sm font-medium tracking-[0.12em] uppercase transition-colors duration-300 group"
+            onClick={() => scrollToSection("#localedge")}
+            className="relative whitespace-nowrap text-white/80 hover:text-white text-sm font-medium tracking-[0.12em] uppercase transition-colors duration-300 group"
           >
-            BuilderFlow
+            LocalEdge
             <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#C9A84C] transition-all duration-300 group-hover:w-full" />
           </button>
           <button
@@ -82,7 +82,7 @@ export default function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-white p-2"
+          className="lg:hidden text-white p-2"
           aria-label="Toggle menu"
         >
           {mobileOpen ? <X size={24} /> : <Menu size={24} />}
@@ -91,16 +91,16 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-500 ${
+        className={`lg:hidden overflow-hidden transition-all duration-500 ${
           mobileOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="bg-[#0A1628]/98 backdrop-blur-md px-6 pb-8 pt-2 flex flex-col gap-6">
           <button
-            onClick={() => scrollToSection("#builderflow")}
+            onClick={() => scrollToSection("#localedge")}
             className="text-white/80 hover:text-white text-sm font-medium tracking-[0.12em] uppercase text-left transition-colors"
           >
-            BuilderFlow
+            LocalEdge
           </button>
           <button
             onClick={() => scrollToSection("#services")}

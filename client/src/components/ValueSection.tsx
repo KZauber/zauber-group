@@ -1,30 +1,30 @@
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { Radio, Globe, Phone } from "lucide-react";
+import { MapPin, Share2, PhoneCall } from "lucide-react";
 
 const steps = [
   {
     num: "01",
-    icon: Radio,
-    title: "Social Media Autopilot",
-    desc: "A custom posting schedule across your most important platforms — Facebook, Instagram, LinkedIn, YouTube Shorts, and TikTok. AI-generated, scheduled, and published automatically. We build the cadence around your brand, whether we're running it fully or supplementing what you're already doing.",
-    stat: "Custom",
-    statLabel: "Posting plan built around your brand and goals",
+    icon: MapPin,
+    title: "Get Found",
+    desc: "Google Maps, local SEO, and reviews — the map-pack trio. We optimize your Google Business Profile, publish weekly posts, and run an automated review engine that asks every happy customer for a review and drafts your replies. You climb the map and win the click.",
+    stat: "$500",
+    statLabel: "Per month · the anchor program",
   },
   {
     num: "02",
-    icon: Globe,
-    title: "Website + SEO + GEO",
-    desc: "A high-converting site that shows up on Google AND on AI tools like ChatGPT, Gemini, and Perplexity. GEO — Generative Engine Optimization — is where your next client is searching. Most of your competitors have never heard of it.",
-    stat: "AI+SEO",
-    statLabel: "Found on Google and every major AI search engine",
+    icon: Share2,
+    title: "Get Seen",
+    desc: "A consistent, on-brand social presence without lifting a finger. Around a dozen posts a month — created, scheduled, and published to Facebook, Instagram, and Google for you. Built from the same content engine, so nothing slips and nothing feels generic.",
+    stat: "$500",
+    statLabel: "Per month · social, done for you",
   },
   {
     num: "03",
-    icon: Phone,
-    title: "Digital Pipeline",
-    desc: "AI chat answers your website visitors 24/7. AI handles your incoming calls. Every lead is captured, followed up, and tracked in your CRM automatically. No lead falls through the cracks — ever.",
-    stat: "24/7",
-    statLabel: "AI answering calls and chats — never miss a lead",
+    icon: PhoneCall,
+    title: "Get Booked",
+    desc: "The lead engine. Instant speed-to-lead response within seconds, missed-call text-back, a simple CRM, and automated follow-up — so every inquiry is caught, answered, and worked. No lead ever slips through the cracks.",
+    stat: "$500",
+    statLabel: "Per month · never miss a lead",
   },
 ];
 
@@ -32,7 +32,7 @@ export default function ValueSection() {
   const { ref: sectionRef, isVisible } = useScrollAnimation(0.1);
 
   return (
-    <section id="builderflow" className="py-24 sm:py-32 bg-white">
+    <section id="localedge" className="py-24 sm:py-32 bg-white">
       <div className="container">
         <div
           ref={sectionRef}
@@ -41,23 +41,24 @@ export default function ValueSection() {
           <div className="flex items-center gap-4 mb-6">
             <div className="gold-line" />
             <span className="text-[#C9A84C] text-sm font-medium tracking-[0.2em] uppercase">
-              BuilderFlow™
+              LocalEdge™
             </span>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20">
             <div>
               <h2 className="font-serif text-4xl sm:text-5xl font-semibold text-[#0A1628] leading-[1.15]">
-                Three Systems.
+                Three Programs.
                 <br />
-                <span className="text-[#C9A84C]">One Complete Solution.</span>
+                <span className="text-[#C9A84C]">Stack What You Need.</span>
               </h2>
             </div>
             <div className="flex items-end">
               <p className="text-[#555] text-lg leading-relaxed max-w-lg">
-                BuilderFlow™ is the complete digital system for builders who are
-                serious about growth. We handle your marketing end-to-end — so
-                your phone rings with the right clients, automatically.
+                LocalEdge™ is done-for-you local visibility for service
+                businesses. Start with one program at $500/mo, add the next when
+                you're ready — month to month, no contract. We run it end to end
+                so your phone rings with the right customers, automatically.
               </p>
             </div>
           </div>

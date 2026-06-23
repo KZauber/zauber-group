@@ -97,9 +97,10 @@ export default function ContactSection() {
                 <span className="text-[#C9A84C]">Chasing Work?</span>
               </h2>
               <p className="text-[#555] text-lg leading-relaxed mb-12 max-w-lg">
-                Whether you're a custom home builder or a commercial contractor,
-                let's talk about getting BuilderFlow™ working for your business.
-                No pressure — just a real conversation about what's possible.
+                Whether you run a roofing crew, a med spa, or a construction
+                company, let's talk about getting LocalEdge™ working for your
+                business. No pressure — just a real conversation about what's
+                possible.
               </p>
 
               <div className="space-y-8">
@@ -225,7 +226,7 @@ export default function ContactSection() {
 
                   {/* Row 3: Tier interest */}
                   <div>
-                    <label className={labelClass}>Which plan are you interested in?</label>
+                    <label className={labelClass}>Which program are you interested in?</label>
                     <select
                       name="tier"
                       value={form.tier}
@@ -233,10 +234,10 @@ export default function ContactSection() {
                       className={inputClass}
                     >
                       <option value="">Not sure yet — let's talk</option>
-                      <option value="Starter — $1,500/mo">Starter — $1,500/mo (Social Media Autopilot)</option>
-                      <option value="Growth — $2,500/mo">Growth — $2,500/mo (+ Website / SEO / GEO)</option>
-                      <option value="BuilderFlow Full — $3,500/mo">BuilderFlow™ Full — $3,500/mo (Most Popular)</option>
-                      <option value="Premium — $5,000/mo">Premium — $5,000/mo (+ Meta Ads)</option>
+                      <option value="Get Found — $500/mo">Get Found — $500/mo (Google, SEO &amp; Reviews)</option>
+                      <option value="Get Seen — $500/mo">Get Seen — $500/mo (Social on Autopilot)</option>
+                      <option value="Get Booked — $500/mo">Get Booked — $500/mo (Lead Engine)</option>
+                      <option value="Complete LocalEdge — $1,500/mo">Complete LocalEdge™ — $1,500/mo (All Three)</option>
                     </select>
                   </div>
 
@@ -276,7 +277,7 @@ export default function ContactSection() {
                         Sending…
                       </>
                     ) : (
-                      "Get BuilderFlow™"
+                      "Get LocalEdge™"
                     )}
                   </button>
 

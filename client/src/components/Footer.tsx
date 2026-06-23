@@ -12,7 +12,7 @@ export default function Footer() {
         </div>
 
         <p className="text-white/25 text-xs leading-relaxed max-w-md text-center sm:text-right">
-          BuilderFlow™ is a proprietary marketing system by Zauber Group.
+          LocalEdge™ is a proprietary local-marketing system by Zauber Group.
           Results vary based on market, service area, and business profile.
           &copy; {new Date().getFullYear()} Zauber Group. All rights reserved.
         </p>

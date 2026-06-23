@@ -4,23 +4,23 @@ import { CheckCircle, Users, TrendingUp, Zap } from "lucide-react";
 const benefits = [
   {
     icon: Users,
-    title: "Built for Builders, Not Generic Businesses",
-    desc: "Every piece of content, every system, every strategy is built specifically for residential and commercial construction companies. We speak your clients' language because we know your industry.",
+    title: "Built for Local Service Businesses",
+    desc: "Every system and strategy is built for businesses that win or lose by how they show up locally — from roofers and HVAC to med spas and law firms. We speak your customers' language because local search is what we do.",
   },
   {
     icon: Zap,
     title: "Fully Done for You",
-    desc: "You don't touch anything. No logging into platforms, no writing posts, no chasing leads. BuilderFlow runs in the background while you run your business.",
+    desc: "You don't touch anything. No logging into platforms, no writing posts, no chasing reviews. LocalEdge runs in the background while you run your business.",
   },
   {
     icon: TrendingUp,
-    title: "Show Up Where Clients Are Looking",
-    desc: "Your clients search on Google, ask ChatGPT, scroll Instagram, and browse LinkedIn. BuilderFlow puts you in front of them on every platform — consistently, professionally, automatically.",
+    title: "Show Up Where Customers Are Looking",
+    desc: "Your customers search Google Maps, ask ChatGPT, and scroll Instagram before they ever call. LocalEdge puts you in front of them on every platform — consistently, professionally, automatically.",
   },
   {
     icon: CheckCircle,
     title: "Stop the Feast-or-Famine Cycle",
-    desc: "Word-of-mouth is unpredictable. BuilderFlow creates a steady, reliable stream of inbound leads so you can plan your pipeline with confidence and stop taking every job that calls.",
+    desc: "Word-of-mouth is unpredictable. LocalEdge builds a steady, reliable stream of inbound leads so you can plan your pipeline with confidence and stop taking every job that calls.",
   },
 ];
 
@@ -47,8 +47,8 @@ export default function ServicesSection() {
             <span className="text-[#C9A84C]">While You Build</span>
           </h2>
           <p className="text-white/60 text-lg leading-relaxed max-w-xl mb-16">
-            Most builders are great at their craft and terrible at marketing.
-            BuilderFlow fixes that — permanently.
+            Most local businesses are great at their work and too busy for
+            marketing. LocalEdge handles it — so you never have to.
           </p>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-20">
@@ -73,14 +73,14 @@ export default function ServicesSection() {
             </p>
             <div className="flex flex-wrap gap-4">
               {[
-                "Custom Home Builders",
-                "Commercial Contractors",
-                "Luxury Renovators",
-                "Business Park Developers",
-                "Restaurant & Hospitality Builders",
-                "Mixed-Use Developers",
-                "Light Industrial",
-                "Tenant Improvement Contractors",
+                "Roofers",
+                "HVAC & Plumbing",
+                "Electricians",
+                "Remodelers & Builders",
+                "Landscapers",
+                "Med Spas",
+                "Law Firms",
+                "Auto Shops",
               ].map((type) => (
                 <span
                   key={type}
