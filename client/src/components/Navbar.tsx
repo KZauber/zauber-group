@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import { useTheme } from "@/contexts/ThemeContext";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -72,21 +74,37 @@ export default function Navbar() {
             <span className="absolute -bottom-1 left-0 w-0 h-[1px] bg-[#C9A84C] transition-all duration-300 group-hover:w-full" />
           </button>
           <button
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="ml-2 w-10 h-10 flex items-center justify-center rounded-full border border-white/15 text-[#C9A84C] hover:border-[#C9A84C]/60 hover:bg-white/5 transition-all duration-300"
+          >
+            {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+          <button
             onClick={() => scrollToSection("#contact")}
-            className="ml-4 px-6 py-2.5 border border-[#C9A84C] text-[#C9A84C] text-sm font-medium tracking-[0.08em] uppercase hover:bg-[#C9A84C] hover:text-[#0A1628] transition-all duration-300"
+            className="px-6 py-2.5 border border-[#C9A84C] text-[#C9A84C] text-sm font-medium tracking-[0.08em] uppercase hover:bg-[#C9A84C] hover:text-[#0A1628] transition-all duration-300"
           >
             Get Started
           </button>
         </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="lg:hidden text-white p-2"
-          aria-label="Toggle menu"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+        {/* Mobile controls */}
+        <div className="lg:hidden flex items-center gap-1">
+          <button
+            onClick={toggleTheme}
+            aria-label={theme === "dark" ? "Switch to light mode" : "Switch to dark mode"}
+            className="w-10 h-10 flex items-center justify-center text-[#C9A84C]"
+          >
+            {theme === "dark" ? <Sun size={20} /> : <Moon size={20} />}
+          </button>
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            className="text-white p-2"
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}

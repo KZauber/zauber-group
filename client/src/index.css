@@ -178,6 +178,62 @@
   }
 }
 
+/* ============================================================
+   Dark theme palette (applied when <html> has .dark)
+   Flips the global background/text tokens so the whole page
+   reads dark; individual premium sections add their own surfaces.
+   ============================================================ */
+.dark {
+  --background: oklch(0.15 0.04 260);
+  --foreground: oklch(0.97 0.005 85);
+  --card: oklch(0.19 0.045 260);
+  --card-foreground: oklch(0.97 0.005 85);
+  --muted: oklch(0.22 0.04 260);
+  --muted-foreground: oklch(0.72 0.02 260);
+  --border: oklch(0.3 0.03 260);
+  --input: oklch(0.3 0.03 260);
+}
+
+/* ============================================================
+   Premium section helpers (animated backdrop + card catch-light)
+   ============================================================ */
+@keyframes zg-drift1 { from { transform: translate(0,0); } to { transform: translate(80px,60px); } }
+@keyframes zg-drift2 { from { transform: translate(0,0); } to { transform: translate(-70px,-50px); } }
+@keyframes zg-grid  { from { background-position: 0 0; } to { background-position: 60px 60px; } }
+@keyframes zg-sweep { 0% { transform: translateX(-140%) skewX(-16deg); } 14% { transform: translateX(260%) skewX(-16deg); } 100% { transform: translateX(260%) skewX(-16deg); } }
+@keyframes zg-pulse { 0% { box-shadow: 0 0 0 0 rgba(201,168,76,.6); } 100% { box-shadow: 0 0 0 9px rgba(201,168,76,0); } }
+
+.zg-glow { position: absolute; border-radius: 9999px; filter: blur(80px); pointer-events: none; }
+.zg-glow-gold { background: radial-gradient(circle, rgba(201,168,76,.30), transparent 70%); }
+.zg-glow-blue { background: radial-gradient(circle, rgba(58,104,176,.40), transparent 70%); }
+.zg-drift1 { animation: zg-drift1 17s ease-in-out infinite alternate; }
+.zg-drift2 { animation: zg-drift2 21s ease-in-out infinite alternate; }
+
+.zg-grid {
+  position: absolute; inset: 0; opacity: .07;
+  background-image:
+    linear-gradient(rgba(201,168,76,.6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,.6) 1px, transparent 1px);
+  background-size: 60px 60px;
+  animation: zg-grid 30s linear infinite;
+  -webkit-mask-image: radial-gradient(110% 70% at 50% 25%, #000 45%, transparent 88%);
+  mask-image: radial-gradient(110% 70% at 50% 25%, #000 45%, transparent 88%);
+}
+
+/* a single catch-light that glides across a row of .zg-card, clipped to each box */
+.zg-card { position: relative; overflow: hidden; }
+.zg-card::after {
+  content: ""; position: absolute; top: 0; left: 0; width: 46%; height: 100%;
+  pointer-events: none; transform: translateX(-140%) skewX(-16deg);
+  background: linear-gradient(100deg, transparent, rgba(255,255,255,.07), transparent);
+  animation: zg-sweep 8s ease-in-out infinite;
+}
+.zg-card:nth-child(1)::after { animation-delay: 0s; }
+.zg-card:nth-child(2)::after { animation-delay: 1s; }
+.zg-card:nth-child(3)::after { animation-delay: 2s; }
+
+.zg-livedot { box-shadow: 0 0 0 0 rgba(201,168,76,.6); animation: zg-pulse 1.8s infinite; }
+
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;

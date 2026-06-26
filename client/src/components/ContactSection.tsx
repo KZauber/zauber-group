@@ -67,15 +67,21 @@ export default function ContactSection() {
   };
 
   const inputClass =
-    "w-full bg-white border border-[#E0DDD8] text-[#0A1628] text-sm px-4 py-3 " +
+    "w-full bg-white dark:bg-white/5 border border-[#E0DDD8] dark:border-white/15 text-[#0A1628] dark:text-white text-sm px-4 py-3 rounded-md " +
     "focus:outline-none focus:border-[#C9A84C] focus:ring-1 focus:ring-[#C9A84C]/30 " +
-    "placeholder:text-[#BBBBBB] transition-colors duration-200";
+    "placeholder:text-[#BBBBBB] dark:placeholder:text-white/35 transition-colors duration-200";
 
-  const labelClass = "block text-xs font-medium tracking-[0.12em] uppercase text-[#888] mb-1.5";
+  const labelClass = "block text-xs font-medium tracking-[0.12em] uppercase text-[#888] dark:text-white/55 mb-1.5";
 
   return (
-    <section id="contact" className="py-24 sm:py-32 bg-white">
-      <div className="container">
+    <section id="contact" className="relative overflow-hidden py-24 sm:py-32 bg-white dark:bg-[#0A1628]">
+      {/* animated backdrop — dark mode only */}
+      <div className="hidden dark:block" aria-hidden="true">
+        <div className="zg-glow zg-glow-gold zg-drift1 w-[560px] h-[560px] -left-40 -top-16" />
+        <div className="zg-glow zg-glow-blue zg-drift2 w-[680px] h-[680px] -right-52 -bottom-40" />
+        <div className="zg-grid" />
+      </div>
+      <div className="container relative z-10">
         <div
           ref={sectionRef}
           className={`fade-up ${isVisible ? "visible" : ""}`}
@@ -91,12 +97,12 @@ export default function ContactSection() {
 
             {/* ── Left: CTA + contact details ── */}
             <div>
-              <h2 className="font-serif text-4xl sm:text-5xl font-semibold text-[#0A1628] leading-[1.15] mb-6">
+              <h2 className="font-serif text-4xl sm:text-5xl font-semibold text-[#0A1628] dark:text-white leading-[1.15] mb-6">
                 Ready to Stop
                 <br />
                 <span className="text-[#C9A84C]">Chasing Work?</span>
               </h2>
-              <p className="text-[#555] text-lg leading-relaxed mb-12 max-w-lg">
+              <p className="text-[#555] dark:text-white/60 text-lg leading-relaxed mb-12 max-w-lg">
                 Whether you run a roofing crew, a med spa, or a construction
                 company, let's talk about getting LocalEdge™ working for your
                 business. No pressure — just a real conversation about what's
@@ -109,10 +115,10 @@ export default function ContactSection() {
                     <Mail className="w-5 h-5 text-[#C9A84C]" />
                   </div>
                   <div>
-                    <p className="text-sm text-[#999] tracking-wide uppercase mb-1">Email</p>
+                    <p className="text-sm text-[#999] dark:text-white/45 tracking-wide uppercase mb-1">Email</p>
                     <a
                       href={`mailto:${CONTACT_EMAIL}`}
-                      className="text-[#0A1628] text-lg hover:text-[#C9A84C] transition-colors"
+                      className="text-[#0A1628] dark:text-white text-lg hover:text-[#C9A84C] transition-colors"
                     >
                       {CONTACT_EMAIL}
                     </a>
@@ -124,10 +130,10 @@ export default function ContactSection() {
                     <Phone className="w-5 h-5 text-[#C9A84C]" />
                   </div>
                   <div>
-                    <p className="text-sm text-[#999] tracking-wide uppercase mb-1">Phone</p>
+                    <p className="text-sm text-[#999] dark:text-white/45 tracking-wide uppercase mb-1">Phone</p>
                     <a
                       href={`tel:${CONTACT_PHONE_TEL}`}
-                      className="text-[#0A1628] text-lg hover:text-[#C9A84C] transition-colors"
+                      className="text-[#0A1628] dark:text-white text-lg hover:text-[#C9A84C] transition-colors"
                     >
                       {CONTACT_PHONE_DISPLAY}
                     </a>
@@ -139,22 +145,22 @@ export default function ContactSection() {
                     <Globe className="w-5 h-5 text-[#C9A84C]" />
                   </div>
                   <div>
-                    <p className="text-sm text-[#999] tracking-wide uppercase mb-1">Service Area</p>
-                    <p className="text-[#0A1628] text-lg">Nationwide</p>
+                    <p className="text-sm text-[#999] dark:text-white/45 tracking-wide uppercase mb-1">Service Area</p>
+                    <p className="text-[#0A1628] dark:text-white text-lg">Nationwide</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* ── Right: Contact form ── */}
-            <div>
+            <div className="rounded-2xl dark:bg-[#0e1d33]/50 dark:border dark:border-white/10 dark:backdrop-blur-sm dark:p-8 lg:dark:p-10">
               {status === "success" ? (
-                <div className="h-full flex flex-col items-center justify-center text-center py-16 border border-[#C9A84C]/20 bg-[#F8F6F1]">
+                <div className="h-full flex flex-col items-center justify-center text-center py-16 rounded-xl border border-[#C9A84C]/20 dark:border-[#C9A84C]/30 bg-[#F8F6F1] dark:bg-[#0e1d33]/60">
                   <CheckCircle className="w-12 h-12 text-[#C9A84C] mb-5" />
-                  <h3 className="font-serif text-2xl font-semibold text-[#0A1628] mb-3">
+                  <h3 className="font-serif text-2xl font-semibold text-[#0A1628] dark:text-white mb-3">
                     Message received.
                   </h3>
-                  <p className="text-[#555] leading-relaxed max-w-sm">
+                  <p className="text-[#555] dark:text-white/60 leading-relaxed max-w-sm">
                     We'll be in touch within one business day to schedule your
                     discovery call. Talk soon.
                   </p>
@@ -269,7 +275,7 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="w-full flex items-center justify-center gap-3 px-10 py-4 bg-[#0A1628] text-white text-sm font-semibold tracking-[0.1em] uppercase hover:bg-[#C9A84C] hover:text-[#0A1628] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full flex items-center justify-center gap-3 px-10 py-4 rounded-md bg-[#0A1628] dark:bg-[#C9A84C] text-white dark:text-[#0A1628] text-sm font-semibold tracking-[0.1em] uppercase hover:bg-[#C9A84C] hover:text-[#0A1628] dark:hover:bg-[#d4b65e] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {status === "sending" ? (
                       <>
@@ -281,7 +287,7 @@ export default function ContactSection() {
                     )}
                   </button>
 
-                  <p className="text-xs text-[#AAAAAA] text-center">
+                  <p className="text-xs text-[#AAAAAA] dark:text-white/40 text-center">
                     We respond within one business day. No spam, ever.
                   </p>
                 </form>

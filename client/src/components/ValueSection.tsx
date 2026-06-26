@@ -1,5 +1,4 @@
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
-import { MapPin, Share2, PhoneCall } from "lucide-react";
+import { MapPin, Share2, PhoneCall, Check } from "lucide-react";
 
 const steps = [
   {
@@ -25,87 +24,147 @@ const steps = [
     desc: "The lead engine. Instant speed-to-lead response within seconds, missed-call text-back, a simple CRM, and automated follow-up — so every inquiry is caught, answered, and worked. No lead ever slips through the cracks.",
     stat: "$500",
     statLabel: "Per month · never miss a lead",
+    feature: true,
   },
 ];
 
 export default function ValueSection() {
-  const { ref: sectionRef, isVisible } = useScrollAnimation(0.1);
-
   return (
-    <section id="localedge" className="py-24 sm:py-32 bg-white">
-      <div className="container">
-        <div
-          ref={sectionRef}
-          className={`fade-up ${isVisible ? "visible" : ""}`}
-        >
-          <div className="flex items-center gap-4 mb-6">
-            <div className="gold-line" />
-            <span className="text-[#C9A84C] text-sm font-medium tracking-[0.2em] uppercase">
-              LocalEdge™
-            </span>
-          </div>
+    <section
+      id="localedge"
+      className="relative overflow-hidden py-24 sm:py-32 bg-[#F8F6F1] dark:bg-[#0A1628]"
+    >
+      {/* animated backdrop — dark mode only */}
+      <div className="hidden dark:block" aria-hidden="true">
+        <div className="zg-glow zg-glow-gold zg-drift1 w-[620px] h-[620px] -left-44 -top-16" />
+        <div className="zg-glow zg-glow-blue zg-drift2 w-[760px] h-[760px] -right-52 top-[640px]" />
+        <div className="zg-grid" />
+      </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20">
-            <div>
-              <h2 className="font-serif text-4xl sm:text-5xl font-semibold text-[#0A1628] leading-[1.15]">
-                Three Programs.
-                <br />
-                <span className="text-[#C9A84C]">Stack What You Need.</span>
-              </h2>
-            </div>
-            <div className="flex items-end">
-              <p className="text-[#555] text-lg leading-relaxed max-w-lg">
-                LocalEdge™ is done-for-you local visibility for service
-                businesses. Start with one program at $500/mo, add the next when
-                you're ready — month to month, no contract. We run it end to end
-                so your phone rings with the right customers, automatically.
-              </p>
-            </div>
-          </div>
+      <div className="container relative z-10">
+        {/* eyebrow */}
+        <div className="flex items-center gap-4 mb-6">
+          <div className="gold-line" />
+          <span className="text-[#C9A84C] text-sm font-medium tracking-[0.2em] uppercase">
+            LocalEdge™
+          </span>
+        </div>
 
-          <div className="space-y-0">
-            {steps.map((step, i) => (
-              <div
-                key={step.num}
-                className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center py-12 ${
-                  i < steps.length - 1 ? "border-b border-[#C9A84C]/10" : ""
+        {/* header */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-16">
+          <h2 className="font-serif text-4xl sm:text-5xl font-semibold text-[#0A1628] dark:text-white leading-[1.15]">
+            Three Programs.
+            <br />
+            <span className="text-[#C9A84C]">Stack What You Need.</span>
+          </h2>
+          <div className="flex items-end">
+            <p className="text-[#555] dark:text-white/60 text-lg leading-relaxed max-w-lg">
+              LocalEdge™ is done-for-you local visibility for service
+              businesses. Start with one program at $500/mo, add the next when
+              you're ready — month to month, no contract. We run it end to end
+              so your phone rings with the right customers, automatically.
+            </p>
+          </div>
+        </div>
+
+        {/* program cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {steps.map((step) => (
+            <div
+              key={step.num}
+              className={`zg-card flex flex-col rounded-2xl p-8 transition-transform duration-300 hover:-translate-y-1.5 border bg-white dark:bg-[#0e1d33]/60 dark:backdrop-blur-sm shadow-sm dark:shadow-2xl ${
+                step.feature
+                  ? "border-[#C9A84C]/60 dark:border-[#C9A84C]/50"
+                  : "border-[#C9A84C]/15 dark:border-white/8"
+              }`}
+            >
+              {/* gold top accent */}
+              <span
+                className={`absolute top-0 left-0 right-0 h-[3px] ${
+                  step.feature
+                    ? "bg-gradient-to-r from-[#9a7b2e] via-[#C9A84C] to-[#e7cf86]"
+                    : "bg-gradient-to-r from-transparent via-[#C9A84C]/60 to-transparent"
                 }`}
-              >
-                <div className="flex gap-6 items-start">
-                  <div className="flex-shrink-0">
-                    <div className="w-14 h-14 border border-[#C9A84C]/30 flex items-center justify-center">
-                      <step.icon className="w-6 h-6 text-[#C9A84C]" />
-                    </div>
-                  </div>
-                  <div>
-                    <div className="flex items-center gap-3 mb-2">
-                      <span className="font-serif text-2xl font-semibold text-[#C9A84C]/30">
-                        {step.num}
-                      </span>
-                      <h3 className="text-xl font-semibold text-[#0A1628]">
-                        {step.title}
-                      </h3>
-                    </div>
-                    <p className="text-[#555] leading-relaxed text-lg">
-                      {step.desc}
-                    </p>
-                  </div>
-                </div>
-                <div className="lg:pl-10">
-                  <div className="border border-[#C9A84C]/20 p-8 bg-[#F8F6F1]">
-                    <p className="font-serif text-5xl font-semibold text-[#0A1628] mb-2">
-                      {step.stat}
-                    </p>
-                    <p className="text-[#555] text-sm tracking-wide uppercase">
-                      {step.statLabel}
-                    </p>
-                  </div>
-                </div>
+              />
+
+              {/* badge row */}
+              <div className="flex items-center justify-between mb-6">
+                <span className="font-serif text-lg text-[#C9A84C] w-11 h-11 rounded-full border border-[#C9A84C]/40 flex items-center justify-center">
+                  {step.num}
+                </span>
+                {step.feature ? (
+                  <span className="flex items-center gap-2 text-[11px] font-semibold tracking-[0.16em] uppercase text-[#0A1628] bg-[#C9A84C] px-3 py-1.5 rounded-full">
+                    <span className="zg-livedot w-1.5 h-1.5 rounded-full bg-[#0A1628]" />
+                    Lead Engine
+                  </span>
+                ) : (
+                  <step.icon className="w-7 h-7 text-[#C9A84C]" />
+                )}
               </div>
-            ))}
+
+              <h3 className="font-serif text-2xl font-semibold text-[#0A1628] dark:text-white mb-3">
+                {step.title}
+              </h3>
+              <p className="text-[#555] dark:text-white/60 text-[15px] leading-relaxed mb-7">
+                {step.desc}
+              </p>
+
+              {/* price */}
+              <div className="mt-auto pt-6 border-t border-[#C9A84C]/15 dark:border-white/10">
+                <p className="font-serif text-4xl font-semibold text-[#0A1628] dark:text-white leading-none">
+                  {step.stat}
+                  <span className="text-base font-sans text-[#888] dark:text-white/50 ml-1">
+                    /mo
+                  </span>
+                </p>
+                <p className="text-[#888] dark:text-white/50 text-xs tracking-wide uppercase mt-2">
+                  {step.statLabel}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* stack summary bar */}
+        <div className="mt-7 rounded-2xl bg-[#0A1628] dark:bg-[#08101e] border border-[#C9A84C]/25 px-8 sm:px-11 py-8 grid grid-cols-1 lg:grid-cols-[1.3fr_auto_auto] gap-8 items-center">
+          <div>
+            <p className="font-serif text-2xl text-white mb-1.5">Build your stack.</p>
+            <p className="text-white/55 text-[15px]">
+              Every program is $500/mo. Add the next when you're ready — stack all
+              three for the full engine.
+            </p>
           </div>
+          <div className="flex items-center gap-3.5 justify-center">
+            <div className="text-center">
+              <div className="font-serif text-2xl text-[#C9A84C]">$500</div>
+              <div className="text-[11px] tracking-[0.1em] uppercase text-white/45 mt-1">1 Program</div>
+            </div>
+            <span className="text-[#C9A84C] text-lg">→</span>
+            <div className="text-center">
+              <div className="font-serif text-2xl text-[#C9A84C]">$1,000</div>
+              <div className="text-[11px] tracking-[0.1em] uppercase text-white/45 mt-1">2 Programs</div>
+            </div>
+            <span className="text-[#C9A84C] text-lg">→</span>
+            <div className="text-center">
+              <div className="font-serif text-2xl text-[#C9A84C]">$1,500</div>
+              <div className="text-[11px] tracking-[0.1em] uppercase text-white/45 mt-1">All 3 · Full Engine</div>
+            </div>
+          </div>
+          <button
+            onClick={() => {
+              const el = document.querySelector("#contact");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="bg-[#C9A84C] text-[#0A1628] font-semibold tracking-[0.12em] uppercase text-sm px-8 py-4 rounded-md hover:bg-[#d4b65e] transition-colors whitespace-nowrap"
+          >
+            Get Started
+          </button>
+          <p className="lg:col-span-3 text-white/40 text-[13px] flex items-center gap-1.5">
+            <Check className="w-3.5 h-3.5 text-[#C9A84C]" />
+            Month to month · No contract · Cancel or add programs anytime
+          </p>
         </div>
       </div>
     </section>
   );
-    }
+}
