@@ -49,16 +49,16 @@ export default function HeroCarousel() {
               {/* Eyebrow */}
               <div className="flex items-center gap-4 mb-8">
                 <div className="w-12 h-[1px] bg-[#C9A84C]" />
-                <span className="text-[#C9A84C] text-sm font-medium tracking-[0.25em] uppercase">
+                <span className="text-[#A97E26] dark:text-[#C9A84C] text-sm font-medium tracking-[0.25em] uppercase [text-shadow:0_1px_3px_rgba(10,22,40,0.35)]">
                   The Zauber Group
                 </span>
               </div>
 
               {/* Headline */}
-              <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-semibold text-[#0A1628] dark:text-white leading-[1.05] mb-6">
+              <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-semibold text-[#0A1628] dark:text-white leading-[1.05] mb-6 [text-shadow:0_2px_12px_rgba(244,241,234,0.35)] dark:[text-shadow:0_2px_14px_rgba(10,22,40,0.45)]">
                 Stop Chasing Jobs.
                 <br />
-                <span className="text-[#C9A84C]">Start Choosing Them.</span>
+                <span className="text-[#AD8128] dark:text-[#C9A84C] [text-shadow:0_2px_10px_rgba(10,22,40,0.30)]">Start Choosing Them.</span>
               </h1>
 
               {/* Sub-headline */}
@@ -68,7 +68,7 @@ export default function HeroCarousel() {
                 the marketing.
               </p>
 
-              <p className="text-[#C9A84C] text-sm font-medium tracking-[0.1em] uppercase mb-10">
+              <p className="text-[#A97E26] dark:text-[#C9A84C] text-sm font-medium tracking-[0.1em] uppercase mb-10 [text-shadow:0_1px_3px_rgba(10,22,40,0.35)]">
                 Done-for-you local visibility for service businesses — from $500/mo
               </p>
 
