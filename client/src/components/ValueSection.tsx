@@ -34,8 +34,8 @@ export default function ValueSection() {
       id="localedge"
       className="relative overflow-hidden py-24 sm:py-32 bg-[#F8F6F1] dark:bg-[#0A1628]"
     >
-      {/* animated backdrop — dark mode only */}
-      <div className="hidden dark:block" aria-hidden="true">
+      {/* animated backdrop — visible in both themes */}
+      <div className="zg-backdrop opacity-80 dark:opacity-100" aria-hidden="true">
         <div className="zg-glow zg-glow-gold zg-drift1 w-[620px] h-[620px] -left-44 -top-16" />
         <div className="zg-glow zg-glow-blue zg-drift2 w-[760px] h-[760px] -right-52 top-[640px]" />
         <div className="zg-grid" />

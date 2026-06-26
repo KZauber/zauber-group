@@ -1,4 +1,3 @@
-import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 import { CheckCircle, Users, TrendingUp, Zap } from "lucide-react";
 
 const benefits = [
@@ -24,72 +23,108 @@ const benefits = [
   },
 ];
 
+const guarantees = [
+  { v: "100%", l: "Done-for-you, hands-off" },
+  { v: "24/7", l: "Speed-to-lead response" },
+  { v: "0", l: "Contracts · month-to-month" },
+  { v: "12+", l: "Posts published / month" },
+];
+
+const industries = [
+  "Roofers",
+  "HVAC & Plumbing",
+  "Electricians",
+  "Remodelers & Builders",
+  "Landscapers",
+  "Med Spas",
+  "Law Firms",
+  "Auto Shops",
+];
+
 export default function ServicesSection() {
-  const { ref: sectionRef, isVisible } = useScrollAnimation(0.1);
-
   return (
-    <section id="services" className="py-24 sm:py-32 bg-[#0A1628]">
-      <div className="container">
-        <div
-          ref={sectionRef}
-          className={`fade-up ${isVisible ? "visible" : ""}`}
-        >
-          <div className="flex items-center gap-4 mb-6">
-            <div className="gold-line" />
-            <span className="text-[#C9A84C] text-sm font-medium tracking-[0.2em] uppercase">
-              Why It Works
-            </span>
-          </div>
+    <section
+      id="services"
+      className="relative overflow-hidden py-24 sm:py-32 bg-[#F8F6F1] dark:bg-[#0A1628]"
+    >
+      <div className="zg-backdrop opacity-80 dark:opacity-100" aria-hidden="true">
+        <div className="zg-glow zg-glow-gold zg-drift1 w-[560px] h-[560px] -left-40 -top-16" />
+        <div className="zg-glow zg-glow-blue zg-drift2 w-[700px] h-[700px] -right-52 bottom-0" />
+        <div className="zg-grid" />
+      </div>
 
-          <h2 className="font-serif text-4xl sm:text-5xl font-semibold text-white leading-[1.15] mb-6 max-w-2xl">
+      <div className="container relative z-10">
+        <div className="flex items-center gap-4 mb-6">
+          <div className="gold-line" />
+          <span className="text-[#C9A84C] text-sm font-medium tracking-[0.2em] uppercase">
+            Why It Works
+          </span>
+        </div>
+
+        {/* header — two columns */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 mb-14 items-end">
+          <h2 className="font-serif text-4xl sm:text-5xl font-semibold text-[#0A1628] dark:text-white leading-[1.15]">
             Marketing That Works
             <br />
             <span className="text-[#C9A84C]">While You Build</span>
           </h2>
-          <p className="text-white/60 text-lg leading-relaxed max-w-xl mb-16">
+          <p className="text-[#555] dark:text-white/60 text-lg leading-relaxed max-w-xl">
             Most local businesses are great at their work and too busy for
             marketing. LocalEdge handles it — so you never have to.
           </p>
+        </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-20">
-            {benefits.map((benefit) => (
-              <div key={benefit.title} className="group">
-                <div className="w-12 h-12 border border-[#C9A84C]/30 flex items-center justify-center mb-4 group-hover:border-[#C9A84C]/60 transition-colors">
-                  <benefit.icon className="w-5 h-5 text-[#C9A84C]" />
-                </div>
-                <h3 className="text-white font-semibold text-base mb-2">
-                  {benefit.title}
+        {/* benefit cards */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-14">
+          {benefits.map((b) => (
+            <div
+              key={b.title}
+              className="flex items-start gap-5 rounded-2xl border border-[#0A1628]/8 dark:border-white/8 bg-white dark:bg-[#0e1d33]/50 dark:backdrop-blur-sm p-8 transition-transform duration-300 hover:-translate-y-1 hover:border-[#C9A84C]/40"
+            >
+              <div className="flex-none w-14 h-14 rounded-full border border-[#C9A84C]/40 bg-[#C9A84C]/10 flex items-center justify-center">
+                <b.icon className="w-6 h-6 text-[#C9A84C]" />
+              </div>
+              <div>
+                <h3 className="font-serif text-xl font-semibold text-[#0A1628] dark:text-white mb-2">
+                  {b.title}
                 </h3>
-                <p className="text-white/50 text-sm leading-relaxed">
-                  {benefit.desc}
+                <p className="text-[#555] dark:text-white/55 text-[15px] leading-relaxed">
+                  {b.desc}
                 </p>
               </div>
-            ))}
-          </div>
-
-          <div className="pt-12 border-t border-white/10">
-            <p className="text-white/30 text-sm tracking-wide uppercase mb-6">
-              We work with
-            </p>
-            <div className="flex flex-wrap gap-4">
-              {[
-                "Roofers",
-                "HVAC & Plumbing",
-                "Electricians",
-                "Remodelers & Builders",
-                "Landscapers",
-                "Med Spas",
-                "Law Firms",
-                "Auto Shops",
-              ].map((type) => (
-                <span
-                  key={type}
-                  className="px-5 py-2.5 border border-white/10 text-white/50 text-sm tracking-wide hover:border-[#C9A84C]/30 hover:text-white/70 transition-all duration-300"
-                >
-                  {type}
-                </span>
-              ))}
             </div>
+          ))}
+        </div>
+
+        {/* guarantees / features band */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 rounded-2xl bg-[#0A1628] dark:bg-[#08101e] border border-[#C9A84C]/25 py-9 mb-14">
+          {guarantees.map((g, i) => (
+            <div
+              key={g.l}
+              className={`text-center px-5 ${i > 0 ? "lg:border-l border-white/10" : ""}`}
+            >
+              <div className="font-serif text-4xl sm:text-[2.9rem] font-semibold text-[#C9A84C] leading-none">
+                {g.v}
+              </div>
+              <div className="text-white/60 text-[13px] tracking-wide mt-3">{g.l}</div>
+            </div>
+          ))}
+        </div>
+
+        {/* we work with */}
+        <div className="pt-10 border-t border-[#0A1628]/10 dark:border-white/10">
+          <p className="text-[#888] dark:text-white/35 text-sm tracking-[0.2em] uppercase mb-6">
+            We work with
+          </p>
+          <div className="flex flex-wrap gap-3.5">
+            {industries.map((type) => (
+              <span
+                key={type}
+                className="px-5 py-2.5 rounded-lg border border-[#0A1628]/12 dark:border-white/12 text-[#444] dark:text-white/65 text-sm tracking-wide hover:border-[#C9A84C]/50 hover:bg-[#C9A84C]/5 hover:text-[#0A1628] dark:hover:text-white transition-all duration-300"
+              >
+                {type}
+              </span>
+            ))}
           </div>
         </div>
       </div>
