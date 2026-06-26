@@ -88,16 +88,16 @@ export default function ServicesSection() {
         </div>
 
         {/* guarantees / features band */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 rounded-2xl bg-[#0A1628] dark:bg-[#13243d] border border-[#C9A84C]/25 shadow-xl py-9 mb-14">
+        <div className="grid grid-cols-2 lg:grid-cols-4 zg-surface rounded-2xl py-9 mb-14">
           {guarantees.map((g, i) => (
             <div
               key={g.l}
-              className={`text-center px-5 ${i > 0 ? "lg:border-l border-white/10" : ""}`}
+              className={`text-center px-5 ${i > 0 ? "lg:border-l border-[#0A1628]/10 dark:border-white/10" : ""}`}
             >
               <div className="font-serif text-4xl sm:text-[2.9rem] font-semibold text-[#C9A84C] leading-none">
                 {g.v}
               </div>
-              <div className="text-white/60 text-[13px] tracking-wide mt-3">{g.l}</div>
+              <div className="text-[#555] dark:text-white/60 text-[13px] tracking-wide mt-3">{g.l}</div>
             </div>
           ))}
         </div>

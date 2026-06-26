@@ -114,10 +114,10 @@ export default function ValueSection() {
         </div>
 
         {/* stack summary bar */}
-        <div className="mt-7 rounded-2xl bg-[#0A1628] dark:bg-[#13243d] border border-[#C9A84C]/25 shadow-xl px-8 sm:px-11 py-8 grid grid-cols-1 lg:grid-cols-[1.3fr_auto_auto] gap-8 items-center">
+        <div className="mt-7 zg-surface rounded-2xl px-8 sm:px-11 py-8 grid grid-cols-1 lg:grid-cols-[1.3fr_auto_auto] gap-8 items-center">
           <div>
-            <p className="font-serif text-2xl text-white mb-1.5">Build your stack.</p>
-            <p className="text-white/55 text-[15px]">
+            <p className="font-serif text-2xl text-[#0A1628] dark:text-white mb-1.5">Build your stack.</p>
+            <p className="text-[#555] dark:text-white/55 text-[15px]">
               Every program is $500/mo. Add the next when you're ready — stack all
               three for the full engine.
             </p>
@@ -125,17 +125,17 @@ export default function ValueSection() {
           <div className="flex items-center gap-3.5 justify-center">
             <div className="text-center">
               <div className="font-serif text-2xl text-[#C9A84C]">$500</div>
-              <div className="text-[11px] tracking-[0.1em] uppercase text-white/45 mt-1">1 Program</div>
+              <div className="text-[11px] tracking-[0.1em] uppercase text-[#888] dark:text-white/45 mt-1">1 Program</div>
             </div>
             <span className="text-[#C9A84C] text-lg">→</span>
             <div className="text-center">
               <div className="font-serif text-2xl text-[#C9A84C]">$1,000</div>
-              <div className="text-[11px] tracking-[0.1em] uppercase text-white/45 mt-1">2 Programs</div>
+              <div className="text-[11px] tracking-[0.1em] uppercase text-[#888] dark:text-white/45 mt-1">2 Programs</div>
             </div>
             <span className="text-[#C9A84C] text-lg">→</span>
             <div className="text-center">
               <div className="font-serif text-2xl text-[#C9A84C]">$1,500</div>
-              <div className="text-[11px] tracking-[0.1em] uppercase text-white/45 mt-1">All 3 · Full Engine</div>
+              <div className="text-[11px] tracking-[0.1em] uppercase text-[#888] dark:text-white/45 mt-1">All 3 · Full Engine</div>
             </div>
           </div>
           <button
@@ -147,7 +147,7 @@ export default function ValueSection() {
           >
             Get Started
           </button>
-          <p className="lg:col-span-3 text-white/40 text-[13px] flex items-center gap-1.5">
+          <p className="lg:col-span-3 text-[#777] dark:text-white/40 text-[13px] flex items-center gap-1.5">
             <Check className="w-3.5 h-3.5 text-[#C9A84C]" />
             Month to month · No contract · Cancel or add programs anytime
           </p>
