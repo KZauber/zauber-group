@@ -1,6 +1,12 @@
-const HERO_IMAGE = "/zauber-hero.jpeg.jpg";
+import { useTheme } from "@/contexts/ThemeContext";
+
+const HERO_NIGHT = "/zauber-hero.jpeg.jpg";
+const HERO_DAY = "/zauber-hero-day.jpg";
 
 export default function HeroCarousel() {
+  const { theme } = useTheme();
+  const heroSrc = theme === "dark" ? HERO_NIGHT : HERO_DAY;
+
   const scrollToContact = () => {
     const el = document.querySelector("#contact");
     if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -13,15 +19,25 @@ export default function HeroCarousel() {
 
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image (day in light mode, night in dark mode) */}
       <div className="absolute inset-0">
         <img
-          src={HERO_IMAGE}
+          src={heroSrc}
           alt="Custom home construction site"
           className="w-full h-full object-cover"
+          onError={(e) => {
+            // fall back to the night image until the day image is added
+            if (e.currentTarget.src.indexOf(HERO_DAY) !== -1) {
+              e.currentTarget.src = HERO_NIGHT;
+            }
+          }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/92 via-[#0A1628]/70 to-[#0A1628]/30" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A1628]/80 via-transparent to-[#0A1628]/20" />
+        {/* left scrim — keeps the headline readable in both themes */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/92 via-[#0A1628]/55 to-transparent" />
+        {/* top scrim — keeps the navbar readable */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/55 via-transparent to-transparent" />
+        {/* bottom blend — fades into the page background so there's no seam */}
+        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#F4F1EA] dark:from-[#0A1628] to-transparent" />
       </div>
 
       {/* Content */}
