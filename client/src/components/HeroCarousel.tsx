@@ -26,6 +26,8 @@ export default function HeroCarousel() {
           src={heroSrc}
           alt="Custom home construction site"
           className="w-full h-full object-cover"
+          fetchPriority="high"
+          decoding="async"
           onError={(e) => {
             if (e.currentTarget.src.indexOf(HERO_DAY) !== -1) {
               e.currentTarget.src = HERO_NIGHT;
