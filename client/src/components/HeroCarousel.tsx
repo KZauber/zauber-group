@@ -32,10 +32,12 @@ export default function HeroCarousel() {
             }
           }}
         />
-        {/* left scrim — light in light mode, navy in dark mode (keeps text readable) */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#F4F1EA]/92 via-[#F4F1EA]/50 to-transparent dark:from-[#0A1628]/92 dark:via-[#0A1628]/55" />
-        {/* top scrim — keeps the navbar readable */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#F4F1EA]/70 to-transparent dark:from-[#0A1628]/55" />
+        {/* left scrim — strongest behind the text, clears quickly so the photo stays crisp */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#F4F1EA]/85 via-[#F4F1EA]/15 to-transparent dark:from-[#0A1628]/92 dark:via-[#0A1628]/55 dark:to-transparent" />
+        {/* light readability wash at the lower-left only (behind sub-text + buttons) */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#F4F1EA]/45 via-transparent to-transparent dark:from-[#0A1628]/40 lg:w-2/3" />
+        {/* top scrim — minimal, just for the navbar */}
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#F4F1EA]/35 to-transparent dark:from-[#0A1628]/50" />
       </div>
 
       {/* Content */}
