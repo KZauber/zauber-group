@@ -94,10 +94,15 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    /* one seamless base color for the whole page (sections are transparent) */
+    background-color: #F4F1EA;
     font-family: 'DM Sans', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+  }
+  .dark body {
+    background-color: #0A1628;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -203,27 +208,39 @@
 @keyframes zg-sweep { 0% { transform: translateX(-140%) skewX(-16deg); } 14% { transform: translateX(260%) skewX(-16deg); } 100% { transform: translateX(260%) skewX(-16deg); } }
 @keyframes zg-pulse { 0% { box-shadow: 0 0 0 0 rgba(201,168,76,.6); } 100% { box-shadow: 0 0 0 9px rgba(201,168,76,0); } }
 
-.zg-glow { position: absolute; border-radius: 9999px; filter: blur(72px); pointer-events: none; }
-.zg-glow-gold { background: radial-gradient(circle, rgba(201,168,76,.45), transparent 70%); }
-.zg-glow-blue { background: radial-gradient(circle, rgba(58,104,176,.30), transparent 70%); }
-.dark .zg-glow-blue { background: radial-gradient(circle, rgba(58,104,176,.55), transparent 70%); }
+.zg-glow { position: absolute; border-radius: 9999px; filter: blur(80px); pointer-events: none; }
+.zg-glow-gold { background: radial-gradient(circle, rgba(201,168,76,.30), transparent 70%); }
+.zg-glow-blue { background: radial-gradient(circle, rgba(58,104,176,.22), transparent 70%); }
+.dark .zg-glow-gold { background: radial-gradient(circle, rgba(201,168,76,.40), transparent 70%); }
+.dark .zg-glow-blue { background: radial-gradient(circle, rgba(58,104,176,.45), transparent 70%); }
 .zg-drift1 { animation: zg-drift1 17s ease-in-out infinite alternate; }
 .zg-drift2 { animation: zg-drift2 21s ease-in-out infinite alternate; }
 
-.zg-grid {
-  position: absolute; inset: 0; opacity: .08;
+/* ── ONE seamless page-wide background (fixed; no per-section seams) ── */
+.zg-page-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.zg-grid-full {
+  position: absolute; inset: 0; opacity: .045;
   background-image:
-    linear-gradient(rgba(201,168,76,.6) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201,168,76,.6) 1px, transparent 1px);
+    linear-gradient(rgba(201,168,76,.5) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,.5) 1px, transparent 1px);
   background-size: 58px 58px;
-  animation: zg-grid 30s linear infinite;
-  -webkit-mask-image: radial-gradient(110% 70% at 50% 25%, #000 45%, transparent 88%);
-  mask-image: radial-gradient(110% 70% at 50% 25%, #000 45%, transparent 88%);
+  animation: zg-grid 60s linear infinite;
 }
-.dark .zg-grid { opacity: .12; }
+.dark .zg-grid-full { opacity: .08; }
 
-/* page-level moving aurora that shows through section backdrops */
-.zg-backdrop { position: absolute; inset: 0; overflow: hidden; pointer-events: none; }
+/* shadow-based surface for cards/panels — depth without color blocks */
+.zg-surface {
+  background: rgba(255,255,255,.85);
+  border: 1px solid rgba(10,22,40,.06);
+  box-shadow: 0 26px 55px -32px rgba(10,22,40,.30);
+}
+.dark .zg-surface {
+  background: rgba(255,255,255,.045);
+  border-color: rgba(255,255,255,.09);
+  box-shadow: 0 30px 60px -30px rgba(0,0,0,.55);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
 
 /* a single catch-light that glides across a row of .zg-card, clipped to each box */
 .zg-card { position: relative; overflow: hidden; }

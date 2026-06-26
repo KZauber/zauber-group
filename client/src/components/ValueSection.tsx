@@ -30,17 +30,7 @@ const steps = [
 
 export default function ValueSection() {
   return (
-    <section
-      id="localedge"
-      className="relative overflow-hidden py-24 sm:py-32 bg-[#F8F6F1] dark:bg-[#0A1628]"
-    >
-      {/* animated backdrop — visible in both themes */}
-      <div className="zg-backdrop opacity-80 dark:opacity-100" aria-hidden="true">
-        <div className="zg-glow zg-glow-gold zg-drift1 w-[620px] h-[620px] -left-44 -top-16" />
-        <div className="zg-glow zg-glow-blue zg-drift2 w-[760px] h-[760px] -right-52 top-[640px]" />
-        <div className="zg-grid" />
-      </div>
-
+    <section id="localedge" className="relative py-24 sm:py-32">
       <div className="container relative z-10">
         {/* eyebrow */}
         <div className="flex items-center gap-4 mb-6">
@@ -72,10 +62,8 @@ export default function ValueSection() {
           {steps.map((step) => (
             <div
               key={step.num}
-              className={`zg-card flex flex-col rounded-2xl p-8 transition-transform duration-300 hover:-translate-y-1.5 border bg-white dark:bg-[#0e1d33]/60 dark:backdrop-blur-sm shadow-sm dark:shadow-2xl ${
-                step.feature
-                  ? "border-[#C9A84C]/60 dark:border-[#C9A84C]/50"
-                  : "border-[#C9A84C]/15 dark:border-white/8"
+              className={`zg-card zg-surface flex flex-col rounded-2xl p-8 transition-transform duration-300 hover:-translate-y-1.5 ${
+                step.feature ? "ring-1 ring-[#C9A84C]/55" : ""
               }`}
             >
               {/* gold top accent */}
@@ -126,7 +114,7 @@ export default function ValueSection() {
         </div>
 
         {/* stack summary bar */}
-        <div className="mt-7 rounded-2xl bg-[#0A1628] dark:bg-[#08101e] border border-[#C9A84C]/25 px-8 sm:px-11 py-8 grid grid-cols-1 lg:grid-cols-[1.3fr_auto_auto] gap-8 items-center">
+        <div className="mt-7 rounded-2xl bg-[#0A1628] dark:bg-[#13243d] border border-[#C9A84C]/25 shadow-xl px-8 sm:px-11 py-8 grid grid-cols-1 lg:grid-cols-[1.3fr_auto_auto] gap-8 items-center">
           <div>
             <p className="font-serif text-2xl text-white mb-1.5">Build your stack.</p>
             <p className="text-white/55 text-[15px]">

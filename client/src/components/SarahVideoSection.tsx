@@ -10,13 +10,7 @@ const points = [
 
 export default function SarahVideoSection() {
   return (
-    <section className="relative overflow-hidden py-24 sm:py-32 bg-[#F8F6F1] dark:bg-[#0A1628]">
-      <div className="zg-backdrop opacity-80 dark:opacity-100" aria-hidden="true">
-        <div className="zg-glow zg-glow-gold zg-drift1 w-[560px] h-[560px] -left-40 -top-16" />
-        <div className="zg-glow zg-glow-blue zg-drift2 w-[680px] h-[680px] -right-52 -bottom-40" />
-        <div className="zg-grid" />
-      </div>
-
+    <section className="relative py-24 sm:py-32">
       <div className="container relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
 

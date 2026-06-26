@@ -12,6 +12,13 @@ import Reveal from "@/components/motion/Reveal";
 export default function Home() {
   return (
     <div className="min-h-screen">
+      {/* one continuous background behind the whole page (no per-section seams) */}
+      <div className="zg-page-bg" aria-hidden="true">
+        <div className="zg-grid-full" />
+        <div className="zg-glow zg-glow-gold zg-drift1 w-[680px] h-[680px] -left-44 top-[6%]" />
+        <div className="zg-glow zg-glow-blue zg-drift2 w-[820px] h-[820px] -right-56 top-[42%]" />
+        <div className="zg-glow zg-glow-gold zg-drift1 w-[520px] h-[520px] left-[40%] top-[78%]" />
+      </div>
       <Navbar />
       <HeroCarousel />
       <Reveal><SarahVideoSection /></Reveal>

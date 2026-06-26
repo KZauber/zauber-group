@@ -43,16 +43,7 @@ const industries = [
 
 export default function ServicesSection() {
   return (
-    <section
-      id="services"
-      className="relative overflow-hidden py-24 sm:py-32 bg-[#F8F6F1] dark:bg-[#0A1628]"
-    >
-      <div className="zg-backdrop opacity-80 dark:opacity-100" aria-hidden="true">
-        <div className="zg-glow zg-glow-gold zg-drift1 w-[560px] h-[560px] -left-40 -top-16" />
-        <div className="zg-glow zg-glow-blue zg-drift2 w-[700px] h-[700px] -right-52 bottom-0" />
-        <div className="zg-grid" />
-      </div>
-
+    <section id="services" className="relative py-24 sm:py-32">
       <div className="container relative z-10">
         <div className="flex items-center gap-4 mb-6">
           <div className="gold-line" />
@@ -79,7 +70,7 @@ export default function ServicesSection() {
           {benefits.map((b) => (
             <div
               key={b.title}
-              className="flex items-start gap-5 rounded-2xl border border-[#0A1628]/8 dark:border-white/8 bg-white dark:bg-[#0e1d33]/50 dark:backdrop-blur-sm p-8 transition-transform duration-300 hover:-translate-y-1 hover:border-[#C9A84C]/40"
+              className="zg-surface flex items-start gap-5 rounded-2xl p-8 transition-transform duration-300 hover:-translate-y-1 hover:ring-1 hover:ring-[#C9A84C]/40"
             >
               <div className="flex-none w-14 h-14 rounded-full border border-[#C9A84C]/40 bg-[#C9A84C]/10 flex items-center justify-center">
                 <b.icon className="w-6 h-6 text-[#C9A84C]" />
@@ -97,7 +88,7 @@ export default function ServicesSection() {
         </div>
 
         {/* guarantees / features band */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 rounded-2xl bg-[#0A1628] dark:bg-[#08101e] border border-[#C9A84C]/25 py-9 mb-14">
+        <div className="grid grid-cols-2 lg:grid-cols-4 rounded-2xl bg-[#0A1628] dark:bg-[#13243d] border border-[#C9A84C]/25 shadow-xl py-9 mb-14">
           {guarantees.map((g, i) => (
             <div
               key={g.l}

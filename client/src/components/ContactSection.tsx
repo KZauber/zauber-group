@@ -74,13 +74,7 @@ export default function ContactSection() {
   const labelClass = "block text-xs font-medium tracking-[0.12em] uppercase text-[#888] dark:text-white/55 mb-1.5";
 
   return (
-    <section id="contact" className="relative overflow-hidden py-24 sm:py-32 bg-white dark:bg-[#0A1628]">
-      {/* animated backdrop — visible in both themes */}
-      <div className="zg-backdrop opacity-80 dark:opacity-100" aria-hidden="true">
-        <div className="zg-glow zg-glow-gold zg-drift1 w-[560px] h-[560px] -left-40 -top-16" />
-        <div className="zg-glow zg-glow-blue zg-drift2 w-[680px] h-[680px] -right-52 -bottom-40" />
-        <div className="zg-grid" />
-      </div>
+    <section id="contact" className="relative py-24 sm:py-32">
       <div className="container relative z-10">
         <div
           ref={sectionRef}
@@ -153,7 +147,7 @@ export default function ContactSection() {
             </div>
 
             {/* ── Right: Contact form ── */}
-            <div className="rounded-2xl dark:bg-[#0e1d33]/50 dark:border dark:border-white/10 dark:backdrop-blur-sm dark:p-8 lg:dark:p-10">
+            <div className="zg-surface rounded-2xl p-8 lg:p-10">
               {status === "success" ? (
                 <div className="h-full flex flex-col items-center justify-center text-center py-16 rounded-xl border border-[#C9A84C]/20 dark:border-[#C9A84C]/30 bg-[#F8F6F1] dark:bg-[#0e1d33]/60">
                   <CheckCircle className="w-12 h-12 text-[#C9A84C] mb-5" />

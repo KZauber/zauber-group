@@ -13,16 +13,7 @@ const client = {
 
 export default function ClientsSection() {
   return (
-    <section
-      id="clients"
-      className="relative overflow-hidden py-24 sm:py-32 bg-[#F8F6F1] dark:bg-[#0A1628]"
-    >
-      <div className="zg-backdrop opacity-80 dark:opacity-100" aria-hidden="true">
-        <div className="zg-glow zg-glow-gold zg-drift1 w-[560px] h-[560px] -left-40 -top-16" />
-        <div className="zg-glow zg-glow-blue zg-drift2 w-[680px] h-[680px] -right-52 -bottom-40" />
-        <div className="zg-grid" />
-      </div>
-
+    <section id="clients" className="relative py-24 sm:py-32">
       <div className="container relative z-10">
         <div className="flex items-center gap-4 mb-6">
           <div className="gold-line" />
@@ -47,7 +38,7 @@ export default function ClientsSection() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.82fr_1.18fr] gap-10 lg:gap-12 items-center">
           {/* text card */}
-          <div className="relative rounded-2xl border border-[#0A1628]/10 dark:border-white/8 bg-white dark:bg-[#0e1d33]/50 p-9">
+          <div className="zg-surface relative rounded-2xl p-9">
             <ExternalLink className="absolute top-8 right-8 w-5 h-5 text-[#C9A84C]/70" />
             <p className="text-[#C9A84C] text-xs font-semibold tracking-[0.16em] uppercase leading-relaxed mb-5 max-w-[280px]">
               {client.specialty}

@@ -2,17 +2,7 @@ const KELLY_HEADSHOT = "/kelly-headshot.jpeg.jpg";
 
 export default function AboutSection() {
   return (
-    <section
-      id="about"
-      className="relative overflow-hidden py-24 sm:py-32 bg-[#F8F6F1] dark:bg-[#0A1628]"
-    >
-      {/* animated backdrop — visible in both themes */}
-      <div className="zg-backdrop opacity-80 dark:opacity-100" aria-hidden="true">
-        <div className="zg-glow zg-glow-gold zg-drift1 w-[560px] h-[560px] -left-40 -top-16" />
-        <div className="zg-glow zg-glow-blue zg-drift2 w-[680px] h-[680px] -right-52 -bottom-40" />
-        <div className="zg-grid" />
-      </div>
-
+    <section id="about" className="relative py-24 sm:py-32">
       <div className="container relative z-10">
         <div className="flex items-center gap-4 mb-16">
           <div className="gold-line" />
