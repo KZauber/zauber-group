@@ -19,25 +19,23 @@ export default function HeroCarousel() {
 
   return (
     <section className="relative w-full min-h-screen overflow-hidden">
-      {/* Background Image (day in light mode, night in dark mode) */}
-      <div className="absolute inset-0">
+      {/* Background image + scrims — masked at the bottom so the continuous
+          page background shows through (no seam into the next section). */}
+      <div className="absolute inset-0 [mask-image:linear-gradient(to_bottom,black_72%,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,black_72%,transparent)]">
         <img
           src={heroSrc}
           alt="Custom home construction site"
           className="w-full h-full object-cover"
           onError={(e) => {
-            // fall back to the night image until the day image is added
             if (e.currentTarget.src.indexOf(HERO_DAY) !== -1) {
               e.currentTarget.src = HERO_NIGHT;
             }
           }}
         />
-        {/* left scrim — keeps the headline readable in both themes */}
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0A1628]/92 via-[#0A1628]/55 to-transparent" />
+        {/* left scrim — light in light mode, navy in dark mode (keeps text readable) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-[#F4F1EA]/92 via-[#F4F1EA]/50 to-transparent dark:from-[#0A1628]/92 dark:via-[#0A1628]/55" />
         {/* top scrim — keeps the navbar readable */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0A1628]/55 via-transparent to-transparent" />
-        {/* bottom blend — fades into the page background so there's no seam */}
-        <div className="absolute inset-x-0 bottom-0 h-48 bg-gradient-to-t from-[#F4F1EA] dark:from-[#0A1628] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#F4F1EA]/70 to-transparent dark:from-[#0A1628]/55" />
       </div>
 
       {/* Content */}
@@ -45,7 +43,6 @@ export default function HeroCarousel() {
         <div className="container">
           <div className="flex items-center py-32">
 
-            {/* Copy */}
             <div className="max-w-2xl">
               {/* Eyebrow */}
               <div className="flex items-center gap-4 mb-8">
@@ -56,14 +53,14 @@ export default function HeroCarousel() {
               </div>
 
               {/* Headline */}
-              <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-semibold text-white leading-[1.05] mb-6">
+              <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl font-semibold text-[#0A1628] dark:text-white leading-[1.05] mb-6">
                 Stop Chasing Jobs.
                 <br />
                 <span className="text-[#C9A84C]">Start Choosing Them.</span>
               </h1>
 
               {/* Sub-headline */}
-              <p className="text-white/80 text-lg sm:text-xl leading-relaxed mb-4 max-w-xl">
+              <p className="text-[#0A1628]/75 dark:text-white/80 text-lg sm:text-xl leading-relaxed mb-4 max-w-xl">
                 LocalEdge™ gets your business found on Google, seen on social,
                 and booked automatically — so you can focus on the work, not
                 the marketing.
@@ -83,13 +80,12 @@ export default function HeroCarousel() {
                 </button>
                 <button
                   onClick={scrollToContact}
-                  className="px-10 py-4 border border-white/30 text-white text-sm font-semibold tracking-[0.1em] uppercase hover:border-white hover:bg-white/10 transition-all duration-300"
+                  className="px-10 py-4 border border-[#0A1628]/30 text-[#0A1628] hover:border-[#0A1628] hover:bg-black/[0.04] dark:border-white/30 dark:text-white dark:hover:border-white dark:hover:bg-white/10 text-sm font-semibold tracking-[0.1em] uppercase transition-all duration-300"
                 >
                   Get My Free Report
                 </button>
               </div>
             </div>
-
 
           </div>
         </div>
