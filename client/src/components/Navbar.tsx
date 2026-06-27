@@ -46,8 +46,9 @@ export default function Navbar() {
         {/* Logo */}
         <button
           onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="flex items-center gap-2 flex-shrink-0"
+          className="flex items-center gap-2.5 flex-shrink-0"
         >
+          <img src="/zauber-mark.png" alt="Zauber Group logo" className="h-9 w-9 sm:h-10 sm:w-10" />
           <span className={`font-serif text-2xl font-semibold tracking-wide transition-colors duration-300 ${logoColor}`}>
             Zauber
           </span>

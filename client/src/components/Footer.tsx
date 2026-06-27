@@ -3,6 +3,7 @@ export default function Footer() {
     <footer className="bg-[#0A1628] border-t border-white/10">
       <div className="container py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
         <div className="flex items-center gap-3">
+          <img src="/zauber-mark.png" alt="Zauber Group logo" className="h-9 w-9" />
           <span className="font-serif text-lg font-semibold text-white tracking-wide">
             Zauber
           </span>
