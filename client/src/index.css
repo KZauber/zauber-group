@@ -220,10 +220,12 @@
    two-color gradient, theme-aware; glows + grid sit on top of it ── */
 .zg-page-bg {
   position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
-  background: linear-gradient(158deg, #F7F4ED 0%, #EFEDE6 48%, #E6ECF3 100%);
+  /* warm cream -> clear soft blue */
+  background: linear-gradient(165deg, #F7EFDD 0%, #EDE8E6 42%, #CFDDF2 100%);
 }
 .dark .zg-page-bg {
-  background: linear-gradient(158deg, #0A1628 0%, #0E1D36 50%, #182C4E 100%);
+  /* deep navy -> clear royal blue */
+  background: linear-gradient(165deg, #0A1628 0%, #14275C 52%, #2A4AA0 100%);
 }
 .zg-grid-full {
   position: absolute; inset: 0; opacity: .045;
