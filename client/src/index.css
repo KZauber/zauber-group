@@ -95,8 +95,8 @@
   }
   body {
     @apply text-foreground;
-    /* one seamless base color for the whole page (sections are transparent) */
-    background-color: #F4F1EA;
+    /* fallback base — the gradient lives on .zg-page-bg below */
+    background-color: #F7F4ED;
     font-family: 'DM Sans', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -216,8 +216,15 @@
 .zg-drift1 { animation: zg-drift1 17s ease-in-out infinite alternate; }
 .zg-drift2 { animation: zg-drift2 21s ease-in-out infinite alternate; }
 
-/* ── ONE seamless page-wide background (fixed; no per-section seams) ── */
-.zg-page-bg { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+/* ── ONE seamless page-wide background (fixed; no per-section seams) ──
+   two-color gradient, theme-aware; glows + grid sit on top of it ── */
+.zg-page-bg {
+  position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+  background: linear-gradient(158deg, #F7F4ED 0%, #EFEDE6 48%, #E6ECF3 100%);
+}
+.dark .zg-page-bg {
+  background: linear-gradient(158deg, #0A1628 0%, #0E1D36 50%, #182C4E 100%);
+}
 .zg-grid-full {
   position: absolute; inset: 0; opacity: .045;
   background-image:
