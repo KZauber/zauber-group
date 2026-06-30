@@ -219,13 +219,13 @@
 /* ── ONE seamless page-wide background (fixed; no per-section seams) ──
    two-color gradient, theme-aware; glows + grid sit on top of it ── */
 .zg-page-bg {
-  position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
-  /* warm cream -> clear soft blue */
-  background: linear-gradient(165deg, #F7EFDD 0%, #EDE8E6 42%, #CFDDF2 100%);
+  position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+  /* warm peach-gold (top) -> cool periwinkle blue (bottom) across the whole page */
+  background: linear-gradient(175deg, #F7DCB0 0%, #ECE6E4 45%, #B9CCF7 100%);
 }
 .dark .zg-page-bg {
-  /* deep navy -> clear royal blue */
-  background: linear-gradient(165deg, #0A1628 0%, #14275C 52%, #2A4AA0 100%);
+  /* deep navy (top) -> royal blue -> violet (bottom) across the whole page */
+  background: linear-gradient(175deg, #06101F 0%, #1B2A78 50%, #5E2E8C 100%);
 }
 .zg-grid-full {
   position: absolute; inset: 0; opacity: .045;

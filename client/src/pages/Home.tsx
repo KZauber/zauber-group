@@ -11,8 +11,8 @@ import Reveal from "@/components/motion/Reveal";
 
 export default function Home() {
   return (
-    <div className="min-h-screen">
-      {/* one continuous background behind the whole page (no per-section seams) */}
+    <div className="min-h-screen relative z-0">
+      {/* one continuous background spanning the whole page (no per-section seams) */}
       <div className="zg-page-bg" aria-hidden="true">
         <div className="zg-grid-full" />
         <div className="zg-glow zg-glow-gold zg-drift1 w-[680px] h-[680px] -left-44 top-[6%]" />
