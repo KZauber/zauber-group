@@ -219,31 +219,38 @@
 /* ── ONE seamless page-wide background (fixed; no per-section seams) ──
    two-color gradient, theme-aware; glows + grid sit on top of it ── */
 .zg-page-bg {
-  position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
-  /* MESH gradient — soft color blobs scattered all over (light) */
+  position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
+  /* MESH gradient spanning the WHOLE page — blobs distributed top to bottom so
+     the background scrolls with the content (light) */
   background:
-    radial-gradient(46% 46% at 12% 16%, rgba(176,201,250,.80), transparent 72%),
-    radial-gradient(50% 50% at 86% 10%, rgba(220,210,244,.70), transparent 72%),
-    radial-gradient(42% 46% at 68% 46%, rgba(196,213,249,.80), transparent 72%),
-    radial-gradient(46% 50% at 20% 60%, rgba(230,218,247,.68), transparent 72%),
-    radial-gradient(50% 46% at 90% 82%, rgba(187,207,249,.76), transparent 74%),
-    radial-gradient(46% 46% at 44% 94%, rgba(247,229,207,.58), transparent 72%),
-    radial-gradient(36% 36% at 56% 30%, rgba(250,236,213,.50), transparent 72%),
+    radial-gradient(34vmax 34vmax at 15% 3%,  rgba(176,201,250,.80), transparent 70%),
+    radial-gradient(36vmax 36vmax at 85% 10%, rgba(220,210,244,.70), transparent 70%),
+    radial-gradient(32vmax 32vmax at 28% 19%, rgba(196,213,249,.80), transparent 70%),
+    radial-gradient(36vmax 36vmax at 78% 29%, rgba(247,229,207,.55), transparent 70%),
+    radial-gradient(34vmax 34vmax at 16% 39%, rgba(230,218,247,.68), transparent 70%),
+    radial-gradient(36vmax 36vmax at 72% 49%, rgba(187,207,249,.80), transparent 70%),
+    radial-gradient(34vmax 34vmax at 24% 59%, rgba(220,210,244,.70), transparent 70%),
+    radial-gradient(36vmax 36vmax at 82% 69%, rgba(196,213,249,.80), transparent 70%),
+    radial-gradient(34vmax 34vmax at 18% 79%, rgba(247,229,207,.55), transparent 70%),
+    radial-gradient(36vmax 36vmax at 72% 89%, rgba(187,207,249,.80), transparent 70%),
+    radial-gradient(30vmax 30vmax at 46% 97%, rgba(230,218,247,.68), transparent 70%),
     #EAE8F0;
-  background-attachment: fixed;
 }
 .dark .zg-page-bg {
-  /* MESH gradient — navy with blue/violet blobs scattered all over (dark) */
+  /* MESH gradient spanning the WHOLE page — navy with blue/violet blobs (dark) */
   background:
-    radial-gradient(46% 46% at 12% 16%, rgba(40,70,168,.62), transparent 72%),
-    radial-gradient(50% 50% at 86% 10%, rgba(82,48,142,.55), transparent 72%),
-    radial-gradient(42% 46% at 68% 46%, rgba(22,42,118,.66), transparent 72%),
-    radial-gradient(46% 50% at 20% 60%, rgba(96,52,152,.50), transparent 72%),
-    radial-gradient(50% 46% at 90% 82%, rgba(34,62,165,.60), transparent 74%),
-    radial-gradient(46% 46% at 44% 94%, rgba(60,44,132,.48), transparent 72%),
-    radial-gradient(36% 36% at 56% 30%, rgba(201,168,76,.10), transparent 72%),
+    radial-gradient(34vmax 34vmax at 15% 3%,  rgba(40,70,168,.60), transparent 70%),
+    radial-gradient(36vmax 36vmax at 85% 10%, rgba(82,48,142,.52), transparent 70%),
+    radial-gradient(32vmax 32vmax at 28% 19%, rgba(22,42,118,.62), transparent 70%),
+    radial-gradient(36vmax 36vmax at 78% 29%, rgba(40,70,168,.55), transparent 70%),
+    radial-gradient(34vmax 34vmax at 16% 39%, rgba(96,52,152,.48), transparent 70%),
+    radial-gradient(36vmax 36vmax at 72% 49%, rgba(22,42,118,.62), transparent 70%),
+    radial-gradient(34vmax 34vmax at 24% 59%, rgba(40,70,168,.55), transparent 70%),
+    radial-gradient(36vmax 36vmax at 82% 69%, rgba(82,48,142,.52), transparent 70%),
+    radial-gradient(34vmax 34vmax at 18% 79%, rgba(22,42,118,.62), transparent 70%),
+    radial-gradient(36vmax 36vmax at 72% 89%, rgba(40,70,168,.55), transparent 70%),
+    radial-gradient(30vmax 30vmax at 46% 97%, rgba(96,52,152,.48), transparent 70%),
     #0A1628;
-  background-attachment: fixed;
 }
 .zg-grid-full {
   position: absolute; inset: 0; opacity: .045;
