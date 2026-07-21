@@ -10,6 +10,18 @@ const CONTACT_EMAIL = "kelly@zaubergroup.com";
 const CONTACT_PHONE_DISPLAY = "(512) 787-1186";
 const CONTACT_PHONE_TEL = "+15127871186";
 
+// ─── SMS consent (A2P 10DLC / TCR) ───────────────────────────────────────────
+// The registered legal entity, which must match the carrier campaign registration
+// and the published privacy policy. Zauber Group operates under 3 Angels Security.
+const LEGAL_ENTITY = "3 Angels Security DBA Zauber Group";
+
+// Stored verbatim with the lead so there's a durable record of what was agreed to.
+const SMS_CONSENT_RECORD =
+  `Consent given at zaubergroup.com contact form. Opt-in language: "I agree to receive ` +
+  `Transactional SMS / Marketing SMS from ${LEGAL_ENTITY} at the number provided. ` +
+  `Msg & data rates may apply. Message frequency varies. Reply STOP to unsubscribe, HELP for help." ` +
+  `Consent is not a condition of purchase.`;
+
 type FormState = {
   name: string;
   company: string;
@@ -17,6 +29,8 @@ type FormState = {
   email: string;
   tier: string;
   message: string;
+  sms_transactional: boolean;
+  sms_marketing: boolean;
 };
 
 const EMPTY: FormState = {
@@ -26,6 +40,8 @@ const EMPTY: FormState = {
   email: "",
   tier: "",
   message: "",
+  sms_transactional: false,
+  sms_marketing: false,
 };
 
 export default function ContactSection() {
@@ -35,14 +51,29 @@ export default function ContactSection() {
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
-  ) => setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  ) => {
+    const target = e.target;
+    const value =
+      target instanceof HTMLInputElement && target.type === "checkbox"
+        ? target.checked
+        : target.value;
+    setForm((prev) => ({ ...prev, [target.name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
 
+    const gaveSmsConsent = form.sms_transactional || form.sms_marketing;
+
     const payload = {
       ...form,
+      // Send consent as explicit strings — GHL tags read more reliably than booleans,
+      // and the record needs to be legible to a human reviewing an opt-in dispute.
+      sms_transactional: form.sms_transactional ? "yes" : "no",
+      sms_marketing: form.sms_marketing ? "yes" : "no",
+      sms_consent_text: gaveSmsConsent ? SMS_CONSENT_RECORD : "",
+      sms_consent_at: gaveSmsConsent ? new Date().toISOString() : "",
       source: "zaubergroup.com — Contact Form",
       submitted_at: new Date().toISOString(),
     };
@@ -71,7 +102,7 @@ export default function ContactSection() {
     "focus:outline-none focus:border-[#C9A84C] focus:ring-1 focus:ring-[#C9A84C]/30 " +
     "placeholder:text-[#BBBBBB] dark:placeholder:text-white/35 transition-colors duration-200";
 
-  const labelClass = "block text-xs font-medium tracking-[0.12em] uppercase text-[#888] dark:text-white/55 mb-1.5";
+  const labelClass = "block text-xs font-medium tracking-[0.12em] uppercase text-[#6B6B6B] dark:text-white/55 mb-1.5";
 
   return (
     <section id="contact" className="relative py-24 sm:py-32">
@@ -254,6 +285,77 @@ export default function ContactSection() {
                     />
                   </div>
 
+                  {/* ── SMS consent (A2P 10DLC / TCR) ──
+                      Two separate opt-ins, each unchecked by default and neither
+                      required to submit — consent can never be a condition of
+                      service. Kept legible rather than greyed out, because
+                      consent language has to be conspicuous to be valid. */}
+                  <div className="pt-2 space-y-3">
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        name="sms_transactional"
+                        checked={form.sms_transactional}
+                        onChange={handleChange}
+                        className="mt-[3px] w-4 h-4 flex-shrink-0 accent-[#C9A84C] cursor-pointer"
+                      />
+                      <span className="text-[11.5px] leading-[1.55] text-[#5F5F5F] dark:text-white/60">
+                        I agree to receive{" "}
+                        <strong className="font-semibold text-[#0A1628] dark:text-white">
+                          Transactional SMS
+                        </strong>{" "}
+                        from {LEGAL_ENTITY} (appointment reminders, scheduling, and
+                        service updates) at the number provided, approximately 2 to 6
+                        messages per month. Msg &amp; data rates may apply. Reply STOP to
+                        unsubscribe, HELP for help.
+                      </span>
+                    </label>
+
+                    <label className="flex items-start gap-3 cursor-pointer">
+                      <input
+                        type="checkbox"
+                        name="sms_marketing"
+                        checked={form.sms_marketing}
+                        onChange={handleChange}
+                        className="mt-[3px] w-4 h-4 flex-shrink-0 accent-[#C9A84C] cursor-pointer"
+                      />
+                      <span className="text-[11.5px] leading-[1.55] text-[#5F5F5F] dark:text-white/60">
+                        I agree to receive{" "}
+                        <strong className="font-semibold text-[#0A1628] dark:text-white">
+                          Marketing SMS
+                        </strong>{" "}
+                        from {LEGAL_ENTITY} (offers, announcements, and promotions) at
+                        the number provided, approximately 2 to 4 messages per month. Msg
+                        &amp; data rates may apply. Reply STOP to unsubscribe, HELP for
+                        help.
+                      </span>
+                    </label>
+
+                    <p className="text-[10.5px] leading-[1.5] text-[#6B6B6B] dark:text-white/55">
+                      By providing your phone number and checking the box(es) above, you
+                      consent to receive text messages from {LEGAL_ENTITY} at the number
+                      provided. Consent is not a condition of purchase. Message and data
+                      rates may apply. Message frequency varies. Reply STOP to unsubscribe
+                      or HELP for help.
+                    </p>
+
+                    <p className="text-[11.5px] text-center text-[#6B6B6B] dark:text-white/55">
+                      <a
+                        href="/privacy-policy.html"
+                        className="text-[#7E6216] dark:text-[#D9BC6B] underline underline-offset-2"
+                      >
+                        Privacy Policy
+                      </a>
+                      <span className="mx-2">|</span>
+                      <a
+                        href="/terms.html"
+                        className="text-[#7E6216] dark:text-[#D9BC6B] underline underline-offset-2"
+                      >
+                        Terms of Service
+                      </a>
+                    </p>
+                  </div>
+
                   {/* Error */}
                   {status === "error" && (
                     <p className="text-sm text-red-600">
@@ -281,7 +383,7 @@ export default function ContactSection() {
                     )}
                   </button>
 
-                  <p className="text-xs text-[#AAAAAA] dark:text-white/40 text-center">
+                  <p className="text-xs text-[#6B6B6B] dark:text-white/55 text-center">
                     We respond within one business day. No spam, ever.
                   </p>
                 </form>
