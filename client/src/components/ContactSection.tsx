@@ -11,8 +11,8 @@ const CONTACT_PHONE_DISPLAY = "(512) 787-1186";
 const CONTACT_PHONE_TEL = "+15127871186";
 
 // ─── SMS consent (A2P 10DLC / TCR) ───────────────────────────────────────────
-// The registered legal entity, which must match the carrier campaign registration
-// and the published privacy policy. Zauber Group operates under 3 Angels Security.
+// Registered legal entity — must match the carrier campaign registration and the
+// published privacy policy. Zauber Group operates under 3 Angels Security.
 const LEGAL_ENTITY = "3 Angels Security DBA Zauber Group";
 
 // Stored verbatim with the lead so there's a durable record of what was agreed to.
@@ -68,8 +68,8 @@ export default function ContactSection() {
 
     const payload = {
       ...form,
-      // Send consent as explicit strings — GHL tags read more reliably than booleans,
-      // and the record needs to be legible to a human reviewing an opt-in dispute.
+      // Explicit strings — GHL tags read these more reliably than booleans, and the
+      // record needs to be legible to a human reviewing an opt-in dispute.
       sms_transactional: form.sms_transactional ? "yes" : "no",
       sms_marketing: form.sms_marketing ? "yes" : "no",
       sms_consent_text: gaveSmsConsent ? SMS_CONSENT_RECORD : "",
@@ -98,15 +98,15 @@ export default function ContactSection() {
   };
 
   const inputClass =
-    "w-full bg-white dark:bg-white/5 border border-[#E0DDD8] dark:border-white/15 text-[#0A1628] dark:text-white text-sm px-4 py-3 rounded-md " +
+    "w-full bg-white border border-[#E0DDD8] text-[#0A1628] text-sm px-4 py-3 " +
     "focus:outline-none focus:border-[#C9A84C] focus:ring-1 focus:ring-[#C9A84C]/30 " +
-    "placeholder:text-[#BBBBBB] dark:placeholder:text-white/35 transition-colors duration-200";
+    "placeholder:text-[#BBBBBB] transition-colors duration-200";
 
-  const labelClass = "block text-xs font-medium tracking-[0.12em] uppercase text-[#6B6B6B] dark:text-white/55 mb-1.5";
+  const labelClass = "block text-xs font-medium tracking-[0.12em] uppercase text-[#888] mb-1.5";
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32">
-      <div className="container relative z-10">
+    <section id="contact" className="py-24 sm:py-32 bg-white">
+      <div className="container">
         <div
           ref={sectionRef}
           className={`fade-up ${isVisible ? "visible" : ""}`}
@@ -122,16 +122,15 @@ export default function ContactSection() {
 
             {/* ── Left: CTA + contact details ── */}
             <div>
-              <h2 className="font-serif text-4xl sm:text-5xl font-semibold text-[#0A1628] dark:text-white leading-[1.15] mb-6">
+              <h2 className="font-serif text-4xl sm:text-5xl font-semibold text-[#0A1628] leading-[1.15] mb-6">
                 Ready to Stop
                 <br />
                 <span className="text-[#C9A84C]">Chasing Work?</span>
               </h2>
-              <p className="text-[#555] dark:text-white/60 text-lg leading-relaxed mb-12 max-w-lg">
-                Whether you run a roofing crew, a med spa, or a construction
-                company, let's talk about getting LocalEdge™ working for your
-                business. No pressure — just a real conversation about what's
-                possible.
+              <p className="text-[#555] text-lg leading-relaxed mb-12 max-w-lg">
+                Whether you're a custom home builder or a commercial contractor,
+                let's talk about getting BuilderFlow™ working for your business.
+                No pressure — just a real conversation about what's possible.
               </p>
 
               <div className="space-y-8">
@@ -140,10 +139,10 @@ export default function ContactSection() {
                     <Mail className="w-5 h-5 text-[#C9A84C]" />
                   </div>
                   <div>
-                    <p className="text-sm text-[#999] dark:text-white/45 tracking-wide uppercase mb-1">Email</p>
+                    <p className="text-sm text-[#999] tracking-wide uppercase mb-1">Email</p>
                     <a
                       href={`mailto:${CONTACT_EMAIL}`}
-                      className="text-[#0A1628] dark:text-white text-lg hover:text-[#C9A84C] transition-colors"
+                      className="text-[#0A1628] text-lg hover:text-[#C9A84C] transition-colors"
                     >
                       {CONTACT_EMAIL}
                     </a>
@@ -155,10 +154,10 @@ export default function ContactSection() {
                     <Phone className="w-5 h-5 text-[#C9A84C]" />
                   </div>
                   <div>
-                    <p className="text-sm text-[#999] dark:text-white/45 tracking-wide uppercase mb-1">Phone</p>
+                    <p className="text-sm text-[#999] tracking-wide uppercase mb-1">Phone</p>
                     <a
                       href={`tel:${CONTACT_PHONE_TEL}`}
-                      className="text-[#0A1628] dark:text-white text-lg hover:text-[#C9A84C] transition-colors"
+                      className="text-[#0A1628] text-lg hover:text-[#C9A84C] transition-colors"
                     >
                       {CONTACT_PHONE_DISPLAY}
                     </a>
@@ -170,22 +169,22 @@ export default function ContactSection() {
                     <Globe className="w-5 h-5 text-[#C9A84C]" />
                   </div>
                   <div>
-                    <p className="text-sm text-[#999] dark:text-white/45 tracking-wide uppercase mb-1">Service Area</p>
-                    <p className="text-[#0A1628] dark:text-white text-lg">Nationwide</p>
+                    <p className="text-sm text-[#999] tracking-wide uppercase mb-1">Service Area</p>
+                    <p className="text-[#0A1628] text-lg">Nationwide</p>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* ── Right: Contact form ── */}
-            <div className="zg-surface rounded-2xl p-8 lg:p-10">
+            <div>
               {status === "success" ? (
-                <div className="h-full flex flex-col items-center justify-center text-center py-16 rounded-xl border border-[#C9A84C]/20 dark:border-[#C9A84C]/30 bg-[#F8F6F1] dark:bg-[#0e1d33]/60">
+                <div className="h-full flex flex-col items-center justify-center text-center py-16 border border-[#C9A84C]/20 bg-[#F8F6F1]">
                   <CheckCircle className="w-12 h-12 text-[#C9A84C] mb-5" />
-                  <h3 className="font-serif text-2xl font-semibold text-[#0A1628] dark:text-white mb-3">
+                  <h3 className="font-serif text-2xl font-semibold text-[#0A1628] mb-3">
                     Message received.
                   </h3>
-                  <p className="text-[#555] dark:text-white/60 leading-relaxed max-w-sm">
+                  <p className="text-[#555] leading-relaxed max-w-sm">
                     We'll be in touch within one business day to schedule your
                     discovery call. Talk soon.
                   </p>
@@ -257,7 +256,7 @@ export default function ContactSection() {
 
                   {/* Row 3: Tier interest */}
                   <div>
-                    <label className={labelClass}>Which program are you interested in?</label>
+                    <label className={labelClass}>Which plan are you interested in?</label>
                     <select
                       name="tier"
                       value={form.tier}
@@ -265,10 +264,10 @@ export default function ContactSection() {
                       className={inputClass}
                     >
                       <option value="">Not sure yet — let's talk</option>
-                      <option value="Get Found — $500/mo">Get Found — $500/mo (Google, SEO &amp; Reviews)</option>
-                      <option value="Get Seen — $500/mo">Get Seen — $500/mo (Social on Autopilot)</option>
-                      <option value="Get Booked — $500/mo">Get Booked — $500/mo (Lead Engine)</option>
-                      <option value="Complete LocalEdge — $1,500/mo">Complete LocalEdge™ — $1,500/mo (All Three)</option>
+                      <option value="Starter — $1,500/mo">Starter — $1,500/mo (Social Media Autopilot)</option>
+                      <option value="Growth — $2,500/mo">Growth — $2,500/mo (+ Website / SEO / GEO)</option>
+                      <option value="BuilderFlow Full — $3,500/mo">BuilderFlow™ Full — $3,500/mo (Most Popular)</option>
+                      <option value="Premium — $5,000/mo">Premium — $5,000/mo (+ Meta Ads)</option>
                     </select>
                   </div>
 
@@ -287,9 +286,7 @@ export default function ContactSection() {
 
                   {/* ── SMS consent (A2P 10DLC / TCR) ──
                       Two separate opt-ins, each unchecked by default and neither
-                      required to submit — consent can never be a condition of
-                      service. Kept legible rather than greyed out, because
-                      consent language has to be conspicuous to be valid. */}
+                      required to submit — consent can never be a condition of service. */}
                   <div className="pt-2 space-y-3">
                     <label className="flex items-start gap-3 cursor-pointer">
                       <input
@@ -297,17 +294,14 @@ export default function ContactSection() {
                         name="sms_transactional"
                         checked={form.sms_transactional}
                         onChange={handleChange}
-                        className="mt-[3px] w-4 h-4 flex-shrink-0 accent-[#C9A84C] cursor-pointer"
+                        className="mt-[3px] w-4 h-4 flex-shrink-0 accent-[#9A7B22] cursor-pointer"
                       />
-                      <span className="text-[11.5px] leading-[1.55] text-[#5F5F5F] dark:text-white/60">
+                      <span className="text-[11.5px] leading-[1.55] text-[#5F5F5F]">
                         I agree to receive{" "}
-                        <strong className="font-semibold text-[#0A1628] dark:text-white">
-                          Transactional SMS
-                        </strong>{" "}
-                        from {LEGAL_ENTITY} (appointment reminders, scheduling, and
-                        service updates) at the number provided, approximately 2 to 6
-                        messages per month. Msg &amp; data rates may apply. Reply STOP to
-                        unsubscribe, HELP for help.
+                        <strong className="font-semibold text-[#0A1628]">Transactional SMS</strong>{" "}
+                        from {LEGAL_ENTITY} (appointment reminders, scheduling, and service
+                        updates) at the number provided, approximately 2 to 6 messages per month.
+                        Msg &amp; data rates may apply. Reply STOP to unsubscribe, HELP for help.
                       </span>
                     </label>
 
@@ -317,40 +311,30 @@ export default function ContactSection() {
                         name="sms_marketing"
                         checked={form.sms_marketing}
                         onChange={handleChange}
-                        className="mt-[3px] w-4 h-4 flex-shrink-0 accent-[#C9A84C] cursor-pointer"
+                        className="mt-[3px] w-4 h-4 flex-shrink-0 accent-[#9A7B22] cursor-pointer"
                       />
-                      <span className="text-[11.5px] leading-[1.55] text-[#5F5F5F] dark:text-white/60">
+                      <span className="text-[11.5px] leading-[1.55] text-[#5F5F5F]">
                         I agree to receive{" "}
-                        <strong className="font-semibold text-[#0A1628] dark:text-white">
-                          Marketing SMS
-                        </strong>{" "}
-                        from {LEGAL_ENTITY} (offers, announcements, and promotions) at
-                        the number provided, approximately 2 to 4 messages per month. Msg
-                        &amp; data rates may apply. Reply STOP to unsubscribe, HELP for
-                        help.
+                        <strong className="font-semibold text-[#0A1628]">Marketing SMS</strong>{" "}
+                        from {LEGAL_ENTITY} (offers, announcements, and promotions) at the number
+                        provided, approximately 2 to 4 messages per month. Msg &amp; data rates may
+                        apply. Reply STOP to unsubscribe, HELP for help.
                       </span>
                     </label>
 
-                    <p className="text-[10.5px] leading-[1.5] text-[#6B6B6B] dark:text-white/55">
-                      By providing your phone number and checking the box(es) above, you
-                      consent to receive text messages from {LEGAL_ENTITY} at the number
-                      provided. Consent is not a condition of purchase. Message and data
-                      rates may apply. Message frequency varies. Reply STOP to unsubscribe
-                      or HELP for help.
+                    <p className="text-[10.5px] leading-[1.5] text-[#6B6B6B]">
+                      By providing your phone number and checking the box(es) above, you consent to
+                      receive text messages from {LEGAL_ENTITY} at the number provided. Consent is
+                      not a condition of purchase. Message and data rates may apply. Message
+                      frequency varies. Reply STOP to unsubscribe or HELP for help.
                     </p>
 
-                    <p className="text-[11.5px] text-center text-[#6B6B6B] dark:text-white/55">
-                      <a
-                        href="/privacy-policy.html"
-                        className="text-[#7E6216] dark:text-[#D9BC6B] underline underline-offset-2"
-                      >
+                    <p className="text-[11.5px] text-center text-[#6B6B6B]">
+                      <a href="/privacy-policy.html" className="text-[#7E6216] underline underline-offset-2">
                         Privacy Policy
                       </a>
                       <span className="mx-2">|</span>
-                      <a
-                        href="/terms.html"
-                        className="text-[#7E6216] dark:text-[#D9BC6B] underline underline-offset-2"
-                      >
+                      <a href="/terms.html" className="text-[#7E6216] underline underline-offset-2">
                         Terms of Service
                       </a>
                     </p>
@@ -371,7 +355,7 @@ export default function ContactSection() {
                   <button
                     type="submit"
                     disabled={status === "sending"}
-                    className="w-full flex items-center justify-center gap-3 px-10 py-4 rounded-md bg-[#0A1628] dark:bg-[#C9A84C] text-white dark:text-[#0A1628] text-sm font-semibold tracking-[0.1em] uppercase hover:bg-[#C9A84C] hover:text-[#0A1628] dark:hover:bg-[#d4b65e] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
+                    className="w-full flex items-center justify-center gap-3 px-10 py-4 bg-[#0A1628] text-white text-sm font-semibold tracking-[0.1em] uppercase hover:bg-[#C9A84C] hover:text-[#0A1628] transition-all duration-300 disabled:opacity-60 disabled:cursor-not-allowed"
                   >
                     {status === "sending" ? (
                       <>
@@ -379,11 +363,11 @@ export default function ContactSection() {
                         Sending…
                       </>
                     ) : (
-                      "Get LocalEdge™"
+                      "Get BuilderFlow™"
                     )}
                   </button>
 
-                  <p className="text-xs text-[#6B6B6B] dark:text-white/55 text-center">
+                  <p className="text-xs text-[#AAAAAA] text-center">
                     We respond within one business day. No spam, ever.
                   </p>
                 </form>

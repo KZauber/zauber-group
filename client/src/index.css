@@ -94,15 +94,10 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply text-foreground;
-    /* fallback base — the gradient lives on .zg-page-bg below */
-    background-color: #F7F4ED;
+    @apply bg-background text-foreground;
     font-family: 'DM Sans', system-ui, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-  }
-  .dark body {
-    background-color: #0A1628;
   }
   button:not(:disabled),
   [role="button"]:not([aria-disabled="true"]),
@@ -183,120 +178,6 @@
   }
 }
 
-/* ============================================================
-   Dark theme palette (applied when <html> has .dark)
-   Flips the global background/text tokens so the whole page
-   reads dark; individual premium sections add their own surfaces.
-   ============================================================ */
-.dark {
-  --background: oklch(0.15 0.04 260);
-  --foreground: oklch(0.97 0.005 85);
-  --card: oklch(0.19 0.045 260);
-  --card-foreground: oklch(0.97 0.005 85);
-  --muted: oklch(0.22 0.04 260);
-  --muted-foreground: oklch(0.72 0.02 260);
-  --border: oklch(0.3 0.03 260);
-  --input: oklch(0.3 0.03 260);
-}
-
-/* ============================================================
-   Premium section helpers (animated backdrop + card catch-light)
-   ============================================================ */
-@keyframes zg-drift1 { from { transform: translate(0,0); } to { transform: translate(80px,60px); } }
-@keyframes zg-drift2 { from { transform: translate(0,0); } to { transform: translate(-70px,-50px); } }
-@keyframes zg-grid  { from { background-position: 0 0; } to { background-position: 60px 60px; } }
-@keyframes zg-sweep { 0% { transform: translateX(-140%) skewX(-16deg); } 14% { transform: translateX(260%) skewX(-16deg); } 100% { transform: translateX(260%) skewX(-16deg); } }
-@keyframes zg-pulse { 0% { box-shadow: 0 0 0 0 rgba(201,168,76,.6); } 100% { box-shadow: 0 0 0 9px rgba(201,168,76,0); } }
-
-.zg-glow { position: absolute; border-radius: 9999px; filter: blur(80px); pointer-events: none; }
-.zg-glow-gold { background: radial-gradient(circle, rgba(201,168,76,.30), transparent 70%); }
-.zg-glow-blue { background: radial-gradient(circle, rgba(58,104,176,.22), transparent 70%); }
-.dark .zg-glow-gold { background: radial-gradient(circle, rgba(201,168,76,.40), transparent 70%); }
-.dark .zg-glow-blue { background: radial-gradient(circle, rgba(58,104,176,.45), transparent 70%); }
-.zg-drift1 { animation: zg-drift1 17s ease-in-out infinite alternate; }
-.zg-drift2 { animation: zg-drift2 21s ease-in-out infinite alternate; }
-
-/* ── ONE seamless page-wide background (fixed; no per-section seams) ──
-   two-color gradient, theme-aware; glows + grid sit on top of it ── */
-.zg-page-bg {
-  position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
-  /* MESH gradient spanning the WHOLE page — blobs distributed top to bottom so
-     the background scrolls with the content (light) */
-  background:
-    radial-gradient(34vmax 34vmax at 15% 3%,  rgba(176,201,250,.80), transparent 70%),
-    radial-gradient(36vmax 36vmax at 85% 10%, rgba(220,210,244,.70), transparent 70%),
-    radial-gradient(32vmax 32vmax at 28% 19%, rgba(196,213,249,.80), transparent 70%),
-    radial-gradient(36vmax 36vmax at 78% 29%, rgba(247,229,207,.55), transparent 70%),
-    radial-gradient(34vmax 34vmax at 16% 39%, rgba(230,218,247,.68), transparent 70%),
-    radial-gradient(36vmax 36vmax at 72% 49%, rgba(187,207,249,.80), transparent 70%),
-    radial-gradient(34vmax 34vmax at 24% 59%, rgba(220,210,244,.70), transparent 70%),
-    radial-gradient(36vmax 36vmax at 82% 69%, rgba(196,213,249,.80), transparent 70%),
-    radial-gradient(34vmax 34vmax at 18% 79%, rgba(247,229,207,.55), transparent 70%),
-    radial-gradient(36vmax 36vmax at 72% 89%, rgba(187,207,249,.80), transparent 70%),
-    radial-gradient(30vmax 30vmax at 46% 97%, rgba(230,218,247,.68), transparent 70%),
-    #EAE8F0;
-}
-.dark .zg-page-bg {
-  /* MESH gradient spanning the WHOLE page — navy with blue/violet blobs (dark) */
-  background:
-    radial-gradient(34vmax 34vmax at 15% 3%,  rgba(40,70,168,.60), transparent 70%),
-    radial-gradient(36vmax 36vmax at 85% 10%, rgba(82,48,142,.52), transparent 70%),
-    radial-gradient(32vmax 32vmax at 28% 19%, rgba(22,42,118,.62), transparent 70%),
-    radial-gradient(36vmax 36vmax at 78% 29%, rgba(40,70,168,.55), transparent 70%),
-    radial-gradient(34vmax 34vmax at 16% 39%, rgba(96,52,152,.48), transparent 70%),
-    radial-gradient(36vmax 36vmax at 72% 49%, rgba(22,42,118,.62), transparent 70%),
-    radial-gradient(34vmax 34vmax at 24% 59%, rgba(40,70,168,.55), transparent 70%),
-    radial-gradient(36vmax 36vmax at 82% 69%, rgba(82,48,142,.52), transparent 70%),
-    radial-gradient(34vmax 34vmax at 18% 79%, rgba(22,42,118,.62), transparent 70%),
-    radial-gradient(36vmax 36vmax at 72% 89%, rgba(40,70,168,.55), transparent 70%),
-    radial-gradient(30vmax 30vmax at 46% 97%, rgba(96,52,152,.48), transparent 70%),
-    #0A1628;
-}
-.zg-grid-full {
-  position: absolute; inset: 0; opacity: .045;
-  background-image:
-    linear-gradient(rgba(201,168,76,.5) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(201,168,76,.5) 1px, transparent 1px);
-  background-size: 58px 58px;
-  animation: zg-grid 60s linear infinite;
-}
-.dark .zg-grid-full { opacity: .08; }
-
-/* shadow-based surface for cards/panels — depth without color blocks */
-.zg-surface {
-  background: rgba(255,255,255,.85);
-  border: 1px solid rgba(10,22,40,.06);
-  box-shadow: 0 26px 55px -32px rgba(10,22,40,.30);
-}
-.dark .zg-surface {
-  background: rgba(255,255,255,.045);
-  border-color: rgba(255,255,255,.09);
-  box-shadow: 0 30px 60px -30px rgba(0,0,0,.55);
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-/* a single catch-light that glides across a row of .zg-card, clipped to each box */
-.zg-card { position: relative; overflow: hidden; }
-.zg-card::after {
-  content: ""; position: absolute; top: 0; left: 0; width: 46%; height: 100%;
-  pointer-events: none; transform: translateX(-140%) skewX(-16deg);
-  background: linear-gradient(100deg, transparent, rgba(255,255,255,.07), transparent);
-  animation: zg-sweep 8s ease-in-out infinite;
-}
-.zg-card:nth-child(1)::after { animation-delay: 0s; }
-.zg-card:nth-child(2)::after { animation-delay: 1s; }
-.zg-card:nth-child(3)::after { animation-delay: 2s; }
-
-.zg-livedot { box-shadow: 0 0 0 0 rgba(201,168,76,.6); animation: zg-pulse 1.8s infinite; }
-
-/* auto-scrolling live-site preview (Client Work) */
-@keyframes zg-sitescroll {
-  from { transform: translateY(0); }
-  to   { transform: translateY(calc(-100% + 460px)); }
-}
-.zg-sitescroll { animation: zg-sitescroll 22s ease-in-out infinite alternate; }
-
 /* Smooth scrolling */
 html {
   scroll-behavior: smooth;
@@ -315,23 +196,4 @@ html {
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #d4b65e;
-}
-
-/* Reduced motion — respect the OS setting. The Reveal component handles its
-   own framer-motion case; this covers CSS animations, tw-animate-css, and
-   smooth scroll so nothing moves for users who ask for less motion. */
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.001ms !important;
-    animation-delay: 0ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.001ms !important;
-    transition-delay: 0ms !important;
-  }
 }
