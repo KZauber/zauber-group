@@ -5,6 +5,8 @@ import { Route, Switch } from "wouter";
 import ErrorBoundary from "./components/ErrorBoundary";
 import { ThemeProvider } from "./contexts/ThemeContext";
 import Home from "./pages/Home";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
+import TermsOfService from "./pages/TermsOfService";
 import VisibilityReport from "./pages/VisibilityReport";
 
 function Router() {
@@ -12,6 +14,8 @@ function Router() {
     <Switch>
       <Route path={"/"} component={Home} />
       <Route path={"/visibility-report"} component={VisibilityReport} />
+      <Route path={"/privacy"} component={PrivacyPolicy} />
+      <Route path={"/terms"} component={TermsOfService} />
       <Route path={"/404"} component={NotFound} />
       <Route component={NotFound} />
     </Switch>
