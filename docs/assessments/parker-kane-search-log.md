@@ -23,9 +23,9 @@ not Google rankings. Client domain: pkcustomhomes.com.
 | custom home builder San Antonio | absent | stonecreekcustomhomes, westondeanhomes, mikehollaway, stadlercustomhomes, marquiscustombuilders, paulallenhomes |
 | custom home builders San Antonio | absent | stonecreekcustomhomes, westondeanhomes, burdickhomes, mikehollaway, stadlercustomhomes, paulallenhomes |
 | luxury home builder San Antonio | absent | lifestylebystadler, stonecreekcustomhomes, baylesscustomhomessa, ckccustomhomes, diamanteluxuryhomes, dalesauerhomes, burdickhomes, stadlercustomhomes |
-| luxury custom home builder San Antonio | absent | houzz, lifestylebystadler, ckccustomhomes, robarecustomhomes, diamanteluxuryhomes, burdickhomes, stadlercustomhomes, paulallenhomes, marquiscustombuilders |
+| luxury custom home builders San Antonio | absent | houzz, lifestylebystadler, stonecreekcustomhomes, ckccustomhomes, robarecustomhomes, baylesscustomhomessa, burdickhomes, stadlercustomhomes, greyhavenhomes, paulallenhomes |
 | custom home builder Texas Hill Country | absent | kurkhomes, buildwithjlp, grandendeavorhomes, bradmoorebuilders, riverbend-homes, stadlercustomhomes, txhcch, hillcountryclassics |
-| luxury home builder Hill Country Texas | absent | sterlingcreekhomes, buildwithjlp, riverbend-homes, goliathluxuryhomes, stadlercustomhomes, kurkhomes, keithwing, bradmoorebuilders, grandendeavorhomes |
+| custom home builders Hill Country Texas | absent | kurkhomes, bradmoorebuilders, buildwithjlp, grandendeavorhomes, riverbend-homes, stadlercustomhomes, txhcch |
 
 ## Town searches without "luxury" (4 / 4 towns, positions 2–9)
 
@@ -40,7 +40,7 @@ not Google rankings. Client domain: pkcustomhomes.com.
 Boerne was run in two wordings; both placed the client last. (Houzz and the Boerne chamber count as one domain each,
 so "9th of 9" is the ninth link and the eighth distinct domain.)
 
-## Town searches with "luxury" (0 / 4 appearances; 0 / 7 luxury searches overall with the three region ones above)
+## Town searches with "luxury" (0 / 4 appearances; 0 / 6 luxury searches overall with the two San Antonio ones above)
 
 | Query | Parker Kane | Distinct domains returned, in order |
 |---|---|---|
@@ -52,6 +52,20 @@ so "9th of 9" is the ninth link and the eighth distinct domain.)
 Competitor pages titled for the luxury search: Brad Moore ("Luxury Custom Home Builder in Boerne, TX"), CKC ("Luxury
 Custom Home Builder in Boerne"), Wolff ("Luxury Custom Home Builder in Boerne, TX"), Stone Creek ("Luxury Home Builder
 Boerne Texas" and "Luxury Home Builder Bulverde TX").
+
+## Autocomplete validation (same day)
+
+Region queries must be an exact Google or Bing autocomplete suggestion. Town-pattern queries pass by pattern.
+
+| Query | Prefix typed | Google | Bing | Status |
+|---|---|---|---|---|
+| custom home builder San Antonio | custom home builder san | #1 | #3 | in set |
+| custom home builders San Antonio | custom home builders san | #1 | #2 | in set |
+| luxury home builder San Antonio | luxury home builder san | #2 | no | in set |
+| luxury custom home builders San Antonio | luxury custom home builder san | #1 | no | in set (replaced the singular wording, which neither engine suggests; re-run live, still absent) |
+| custom home builder Texas Hill Country | custom home builder texas hill | #1 | no | in set |
+| custom home builders Hill Country Texas | custom home builders hill country | #1 | #1 | in set (replaces the luxury Hill Country wording; run live, absent) |
+| luxury home builder Hill Country Texas | luxury home builder hill | no | no | **dropped**: not suggested by either engine, so not a real buyer query |
 
 ## Site verification (same day)
 

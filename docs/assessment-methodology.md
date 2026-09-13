@@ -31,7 +31,20 @@ Rules:
   - every service area listed on the Google Business Profile;
   - the town the office sits in;
   - the region the site claims (San Antonio, Texas Hill Country).
-- Every town gets both forms: `custom home builder <town>` and `luxury home builder <town>`. The region gets both too.
+- Every town gets both forms: `custom home builder <town>` and `luxury home builder <town>`.
+- **Validate every query against autocomplete before it goes in the set.** Town-pattern queries (`custom home builder
+  <town>`, `luxury home builder <town>`, for a town the client serves) pass by pattern, because autocomplete is sparse
+  for small towns. Every other query, region queries included, must appear word for word as a Google or Bing
+  autocomplete suggestion, and the log records the prefix typed and where the suggestion ranked. A wording that
+  neither engine suggests is one we made up, whatever it looks like. Check with:
+
+  ```
+  curl -sS -A "Mozilla/5.0" "https://suggestqueries.google.com/complete/search?client=firefox&hl=en&gl=us&q=custom+home+builder+hill"
+  curl -sS -A "Mozilla/5.0" "https://api.bing.com/osjson.aspx?query=custom+home+builder+hill&market=en-US"
+  ```
+
+  Both return JSON: `[prefix, [suggestion, ...]]`. Type the prefix the way a buyer would, a few words in, and see
+  what each engine completes. Singular and plural count as different queries; use the one that is suggested.
 - The report may showcase two searches as the headline contrast, but it must also show every search run, with the
   client's position on each, so the stats (0 / 7, 4 / 4) are visibly derived from the full set.
 
@@ -69,6 +82,7 @@ Every statement about the client's website is checked against the live site the 
 
 - [ ] Every search claim has a row in the search log with the same query text, date and position.
 - [ ] No query in the report combines towns or contains padding words.
+- [ ] Every non-town query is an exact Google or Bing autocomplete suggestion, with the prefix and rank in the log.
 - [ ] No AI-assistant answer is presented as a ranking.
 - [ ] Every site feature the report credits or faults was fetched and is in the log (URL and status code).
 - [ ] Scorecard grades, cover badge, stats, gap cards, outcome box and roadmap agree with each other and with the log.

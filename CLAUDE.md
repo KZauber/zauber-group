@@ -11,6 +11,8 @@ These reports go to real business owners who can check every claim. Rules for an
    Search every area the site names (menu, pages, copy, footer, project titles), every Google Business Profile service
    area, the office town and the claimed region, each in both the plain and the "luxury" form, and show every search run
    in the report, not just the two headline ones.
+   Town-pattern queries pass by pattern; every other wording, region queries included, must be an exact Google or Bing
+   autocomplete suggestion, checked and logged before use (see the methodology for the two curl commands).
 2. **Every search claim is logged before it goes in a report:** query, engine, date, whether the client appeared, position,
    and the competitors returned. The log lives at `docs/assessments/<client>-search-log.md`. A claim with no log row does
    not ship.
