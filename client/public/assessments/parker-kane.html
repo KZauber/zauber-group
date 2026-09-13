@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Digital Presence Assessment — Parker Kane Custom Homes</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #f4f4f0;
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+
+  /* COVER */
+  .cover {
+    background: #111;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 80px 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  .cover::before {
+    content: '';
+    position: absolute;
+    top: -200px; right: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(201,163,88,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .cover-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c9a358;
+    margin-bottom: 32px;
+  }
+  .cover-title {
+    font-size: clamp(48px, 8vw, 96px);
+    font-weight: 900;
+    line-height: 1;
+    letter-spacing: -2px;
+    margin-bottom: 8px;
+  }
+  .cover-title span { color: #c9a358; }
+  .cover-subtitle {
+    font-size: 20px;
+    font-weight: 300;
+    color: #aaa;
+    margin-bottom: 60px;
+    letter-spacing: 1px;
+  }
+  .cover-meta {
+    display: flex;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+  .cover-meta-item label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 4px;
+  }
+  .cover-meta-item span {
+    font-size: 15px;
+    font-weight: 500;
+    color: #fff;
+  }
+  .cover-bottom {
+    position: absolute;
+    bottom: 40px; left: 60px; right: 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .cover-prepared { font-size: 12px; color: #555; letter-spacing: 1px; }
+  .cover-prepared strong { color: #c9a358; }
+  .cover-score-badge {
+    background: #c9a358;
+    color: #111;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border-radius: 4px;
+  }
+
+  /* SECTION */
+  .section {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 80px 40px;
+  }
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c9a358;
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-size: clamp(28px, 4vw, 44px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    line-height: 1.1;
+    margin-bottom: 40px;
+  }
+
+  /* SCORECARD */
+  .scorecard-bg { background: #111; padding: 80px 0; }
+  .scorecard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2px;
+    background: #222;
+    border: 2px solid #222;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 32px;
+  }
+  .scorecard-item {
+    background: #1a1a1a;
+    padding: 28px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .scorecard-item.overall {
+    background: #111;
+    grid-column: 1 / -1;
+    border-top: 2px solid #333;
+    padding: 36px 28px;
+  }
+  .scorecard-label { font-size: 13px; font-weight: 600; color: #aaa; }
+  .scorecard-item.overall .scorecard-label {
+    font-size: 16px; font-weight: 800; color: #fff;
+    letter-spacing: 1px; text-transform: uppercase;
+  }
+  .grade-badge {
+    font-size: 22px; font-weight: 900;
+    width: 52px; height: 52px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .grade-a { background: #1a4731; color: #4ade80; }
+  .grade-b { background: #1e3a5f; color: #60a5fa; }
+  .grade-c { background: #3d2a00; color: #fbbf24; }
+  .grade-d { background: #3d1a00; color: #fb923c; }
+  .grade-f { background: #3d0000; color: #f87171; }
+  .grade-badge.large { width: 72px; height: 72px; font-size: 32px; border-radius: 12px; }
+  .overall-right { display: flex; align-items: center; gap: 16px; }
+  .overall-gpa { font-size: 15px; font-weight: 700; color: #fb923c; }
+
+  /* LIVE DATA STATS */
+  .stats-bg { background: #1a1a1a; padding: 0 0 80px; }
+  .stats-intro {
+    background: #c9a358;
+    color: #111;
+    padding: 28px 40px;
+    max-width: 960px;
+    margin: 0 auto 48px;
+    border-radius: 0 0 12px 12px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .stats-intro span { font-weight: 800; }
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2px;
+    background: #2a2a2a;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .stat-box {
+    background: #111;
+    padding: 36px 28px;
+    text-align: center;
+  }
+  .stat-number {
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 900;
+    letter-spacing: -2px;
+    line-height: 1;
+    color: #c9a358;
+    margin-bottom: 10px;
+  }
+  .stat-number.bad { color: #f87171; }
+  .stat-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 6px;
+  }
+  .stat-note { font-size: 13px; color: #555; line-height: 1.5; }
+
+  /* KEYWORD TABLE */
+  .kw-section { background: #f4f4f0; }
+  .kw-table-wrap {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+    margin-bottom: 28px;
+  }
+  .kw-table { width: 100%; border-collapse: collapse; }
+  .kw-table thead { background: #111; color: #fff; }
+  .kw-table thead th {
+    padding: 14px 20px;
+    text-align: left;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #888;
+  }
+  .kw-table tbody tr { border-bottom: 1px solid #f4f4f0; }
+  .kw-table tbody tr:last-child { border-bottom: none; }
+  .kw-table tbody td { padding: 14px 20px; font-size: 14px; color: #333; }
+  .kw-table tbody tr:hover { background: #fafaf8; }
+  .pos-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    white-space: nowrap;
+  }
+  .pos-1 { background: #1a4731; color: #4ade80; }
+  .pos-top10 { background: #1e3a5f; color: #60a5fa; }
+  .pos-p2 { background: #3d2a00; color: #fbbf24; }
+  .pos-buried { background: #2a2a2a; color: #888; }
+  .kw-note {
+    background: #fff8ed;
+    border: 1px solid #f0d98a;
+    border-radius: 10px;
+    padding: 20px 24px;
+    font-size: 14px;
+    color: #5a4200;
+    line-height: 1.7;
+  }
+  .kw-note strong { color: #3d2800; }
+
+  /* CATEGORIES */
+  .categories { display: flex; flex-direction: column; gap: 24px; }
+  .category-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .category-header {
+    display: flex; align-items: center; gap: 20px;
+    padding: 24px 28px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+  .cat-number { font-size: 11px; font-weight: 700; letter-spacing: 2px; color: #bbb; }
+  .cat-name { font-size: 17px; font-weight: 800; flex: 1; }
+  .category-body { padding: 24px 28px; font-size: 15px; color: #444; line-height: 1.75; }
+  .category-body strong { color: #111; }
+
+  /* GAPS */
+  .gaps-bg { background: #111; padding: 80px 0; }
+  .gap-cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+  .gap-card {
+    background: #1a1a1a; border: 1px solid #2a2a2a;
+    border-radius: 12px; padding: 32px 28px;
+  }
+  .gap-number { font-size: 48px; font-weight: 900; color: #c9a358; line-height: 1; margin-bottom: 12px; }
+  .gap-title { font-size: 17px; font-weight: 800; color: #fff; margin-bottom: 12px; }
+  .gap-body { font-size: 14px; color: #888; line-height: 1.7; }
+
+  /* 90 DAYS */
+  .ninety-bg { background: #f4f4f0; }
+  .timeline {
+    display: flex; flex-direction: column; gap: 0;
+    margin-bottom: 40px;
+  }
+  .timeline-phase {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    gap: 0;
+    background: #fff;
+    border-radius: 0;
+    overflow: hidden;
+    border-bottom: 2px solid #f4f4f0;
+  }
+  .timeline-phase:first-child { border-radius: 12px 12px 0 0; }
+  .timeline-phase:last-child { border-radius: 0 0 12px 12px; border-bottom: none; }
+  .phase-label {
+    background: #111;
+    color: #c9a358;
+    padding: 28px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  .phase-days {
+    font-size: 28px; font-weight: 900; letter-spacing: -1px;
+    color: #fff; line-height: 1; margin-bottom: 4px;
+  }
+  .phase-sub { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: #555; }
+  .phase-content { padding: 28px 32px; }
+  .phase-title { font-size: 16px; font-weight: 800; color: #111; margin-bottom: 12px; }
+  .phase-items { list-style: none; padding: 0; }
+  .phase-items li {
+    font-size: 14px; color: #555; padding: 5px 0;
+    display: flex; gap: 10px; align-items: flex-start;
+  }
+  .phase-items li::before {
+    content: '→';
+    color: #c9a358;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  /* OUTCOME */
+  .outcome-box {
+    background: #1a1a1a; color: #fff;
+    border-radius: 12px; padding: 48px 40px;
+    margin-bottom: 40px;
+  }
+  .outcome-box .label {
+    font-size: 10px; font-weight: 700; letter-spacing: 3px;
+    text-transform: uppercase; color: #c9a358; margin-bottom: 20px;
+  }
+  .outcome-metrics {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+  .outcome-metric { text-align: center; }
+  .outcome-metric .before {
+    font-size: 13px; color: #555; text-decoration: line-through;
+    margin-bottom: 4px;
+  }
+  .outcome-metric .after {
+    font-size: 32px; font-weight: 900; color: #c9a358;
+    letter-spacing: -1px; line-height: 1; margin-bottom: 6px;
+  }
+  .outcome-metric .metric-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 1px;
+    text-transform: uppercase; color: #666;
+  }
+  .outcome-divider { border: none; border-top: 1px solid #2a2a2a; margin: 0 0 28px; }
+  .outcome-box p { font-size: 17px; font-weight: 400; line-height: 1.75; color: #ccc; }
+  .outcome-box p strong { color: #fff; }
+
+  /* CTA */
+  .cta-box {
+    background: #c9a358;
+    border-radius: 12px;
+    padding: 48px 40px;
+    text-align: center;
+  }
+  .cta-box h3 { font-size: 28px; font-weight: 900; color: #111; margin-bottom: 12px; letter-spacing: -0.5px; }
+  .cta-box p { font-size: 16px; color: rgba(0,0,0,0.65); margin-bottom: 28px; max-width: 520px; margin-left: auto; margin-right: auto; }
+  .cta-button {
+    display: inline-block;
+    background: #111;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    padding: 16px 40px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin: 0 8px 12px;
+  }
+  .cta-button.light {
+    background: transparent;
+    border: 2px solid rgba(0,0,0,0.25);
+    color: #111;
+  }
+  .cta-subtext { font-size: 12px; color: rgba(0,0,0,0.45); margin-top: 16px; }
+
+  /* FOOTER */
+  footer {
+    background: #111;
+    padding: 40px 60px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  footer p { font-size: 13px; color: #555; }
+
+  @media (max-width: 600px) {
+    .cover { padding: 60px 28px; }
+    .cover-bottom { left: 28px; right: 28px; flex-direction: column; align-items: flex-start; gap: 16px; }
+    .section { padding: 60px 24px; }
+    .timeline-phase { grid-template-columns: 80px 1fr; }
+    .phase-days { font-size: 20px; }
+    footer { padding: 40px 24px; }
+  }
+
+  /* NOT-VERIFIED BADGE */
+  .grade-na {
+    background: #262626; color: #8a8a8a;
+    font-size: 9px; font-weight: 800; letter-spacing: 1px;
+    width: auto; min-width: 52px; height: 52px; padding: 0 16px;
+    text-align: center; line-height: 1.25; text-transform: uppercase;
+  }
+  .scorecard-item.unverified { opacity: 0.72; }
+  .scorecard-item.fullrow { grid-column: 1 / -1; }
+
+  /* SEARCH TEST */
+  .test-section { background: #f4f4f0; }
+  .test-card {
+    background: #fff; border-radius: 12px; padding: 30px 32px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06); margin-bottom: 20px;
+  }
+  .verdict {
+    display: inline-block; padding: 6px 14px; border-radius: 20px;
+    font-size: 10px; font-weight: 800; letter-spacing: 2px;
+    text-transform: uppercase; margin-bottom: 16px;
+  }
+  .verdict.miss { background: #3d0000; color: #f87171; }
+  .verdict.hit  { background: #1a4731; color: #4ade80; }
+  .test-query {
+    font-size: 16px; font-weight: 600; color: #111; font-style: italic;
+    background: #f8f8f4; border-left: 3px solid #c9a358;
+    padding: 16px 20px; border-radius: 0 8px 8px 0; margin-bottom: 18px;
+  }
+  .test-result { font-size: 15px; line-height: 1.75; color: #444; }
+  .test-result strong { color: #111; }
+  .competitor-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .competitor-chip {
+    background: #f4f4f0; border: 1px solid #e6e6de;
+    border-radius: 20px; padding: 7px 15px;
+    font-size: 12px; font-weight: 600; color: #777;
+  }
+  .competitor-chip.you {
+    background: #c9a358; border-color: #c9a358; color: #111; font-weight: 800;
+  }
+  .competitor-chip.absent {
+    background: #fff; border: 1px dashed #d0442f; color: #d0442f; font-weight: 800;
+  }
+
+  /* PROOF NOTE */
+  .proof-note {
+    background: #fff8ed; border: 1px solid #f0d98a; border-radius: 10px;
+    padding: 22px 26px; font-size: 14px; color: #5a4200; line-height: 1.75;
+  }
+  .proof-note strong { color: #3d2800; }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div class="cover">
+  <div class="cover-tag">Digital Presence Assessment</div>
+  <div class="cover-title">PARKER<br><span>KANE</span></div>
+  <div class="cover-subtitle">How You Show Up Online — And What It's Costing You</div>
+  <div class="cover-meta">
+    <div class="cover-meta-item">
+      <label>Business Type</label>
+      <span>Custom Home Builder</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Location</label>
+      <span>Mico, TX &middot; San Antonio &amp; Hill Country</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Date</label>
+      <span>September 13, 2026</span>
+    </div>
+    <div class="cover-meta-item">
+      <label>Areas Reviewed</label>
+      <span>5 Verified &middot; 2 Flagged</span>
+    </div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-prepared">Prepared by <strong>Zauber Group</strong></div>
+    <div class="cover-score-badge">Verified Score: C&minus; &nbsp;·&nbsp; 1.80 / 4.0</div>
+  </div>
+</div>
+
+
+<!-- SCORECARD -->
+<div class="scorecard-bg">
+  <div class="section" style="padding-top:0;padding-bottom:0;">
+    <div class="section-label" style="color:#c9a358;">The Scorecard</div>
+    <div class="section-title" style="color:#fff;">Here's how Parker Kane scores<br>on what we could verify.</div>
+    <div class="scorecard-grid">
+      <div class="scorecard-item">
+        <span class="scorecard-label">Directory &amp; Listings</span>
+        <div class="grade-badge grade-c">C</div>
+      </div>
+      <div class="scorecard-item">
+        <span class="scorecard-label">AI &amp; Google Search</span>
+        <div class="grade-badge grade-d">D</div>
+      </div>
+      <div class="scorecard-item">
+        <span class="scorecard-label">Website Structure</span>
+        <div class="grade-badge grade-c">C</div>
+      </div>
+      <div class="scorecard-item">
+        <span class="scorecard-label">Social Media</span>
+        <div class="grade-badge grade-c">C</div>
+      </div>
+      <div class="scorecard-item">
+        <span class="scorecard-label">Reviews &amp; Reputation</span>
+        <div class="grade-badge grade-c">C</div>
+      </div>
+      <div class="scorecard-item unverified">
+        <span class="scorecard-label">Paid Advertising</span>
+        <div class="grade-badge grade-na">Needs<br>Live Check</div>
+      </div>
+      <div class="scorecard-item unverified fullrow">
+        <span class="scorecard-label">Lead Follow-Up</span>
+        <div class="grade-badge grade-na">Needs<br>Live Check</div>
+      </div>
+      <div class="scorecard-item overall">
+        <span class="scorecard-label">Verified Score</span>
+        <div class="overall-right">
+          <span class="overall-gpa">1.80 / 4.0</span>
+          <div class="grade-badge grade-c large">C&minus;</div>
+        </div>
+      </div>
+    </div>
+    <div style="color:#666;font-size:13px;line-height:1.7;padding:28px 0 0;max-width:720px;">
+      <strong style="color:#c9a358;">Why two areas are ungraded:</strong> we only grade what we could confirm from the
+      outside. Paid advertising history and what happens after someone submits your contact form can't be verified
+      without access to your ad accounts and inbox. Rather than guess, we've flagged them &mdash; they're two of the
+      first things we'd check together.
+    </div>
+  </div>
+</div>
+
+
+<!-- THE SEARCH TEST -->
+<div class="test-section">
+  <div class="stats-intro" style="max-width:960px;margin:0 auto 48px;border-radius:0 0 12px 12px;">
+    <span>Run these searches yourself.</span> Everything below was pulled from live search results on September 13, 2026.
+    Type the same queries into Google, ChatGPT, or Perplexity and you'll see what we saw. Nothing here is an estimate.
+  </div>
+  <div class="section" style="padding-top:0;">
+    <div class="section-label">The Search Test</div>
+    <div class="section-title">Two searches. Two completely<br>different outcomes.</div>
+
+    <div class="test-card">
+      <div class="verdict miss">Not Found</div>
+      <div class="test-query">"Best luxury custom home builders San Antonio Hill Country"</div>
+      <div class="test-result">
+        This is the search a buyer runs when they have the budget but not a builder yet &mdash; the single most
+        valuable query in your market. It returned <strong>nine builders. Parker Kane was not one of them.</strong>
+        <div class="competitor-list">
+          <span class="competitor-chip">Stadler</span>
+          <span class="competitor-chip">Stone Creek</span>
+          <span class="competitor-chip">Bayless</span>
+          <span class="competitor-chip">Diamante</span>
+          <span class="competitor-chip">UrbanLUX</span>
+          <span class="competitor-chip">TX Signature</span>
+          <span class="competitor-chip">River Hills</span>
+          <span class="competitor-chip">Genuine Custom Homes</span>
+          <span class="competitor-chip absent">Parker Kane &mdash; absent</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="test-card">
+      <div class="verdict hit">Ranked #2</div>
+      <div class="test-query">"Custom home builder Boerne, Bulverde, Fair Oaks Ranch &mdash; who to hire"</div>
+      <div class="test-result">
+        Same market. Same buyer. But when the search names the <em>towns</em> instead of the region, Parker Kane comes
+        back <strong>second on the list</strong> &mdash; named, described, with your phone number attached. You beat BCI,
+        River Hills, Texas Highlands and Ervin on this one.
+        <div class="competitor-list">
+          <span class="competitor-chip">Whitestone</span>
+          <span class="competitor-chip you">Parker Kane &mdash; #2</span>
+          <span class="competitor-chip">BCI</span>
+          <span class="competitor-chip">River Hills</span>
+          <span class="competitor-chip">Texas Highlands</span>
+          <span class="competitor-chip">Ervin</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="proof-note">
+      <strong>This is the whole assessment in one finding.</strong> Your Boerne, Bulverde and Fair Oaks Ranch pages are
+      doing real work &mdash; they're why you place second on the town-level search. Most builders in this market don't
+      have those pages at all. But there is no equivalent page for the search that carries the most money:
+      <em>luxury custom home builder, San Antonio, Hill Country.</em> You built the on-ramps to the small towns and
+      skipped the one to the highway. <strong>That's not a rebuild. That's a gap you already know how to fill, because
+      you've filled it three times.</strong>
+    </div>
+  </div>
+</div>
+
+
+<!-- THE NUMBERS -->
+<div class="stats-bg" style="padding-top:80px;">
+  <div class="section" style="padding-top:0;padding-bottom:0;">
+    <div class="section-label" style="color:#c9a358;">The Numbers</div>
+    <div class="section-title" style="color:#fff;">Four figures that explain<br>where you stand.</div>
+    <div class="stats-grid">
+      <div class="stat-box">
+        <div class="stat-number bad">0 <span style="font-size:24px;color:#555;">/ 9</span></div>
+        <div class="stat-label">Luxury Search Appearances</div>
+        <div class="stat-note">Nine San Antonio builders were named in the highest-value buyer search. You weren't one of them.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">#2</div>
+        <div class="stat-label">Rank on Town Searches</div>
+        <div class="stat-note">When a buyer names Boerne, Bulverde or Fair Oaks Ranch, you're second. Proof the method works.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number bad">11</div>
+        <div class="stat-label">Google Reviews Total</div>
+        <div class="stat-note">Nineteen years of building, eleven public reviews. Rated 4.7 &mdash; the rating is strong, the volume isn't.</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-number">1,294</div>
+        <div class="stat-label">Facebook Followers</div>
+        <div class="stat-note">A real audience on the platform where your buyer actually spends time &mdash; and no review funnel pointed at it.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- WHAT WE FOUND -->
+<div style="background:#f4f4f0; padding-bottom: 0;">
+  <div class="section" style="padding-bottom:0;">
+    <div class="section-label">What We Found</div>
+    <div class="section-title">Here's what's happening<br>in each area.</div>
+
+    <div class="categories">
+
+      <div class="category-card">
+        <div class="category-header">
+          <span class="cat-number">01</span>
+          <span class="cat-name">Directory &amp; Listings</span>
+          <div class="grade-badge grade-c">C</div>
+        </div>
+        <div class="category-body">
+          The core listings are in place and they're real. You have a <strong>Google Business Profile at 4.7 stars</strong>,
+          a Houzz profile rated <strong>5 out of 5</strong>, a Facebook page with 1,294 followers, and a member listing with the
+          Greater San Antonio Builders Association. You were in the <strong>2023 Parade of Homes&trade;</strong> with a
+          3,255 sq ft, 4-bed, 4-bath entry. That's a legitimate footprint &mdash; better than most builders this size.
+          <br><br>
+          The gaps are at the edges. We could not find a <strong>Yelp, BBB, or Angi profile</strong> for Parker Kane
+          anywhere. Those three feed a lot of the "is this builder legitimate" checks a cautious buyer runs before they
+          call, and they're free. There's also a Birdeye aggregator page carrying your reviews that you don't control &mdash;
+          worth claiming so it points where you want it to.
+          <br><br>
+          One small thing that says a lot: <strong>your website footer still links to Google+</strong>, a network that shut
+          down in April 2019. It's a seven-year-old link on a live page. Nobody clicks it &mdash; but it's a signal about
+          how long it's been since anyone went through the site.
+        </div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-header">
+          <span class="cat-number">02</span>
+          <span class="cat-name">AI &amp; Google Search</span>
+          <div class="grade-badge grade-d">D</div>
+        </div>
+        <div class="category-body">
+          High-income buyers increasingly open ChatGPT or Perplexity and ask <em>"who are the best luxury custom home
+          builders in San Antonio and the Hill Country?"</em> We ran it. <strong>Nine builders came back. Parker Kane
+          was absent from all of them.</strong>
+          <br><br>
+          The builders who did appear aren't better builders &mdash; they're better published. Bayless ranked on the strength
+          of a page called <em>"The Top Luxury Neighborhoods to Build a Custom Home in San Antonio (2026 Guide)."</em>
+          UrbanLUX ranked with <em>"Custom Home Cost San Antonio: 2026 Guide."</em> Those are two blog posts. That is the
+          entire mechanism. <strong>AI tools cite pages that directly answer the question being asked</strong>, and right now
+          nothing on your site answers the region-level question.
+          <br><br>
+          The encouraging half: on the town-level search you rank <strong>#2</strong>, ahead of four competitors. Google and
+          the AI tools already trust the domain. They just have nothing from you to cite on the bigger search.
+        </div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-header">
+          <span class="cat-number">03</span>
+          <span class="cat-name">Website Structure</span>
+          <div class="grade-badge grade-c">C</div>
+        </div>
+        <div class="category-body">
+          The site is better built than most in this market. You have a real project portfolio, a floor plans archive, a
+          communities page, a documented build process, and &mdash; the part that matters most &mdash;
+          <strong>dedicated city pages for Boerne, Bulverde and Fair Oaks Ranch.</strong> Most builders we assess have
+          none. Those pages are the reason you win the town-level search.
+          <br><br>
+          Then there's your San Antonio page. Its address is <strong>pkcustomhomes.com/san-antonio-2/</strong> &mdash; with a
+          "-2" on the end. That's what WordPress does automatically when a page with that name already exists. It means
+          there is, or was, a second San Antonio page competing with this one. Your single most valuable commercial page
+          is sitting on a URL that was never cleaned up, and <strong>two pages targeting the same search split the
+          ranking strength that should belong to one.</strong> That is very likely part of why the San Antonio search
+          doesn't find you while the Boerne search does.
+          <br><br>
+          Also indexed and showing up in Google: <strong>pkcustomhomes.com/author/parkerkanehome/</strong> &mdash; an
+          automatically generated WordPress author archive. It's an empty page with your business name on it, competing
+          for attention with your real pages. It should be closed off from search.
+        </div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-header">
+          <span class="cat-number">04</span>
+          <span class="cat-name">Social Media</span>
+          <div class="grade-badge grade-c">C</div>
+        </div>
+        <div class="category-body">
+          Facebook is your strongest social asset: <strong>1,294 followers</strong> on the platform where the 40-to-65-year-old
+          move-up buyer in your service area actually spends their time. Instagram, YouTube and Houzz are all linked from
+          the site as well. For a family-run builder, that's a respectable spread.
+          <br><br>
+          What's missing is the job those channels should be doing. <strong>1,294 Facebook followers and no visible review
+          funnel pointed at them.</strong> That audience already likes you &mdash; many of them are past clients, subs, and
+          neighbors of homes you've built. It is the single cheapest source of the Google reviews you're short on, and
+          nothing currently asks them.
+          <br><br>
+          Custom home content also performs unusually well organically &mdash; walkthroughs, framing-to-finish sequences,
+          Hill Country lot tours. A builder with 19 years of completed projects has more raw material here than almost
+          any other kind of local business.
+        </div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-header">
+          <span class="cat-number">05</span>
+          <span class="cat-name">Reviews &amp; Reputation</span>
+          <div class="grade-badge grade-c">C</div>
+        </div>
+        <div class="category-body">
+          <strong>4.7 stars across 11 Google reviews, plus 5 out of 5 on Houzz.</strong> The rating is genuinely good.
+          The volume is the problem: eleven reviews for a builder founded in 2007 means the overwhelming majority of
+          your happy clients were never asked.
+          <br><br>
+          At eleven reviews, <strong>every single review carries about nine percent of your public reputation.</strong>
+          One detailed critical review &mdash; there's one raising schedule overruns, cost, and an unresolved garage door
+          issue &mdash; sits permanently near the top of a pool that small. That same review inside a pool of sixty would be
+          a rounding error a prospect scrolls past. The fastest way to neutralize a bad review is never to fight it;
+          it's to bury it in volume.
+          <br><br>
+          Review count is also a direct ranking signal for Google Maps and a major input to which builders AI tools
+          recommend. <strong>The competitors appearing in that luxury search have review counts in the dozens.</strong>
+          Fixing this is the highest-return, lowest-effort item on the entire list &mdash; the clients already exist.
+        </div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-header">
+          <span class="cat-number">06</span>
+          <span class="cat-name">Paid Advertising</span>
+          <div class="grade-badge grade-na" style="height:auto;padding:10px 16px;">Needs Live Check</div>
+        </div>
+        <div class="category-body">
+          We found no evidence of active paid campaigns &mdash; but we want to be straight with you:
+          <strong>absence of evidence from the outside isn't proof, and we're not going to grade you on a guess.</strong>
+          Confirming this takes five minutes inside your Meta Business and Google Ads accounts.
+          <br><br>
+          What we can say is that this channel is the one with the most leverage in your specific situation. You have
+          professional project photography and a defined geography &mdash; Boerne, Bulverde, Fair Oaks Ranch, Castroville,
+          Pipe Creek, Canyon Lake, Mico. <strong>At custom-build contract values, one signed client returns the cost of a
+          year of advertising many times over.</strong> No other channel in this market has that math.
+        </div>
+      </div>
+
+      <div class="category-card">
+        <div class="category-header">
+          <span class="cat-number">07</span>
+          <span class="cat-name">Lead Follow-Up</span>
+          <div class="grade-badge grade-na" style="height:auto;padding:10px 16px;">Needs Live Check</div>
+        </div>
+        <div class="category-body">
+          Your contact page publishes a real phone number &mdash; <strong>(210) 771-5517</strong> &mdash; and a real email,
+          <strong>hello@pkcustomhomes.com</strong>. That's more than a lot of builders do, and it matters: buyers at this
+          price point want to reach a person.
+          <br><br>
+          What we can't see from outside is what happens in the minutes after someone submits that form. Is there an
+          instant text? An auto-reply confirming it arrived? Or does it land in an inbox that gets checked between site
+          visits? <strong>That window is where custom-home leads are won and lost</strong> &mdash; a buyer researching builders
+          is contacting three or four the same afternoon, and the one who responds first with substance sets the terms of
+          the comparison.
+          <br><br>
+          It's a ten-minute test: we submit your form and time the response. We'd rather run it with you than assume.
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<!-- 3 BIGGEST GAPS -->
+<div class="gaps-bg" style="margin-top:80px;">
+  <div class="section" style="padding-top:0;padding-bottom:0;">
+    <div class="section-label" style="color:#c9a358;">The Bottom Line</div>
+    <div class="section-title" style="color:#fff;">3 things costing you<br>clients right now.</div>
+    <div class="gap-cards">
+      <div class="gap-card">
+        <div class="gap-number">0 / 9</div>
+        <div class="gap-title">Appearances in the search that matters most</div>
+        <div class="gap-body">Nine builders got named when a buyer asked for the best luxury custom home builders in San Antonio and the Hill Country. You weren't among them &mdash; while two of the nine ranked on the strength of a single blog post each. Meanwhile you place <strong style="color:#c9a358;">#2</strong> when the same buyer names Boerne or Fair Oaks Ranch. <strong style="color:#c9a358;">You already proved the method works. It just was never pointed at the biggest search.</strong></div>
+      </div>
+      <div class="gap-card">
+        <div class="gap-number">11</div>
+        <div class="gap-title">Google reviews after 19 years</div>
+        <div class="gap-body">Rated 4.7, which is excellent. But eleven reviews means each one carries nine percent of your public reputation, and one critical review sits permanently near the top. The builders outranking you in AI results carry review counts in the dozens. <strong style="color:#c9a358;">Every past client you've built for is a review you already earned and never collected.</strong></div>
+      </div>
+      <div class="gap-card">
+        <div class="gap-number">-2</div>
+        <div class="gap-title">The two characters on your most valuable page</div>
+        <div class="gap-body">Your San Antonio page lives at <em>/san-antonio-2/</em>. WordPress adds that suffix when a page by that name already exists &mdash; meaning two pages have been competing for your highest-value search, splitting the strength that should sit behind one. Your Boerne page has no suffix, and your Boerne search ranks #2. <strong style="color:#c9a358;">This is a URL cleanup, not a redesign.</strong></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- 90-DAY PLAN -->
+<div class="ninety-bg">
+  <div class="section">
+    <div class="section-label">The Fix</div>
+    <div class="section-title">What BuilderFlow&trade; does<br>in 90 days.</div>
+
+    <div class="timeline">
+
+      <div class="timeline-phase">
+        <div class="phase-label">
+          <div class="phase-days">1&ndash;30</div>
+          <div class="phase-sub">Days</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-title">Foundation &mdash; Fix the Plumbing, Start the Reviews</div>
+          <ul class="phase-items">
+            <li>Resolve the duplicate San Antonio page and consolidate it onto one clean URL with redirects in place</li>
+            <li>Close the WordPress author archive off from search and clear the dead Google+ link from the footer</li>
+            <li>Launch a review campaign to past clients &mdash; target 35+ Google reviews inside 30 days</li>
+            <li>Claim and correct Yelp, BBB, Angi, Apple Maps and Bing listings; claim the Birdeye page</li>
+            <li>Audit the contact form end to end and add instant text plus email auto-response</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-phase">
+        <div class="phase-label">
+          <div class="phase-days">31&ndash;60</div>
+          <div class="phase-sub">Days</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-title">Visibility &mdash; Win the Region, Not Just the Towns</div>
+          <ul class="phase-items">
+            <li>Build the region-level page the luxury search is looking for &mdash; San Antonio and Hill Country, structured to be cited by AI</li>
+            <li>Publish two guide pages of the kind already outranking you: Hill Country build costs and lot selection</li>
+            <li>Add city pages for Castroville, Pipe Creek, Canyon Lake and Mico, modeled on the Boerne page that already wins</li>
+            <li>Add FAQ blocks answering the questions buyers actually type, so ChatGPT and Perplexity have something to quote</li>
+            <li>Launch Meta campaigns to high-income homeowners across the service area using your existing project photography</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="timeline-phase">
+        <div class="phase-label">
+          <div class="phase-days">61&ndash;90</div>
+          <div class="phase-sub">Days</div>
+        </div>
+        <div class="phase-content">
+          <div class="phase-title">Scale &mdash; Compound What's Working</div>
+          <ul class="phase-items">
+            <li>Re-run the luxury search monthly and track your entry into the result set</li>
+            <li>Shift ad budget toward the ZIP codes and creative producing qualified inquiries</li>
+            <li>Keep the review cadence running &mdash; target 60+ Google reviews by day 90</li>
+            <li>Point the Facebook audience at the review funnel and a consistent project-progress cadence</li>
+            <li>Monthly report: search position, review count, traffic, leads and ad spend in plain language</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- OUTCOME METRICS -->
+    <div class="outcome-box">
+      <div class="label">Where You'll Be at Day 90</div>
+      <div class="outcome-metrics">
+        <div class="outcome-metric">
+          <div class="before">0 of 9</div>
+          <div class="after">Named</div>
+          <div class="metric-label">In the Luxury Search</div>
+        </div>
+        <div class="outcome-metric">
+          <div class="before">11 reviews</div>
+          <div class="after">60+</div>
+          <div class="metric-label">Google Reviews</div>
+        </div>
+        <div class="outcome-metric">
+          <div class="before">3 city pages</div>
+          <div class="after">7 + region</div>
+          <div class="metric-label">Pages That Rank</div>
+        </div>
+        <div class="outcome-metric">
+          <div class="before">Unverified</div>
+          <div class="after">Live</div>
+          <div class="metric-label">Ads &amp; Lead Response</div>
+        </div>
+      </div>
+      <hr class="outcome-divider">
+      <p>Parker Kane has been building in this market since 2007, it's a family business with both sons' names on the
+      door, and the work has stood up in the Parade of Homes. <strong>The product isn't the problem. The problem is that
+      a buyer who doesn't already know your name has one realistic way to find you &mdash; and only if they happen to type
+      the name of the right small town.</strong> BuilderFlow&trade; closes the distance between the reputation you've
+      built over nineteen years and what a stranger can see in thirty seconds of searching. You've already proved the
+      approach works on three city pages. This is doing it deliberately, everywhere it counts.</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-box">
+      <h3>This one's on us, Dale.</h3>
+      <p>No invoice attached and nothing owed. If any of it is useful, the fastest next step is twenty minutes to run
+      the two checks we couldn't do from outside &mdash; your ad accounts and your form response time. If not, keep the
+      report and use it however you like.</p>
+      <a class="cta-button" href="mailto:kelly@zaubergroup.com">Email Kelly</a>
+      <a class="cta-button light" href="tel:+15127871186">Call or Text &mdash; 512-787-1186</a>
+      <div class="cta-subtext">Every finding in here is reproducible. Run the searches yourself &mdash; that's the point.</div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+  <p>Prepared by <strong style="color:#c9a358;">Zauber Group</strong> &nbsp;·&nbsp; September 13, 2026 &nbsp;·&nbsp; zaubergroup.com</p>
+  <p style="color:#333;">Compiled from public sources &mdash; live search results, Google Business Profile, Houzz, Facebook and the Greater San Antonio Builders Association &nbsp;·&nbsp; Verified September 13, 2026</p>
+</footer>
+
+</body>
+</html>
