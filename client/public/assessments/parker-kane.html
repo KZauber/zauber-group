@@ -465,6 +465,16 @@
     padding: 22px 26px; font-size: 14px; color: #5a4200; line-height: 1.75;
   }
   .proof-note strong { color: #3d2800; }
+  .search-table-wrap { overflow-x: auto; margin-top: 40px; }
+  .search-table-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #c9a358; font-weight: 700; margin-bottom: 8px; }
+  .search-table-note { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 18px; max-width: 720px; }
+  .search-table { width: 100%; border-collapse: collapse; font-size: 14px; background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .search-table th { text-align: left; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #888; padding: 14px 18px; border-bottom: 1px solid #e6e6e0; }
+  .search-table td { padding: 11px 18px; border-bottom: 1px solid #f0f0ea; color: #333; vertical-align: top; }
+  .search-table td.group { font-weight: 700; color: #1a1a1a; background: #faf8f2; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; }
+  .search-table .pos { font-weight: 700; color: #1a4731; white-space: nowrap; }
+  .search-table .pos.you { color: #8a6a1f; }
+  .search-table .absent { font-weight: 700; color: #9a1c1c; white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -615,6 +625,35 @@
       Home Builder in Boerne."</em> Stone Creek has one for Boerne and another for Bulverde. You don't, and the word isn't
       on your city pages. <strong>That's not a rebuild. It's the pages you already have, retitled and rewritten for the
       buyer you want.</strong>
+    </div>
+
+    <div class="search-table-wrap">
+      <div class="search-table-label">Every search we ran</div>
+      <div class="search-table-note">Fifteen searches, September 13, 2026. "Absent" means Parker Kane did not appear anywhere in the results.
+        Positions count the results returned, and they will shift a little by day and by where you're searching from.</div>
+      <table class="search-table">
+        <thead><tr><th>Search</th><th>Parker Kane</th></tr></thead>
+        <tbody>
+          <tr><td class="group" colspan="2">Region</td></tr>
+          <tr><td>custom home builder San Antonio</td><td class="absent">Absent</td></tr>
+          <tr><td>custom home builders San Antonio</td><td class="absent">Absent</td></tr>
+          <tr><td>luxury home builder San Antonio</td><td class="absent">Absent</td></tr>
+          <tr><td>luxury custom home builder San Antonio</td><td class="absent">Absent</td></tr>
+          <tr><td>custom home builder Texas Hill Country</td><td class="absent">Absent</td></tr>
+          <tr><td>luxury home builder Hill Country Texas</td><td class="absent">Absent</td></tr>
+          <tr><td class="group" colspan="2">Your towns</td></tr>
+          <tr><td>custom home builder Fair Oaks Ranch</td><td class="pos you">2nd of 7</td></tr>
+          <tr><td>custom home builder Bulverde</td><td class="pos">7th of 9</td></tr>
+          <tr><td>custom home builder Boerne</td><td class="pos">9th of 9</td></tr>
+          <tr><td>custom home builder Boerne TX</td><td class="pos">9th of 9</td></tr>
+          <tr><td>custom home builder Mico TX</td><td class="pos">9th of 10</td></tr>
+          <tr><td class="group" colspan="2">Your towns, with "luxury"</td></tr>
+          <tr><td>luxury home builder Fair Oaks Ranch</td><td class="absent">Absent</td></tr>
+          <tr><td>luxury home builder Bulverde</td><td class="absent">Absent</td></tr>
+          <tr><td>luxury home builder Boerne</td><td class="absent">Absent</td></tr>
+          <tr><td>luxury custom home builder Boerne</td><td class="absent">Absent</td></tr>
+        </tbody>
+      </table>
     </div>
   </div>
 </div>
