@@ -8,6 +8,9 @@ These reports go to real business owners who can check every claim. Rules for an
    (`custom home builder Boerne`, `luxury home builder San Antonio`). Six words or fewer. Never combine several towns in
    one query. Never pad with "best", "recommendations", "who to hire", "top", or a year unless that exact phrase is what is
    being tested. A query that no human would type produces a result that no human will ever see.
+   Search every area the site names (menu, pages, copy, footer, project titles), every Google Business Profile service
+   area, the office town and the claimed region, each in both the plain and the "luxury" form, and show every search run
+   in the report, not just the two headline ones.
 2. **Every search claim is logged before it goes in a report:** query, engine, date, whether the client appeared, position,
    and the competitors returned. The log lives at `docs/assessments/<client>-search-log.md`. A claim with no log row does
    not ship.

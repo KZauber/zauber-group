@@ -24,7 +24,16 @@ Rules:
   thing being tested, and then say so in the report.
 - Run the two or three most important queries in a second wording (singular/plural, with and without "TX") to check
   the result is stable.
-- Cover every service area the client has a page for, plus the region they claim.
+- Cover every area the client says they serve, from all of these sources, and note in the log which source each came from:
+  - every town in the site's Service Areas menu or with its own page;
+  - every town named in site copy, the footer, or project titles (a project in Castroville means they build there,
+    page or not);
+  - every service area listed on the Google Business Profile;
+  - the town the office sits in;
+  - the region the site claims (San Antonio, Texas Hill Country).
+- Every town gets both forms: `custom home builder <town>` and `luxury home builder <town>`. The region gets both too.
+- The report may showcase two searches as the headline contrast, but it must also show every search run, with the
+  client's position on each, so the stats (0 / 7, 4 / 4) are visibly derived from the full set.
 
 ## 2. Run and log
 

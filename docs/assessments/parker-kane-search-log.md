@@ -4,6 +4,18 @@ Date: September 13, 2026. Engine: web search (US results) via the WebSearch tool
 Bing refused automated queries from the session, so positions are among the distinct domains that engine returned,
 not Google rankings. Client domain: pkcustomhomes.com.
 
+## Coverage
+
+| Source | Areas | Searched |
+|---|---|---|
+| Site "Service Areas" menu / pages | Boerne, Bulverde, Fair Oaks Ranch, San Antonio | yes, all four |
+| Region claimed in site copy | Texas Hill Country | yes |
+| Office town (contact page address) | Mico | yes |
+| Named in site copy / project titles | Castroville (3 mentions, a completed project) | **no, add on next run** |
+| Google Business Profile service areas | not checked this run | **no** |
+
+15 queries in total: 6 region, 5 town without "luxury", 4 town with "luxury".
+
 ## Region searches (0 / 6 appearances)
 
 | Query | Parker Kane | Distinct domains returned, in order |
